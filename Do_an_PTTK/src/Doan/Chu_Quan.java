@@ -414,6 +414,11 @@ public class Chu_Quan extends javax.swing.JFrame {
         button_thongke.setForeground(new java.awt.Color(255, 255, 255));
         button_thongke.setText("Thống kê");
         button_thongke.setOpaque(false);
+        button_thongke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_thongkeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bg_thongkeLayout = new javax.swing.GroupLayout(bg_thongke);
         bg_thongke.setLayout(bg_thongkeLayout);
@@ -622,6 +627,8 @@ public class Chu_Quan extends javax.swing.JFrame {
 
     private void button_nhaphangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nhaphangActionPerformed
         // TODO add your handling code here:
+        new NhapHang_GUI().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_button_nhaphangActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -652,6 +659,12 @@ public class Chu_Quan extends javax.swing.JFrame {
         new NguyenLieu_GUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_nguyenlieuActionPerformed
+
+    private void button_thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thongkeActionPerformed
+        // TODO add your handling code here:
+        new ThongKe_GUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_button_thongkeActionPerformed
 
     /**
      * @param args the command line arguments

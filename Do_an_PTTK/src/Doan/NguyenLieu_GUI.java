@@ -232,19 +232,19 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jButton2.setText("Tra cứu");
         jButton2.setAlignmentY(0.0F);
         jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 110, 40));
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 110, 40));
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
         jButton3.setText("Cập nhật");
         jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 30, 100, 40));
+        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 100, 40));
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
         jButton4.setText("Xóa");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 100, 40));
+        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 100, 40));
 
         bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 700, 80));
 
@@ -296,7 +296,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 90, 30));
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 90, 30));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 300, 330));
 
@@ -314,6 +314,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

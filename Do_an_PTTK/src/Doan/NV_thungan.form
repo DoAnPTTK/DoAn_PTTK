@@ -277,6 +277,9 @@
                     <Property name="text" type="java.lang.String" value="B&#xe0;n"/>
                     <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_banActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -421,6 +424,9 @@
                     <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
                     <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_thongkeActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

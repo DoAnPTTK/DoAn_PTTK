@@ -44,9 +44,6 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         gachchan = new javax.swing.JPanel();
         them_hd = new javax.swing.JPanel();
         jTextField10 = new javax.swing.JTextField();
-        themhd1 = new javax.swing.JPanel();
-        icon_themhd1 = new javax.swing.JLabel();
-        button_themhd1 = new javax.swing.JButton();
         bg_address = new javax.swing.JPanel();
         text_cafeomely1 = new javax.swing.JLabel();
         icon_cafe1 = new javax.swing.JLabel();
@@ -110,9 +107,8 @@ public class tra_cuu_hd extends javax.swing.JFrame {
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 581, Short.MAX_VALUE)
-                .addComponent(button_thoat)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 591, Short.MAX_VALUE)
+                .addComponent(button_thoat))
         );
         bg_thoatLayout.setVerticalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,8 +116,8 @@ public class tra_cuu_hd extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(button_thoat)
                 .addContainerGap())
         );
 
@@ -221,44 +217,6 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         });
         bg_home_banhang.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 150, 40));
 
-        themhd1.setBackground(new java.awt.Color(85, 65, 118));
-
-        icon_themhd1.setBackground(new java.awt.Color(54, 33, 89));
-        icon_themhd1.setForeground(new java.awt.Color(255, 255, 255));
-        icon_themhd1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_themhd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/banhang/icons8_search_26px.png"))); // NOI18N
-        icon_themhd1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        icon_themhd1.setOpaque(true);
-
-        button_themhd1.setBackground(new java.awt.Color(54, 33, 89));
-        button_themhd1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        button_themhd1.setForeground(new java.awt.Color(255, 255, 255));
-        button_themhd1.setText("Tra cứu hóa đơn");
-        button_themhd1.setOpaque(false);
-        button_themhd1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_themhd1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout themhd1Layout = new javax.swing.GroupLayout(themhd1);
-        themhd1.setLayout(themhd1Layout);
-        themhd1Layout.setHorizontalGroup(
-            themhd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(themhd1Layout.createSequentialGroup()
-                .addComponent(icon_themhd1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(button_themhd1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 46, Short.MAX_VALUE))
-        );
-        themhd1Layout.setVerticalGroup(
-            themhd1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(button_themhd1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-            .addComponent(icon_themhd1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        bg_home_banhang.add(themhd1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 310, 40));
-
         bg7.add(bg_home_banhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 510));
 
         bg_address.setBackground(new java.awt.Color(85, 65, 118));
@@ -309,13 +267,9 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
 
-    private void button_themhd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_themhd1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button_themhd1ActionPerformed
-
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new Chu_Quan().setVisible(true);
+        new home_banhang().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 
@@ -361,13 +315,11 @@ public class tra_cuu_hd extends javax.swing.JFrame {
     private javax.swing.JPanel bg_home_banhang;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bg_trangchu7;
-    private javax.swing.JButton button_themhd1;
     private javax.swing.JButton button_thoat;
     private javax.swing.JPanel gachchan;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_search;
-    private javax.swing.JLabel icon_themhd1;
     private javax.swing.JLabel icon_trangchu7;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
@@ -379,6 +331,5 @@ public class tra_cuu_hd extends javax.swing.JFrame {
     private javax.swing.JTextField text_search;
     private javax.swing.JLabel text_trangchu7;
     private javax.swing.JPanel them_hd;
-    private javax.swing.JPanel themhd1;
     // End of variables declaration//GEN-END:variables
 }

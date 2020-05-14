@@ -290,19 +290,19 @@ public class home_banhang_nv extends javax.swing.JFrame {
 
     private void button_themhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_themhdActionPerformed
         // TODO add your handling code here:
-        new tao_hd().setVisible(true);
+        new TaoHD_NV_GUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_themhdActionPerformed
 
     private void button_tracuuhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_tracuuhdActionPerformed
         // TODO add your handling code here:
-        new tra_cuu_hd().setVisible(true);
+        new TraCuuHD_NV_GUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_tracuuhdActionPerformed
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new Chu_Quan().setVisible(true);
+        new NV_thungan().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 

@@ -157,6 +157,11 @@ public class NV_thungan extends javax.swing.JFrame {
         button_ban.setForeground(new java.awt.Color(255, 255, 255));
         button_ban.setText("Bàn");
         button_ban.setOpaque(false);
+        button_ban.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_banActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bg_banLayout = new javax.swing.GroupLayout(bg_ban);
         bg_ban.setLayout(bg_banLayout);
@@ -229,6 +234,11 @@ public class NV_thungan extends javax.swing.JFrame {
         button_thongke.setForeground(new java.awt.Color(255, 255, 255));
         button_thongke.setText("Thống kê");
         button_thongke.setOpaque(false);
+        button_thongke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_thongkeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bg_thongkeLayout = new javax.swing.GroupLayout(bg_thongke);
         bg_thongke.setLayout(bg_thongkeLayout);
@@ -415,6 +425,8 @@ public class NV_thungan extends javax.swing.JFrame {
 
     private void button_thucdonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thucdonActionPerformed
         // TODO add your handling code here:
+        new ThucDon_NV_GUI().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_button_thucdonActionPerformed
 
     private void button_banhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_banhangActionPerformed
@@ -428,6 +440,18 @@ public class NV_thungan extends javax.swing.JFrame {
         new DangNhapGUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_dangxuatActionPerformed
+
+    private void button_thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thongkeActionPerformed
+        // TODO add your handling code here:
+        new ThongKe_nv_GUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_button_thongkeActionPerformed
+
+    private void button_banActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_banActionPerformed
+        // TODO add your handling code here:
+        new Ban_NV_GUI().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_button_banActionPerformed
 
     /**
      * @param args the command line arguments
