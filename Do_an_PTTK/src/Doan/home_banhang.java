@@ -36,9 +36,9 @@ public class home_banhang extends javax.swing.JFrame {
         icon_thucdon = new javax.swing.JLabel();
         button_tracuuhd = new javax.swing.JButton();
         bg_thoat = new javax.swing.JPanel();
-        button_thoat = new javax.swing.JButton();
         text_trangchu7 = new javax.swing.JLabel();
         icon_trangchu7 = new javax.swing.JLabel();
+        button_thoat = new javax.swing.JButton();
         bg_chuquan = new javax.swing.JPanel();
         bg_cafeomely = new javax.swing.JPanel();
         text_cafeomely = new javax.swing.JLabel();
@@ -139,19 +139,6 @@ public class home_banhang extends javax.swing.JFrame {
 
         bg_thoat.setBackground(new java.awt.Color(85, 65, 118));
 
-        button_thoat.setBackground(new java.awt.Color(255, 51, 0));
-        button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        button_thoat.setForeground(new java.awt.Color(255, 255, 255));
-        button_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_back_32px.png"))); // NOI18N
-        button_thoat.setText("Thoát");
-        button_thoat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-        button_thoat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        button_thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_thoatActionPerformed(evt);
-            }
-        });
-
         text_trangchu7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         text_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
         text_trangchu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -164,6 +151,19 @@ public class home_banhang extends javax.swing.JFrame {
         icon_trangchu7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         icon_trangchu7.setOpaque(true);
 
+        button_thoat.setBackground(new java.awt.Color(255, 255, 255));
+        button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        button_thoat.setForeground(new java.awt.Color(204, 51, 0));
+        button_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_back_arrow_30px.png"))); // NOI18N
+        button_thoat.setText("Thoát");
+        button_thoat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
+        button_thoat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        button_thoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_thoatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bg_thoatLayout = new javax.swing.GroupLayout(bg_thoat);
         bg_thoat.setLayout(bg_thoatLayout);
         bg_thoatLayout.setHorizontalGroup(
@@ -172,8 +172,8 @@ public class home_banhang extends javax.swing.JFrame {
                 .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 580, Short.MAX_VALUE)
-                .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 589, Short.MAX_VALUE)
+                .addComponent(button_thoat)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -181,11 +181,9 @@ public class home_banhang extends javax.swing.JFrame {
             .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(bg_thoatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(bg_thoatLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(text_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -226,16 +224,16 @@ public class home_banhang extends javax.swing.JFrame {
         bg_cafe_cake.setBackground(new java.awt.Color(54, 33, 89));
 
         image_cafe_cake.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_cafe_cake.setIcon(new javax.swing.ImageIcon("F:\\document\\Do_an_PTTK\\src\\Doan\\images\\chuquan\\quan_càe.png")); // NOI18N
+        image_cafe_cake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/quan_càe.png"))); // NOI18N
 
         javax.swing.GroupLayout bg_cafe_cakeLayout = new javax.swing.GroupLayout(bg_cafe_cake);
         bg_cafe_cake.setLayout(bg_cafe_cakeLayout);
         bg_cafe_cakeLayout.setHorizontalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_cafe_cakeLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addComponent(image_cafe_cake)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         bg_cafe_cakeLayout.setVerticalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

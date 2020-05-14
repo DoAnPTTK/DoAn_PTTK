@@ -53,12 +53,13 @@ public class tao_hd extends javax.swing.JFrame {
         text_cafeomely5 = new javax.swing.JLabel();
         icon_cafe5 = new javax.swing.JLabel();
         bg_cafe_cake2 = new javax.swing.JPanel();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         bg7 = new javax.swing.JPanel();
         bg_thoat = new javax.swing.JPanel();
-        button_thoat = new javax.swing.JButton();
         bg_trangchu7 = new javax.swing.JPanel();
         text_trangchu7 = new javax.swing.JLabel();
         icon_trangchu7 = new javax.swing.JLabel();
+        button_thoat = new javax.swing.JButton();
         bg_home_banhang = new javax.swing.JPanel();
         them_hd = new javax.swing.JPanel();
         themhd = new javax.swing.JPanel();
@@ -327,19 +328,6 @@ public class tao_hd extends javax.swing.JFrame {
 
         bg_thoat.setBackground(new java.awt.Color(85, 65, 118));
 
-        button_thoat.setBackground(new java.awt.Color(255, 51, 0));
-        button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        button_thoat.setForeground(new java.awt.Color(255, 255, 255));
-        button_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_back_32px.png"))); // NOI18N
-        button_thoat.setText("Thoát");
-        button_thoat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
-        button_thoat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        button_thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_thoatActionPerformed(evt);
-            }
-        });
-
         bg_trangchu7.setBackground(new java.awt.Color(85, 65, 118));
 
         text_trangchu7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -370,14 +358,27 @@ public class tao_hd extends javax.swing.JFrame {
             .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        button_thoat.setBackground(new java.awt.Color(255, 255, 255));
+        button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        button_thoat.setForeground(new java.awt.Color(204, 51, 0));
+        button_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_back_arrow_30px.png"))); // NOI18N
+        button_thoat.setText("Thoát");
+        button_thoat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
+        button_thoat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        button_thoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_thoatActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout bg_thoatLayout = new javax.swing.GroupLayout(bg_thoat);
         bg_thoat.setLayout(bg_thoatLayout);
         bg_thoatLayout.setHorizontalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 572, Short.MAX_VALUE)
-                .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 581, Short.MAX_VALUE)
+                .addComponent(button_thoat)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -385,10 +386,10 @@ public class tao_hd extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(bg_thoatLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(button_thoat)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         bg7.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
@@ -444,6 +445,7 @@ public class tao_hd extends javax.swing.JFrame {
         jTextField5.setForeground(new java.awt.Color(255, 255, 255));
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField5.setText("Số lượng");
+        jTextField5.setBorder(null);
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -465,6 +467,11 @@ public class tao_hd extends javax.swing.JFrame {
         bg_home_banhang.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 130, 30));
 
         jTextField4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         bg_home_banhang.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 240, 30));
 
         jTextField7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -477,16 +484,18 @@ public class tao_hd extends javax.swing.JFrame {
         jTextField8.setText("Tên món");
         jTextField8.setBorder(null);
         bg_home_banhang.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
-        bg_home_banhang.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 50, 30));
+        bg_home_banhang.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 80, 30));
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cash_in_hand_40px.png"))); // NOI18N
         jButton1.setText("Thanh toán");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        bg_home_banhang.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 390, 170, 30));
+        bg_home_banhang.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, 140, 40));
 
         jTextField11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         bg_home_banhang.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 240, 30));
@@ -517,7 +526,7 @@ public class tao_hd extends javax.swing.JFrame {
         jTextField14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jTextField14.setForeground(new java.awt.Color(255, 255, 255));
         jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField14.setText("Thanh toán");
+        jTextField14.setText("Thanh toán:");
         jTextField14.setBorder(null);
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -555,11 +564,12 @@ public class tao_hd extends javax.swing.JFrame {
         bg_home_banhang.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 120, 30));
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_new_16px.png"))); // NOI18N
         jButton2.setText("Thêm");
-        bg_home_banhang.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 120, 30));
+        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        bg_home_banhang.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 100, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        bg_home_banhang.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 100, 30));
+        bg_home_banhang.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 80, 30));
 
         jPanel1.setBackground(new java.awt.Color(85, 65, 118));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -569,12 +579,12 @@ public class tao_hd extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã khách hàng", "Mã bàn", "Tên món", "Số lượng"
+                "Mã khách hàng", "Mã bàn", "Tên món", "Số lượng", "Ngày hóa đơn"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 30, 930, 170));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 900, 160));
 
         jTextField9.setBackground(new java.awt.Color(85, 65, 118));
         jTextField9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -589,7 +599,7 @@ public class tao_hd extends javax.swing.JFrame {
         });
         jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 250, 30));
 
-        bg_home_banhang.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 950, 200));
+        bg_home_banhang.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 940, 200));
 
         jTextField10.setBackground(new java.awt.Color(54, 33, 89));
         jTextField10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -608,7 +618,7 @@ public class tao_hd extends javax.swing.JFrame {
         text_cafeomely1.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely1.setText("OMELY QUÁN ");
-        bg_address.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 235, 56));
+        bg_address.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 280, 56));
 
         icon_cafe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_cafe_50px.png"))); // NOI18N
@@ -673,13 +683,6 @@ public class tao_hd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
-        // TODO add your handling code here:
-        new home_banhang().setVisible(true);
-        this.dispose();
-        
-    }//GEN-LAST:event_button_thoatActionPerformed
-
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
@@ -687,6 +690,16 @@ public class tao_hd extends javax.swing.JFrame {
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
+        // TODO add your handling code here:
+        new Chu_Quan().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_button_thoatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -761,6 +774,7 @@ public class tao_hd extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTable jTable2;

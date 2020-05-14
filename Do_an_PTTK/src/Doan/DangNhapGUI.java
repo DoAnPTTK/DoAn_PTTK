@@ -134,6 +134,11 @@ public class DangNhapGUI extends javax.swing.JFrame {
         jCheck_show_password.setBorder(null);
         jCheck_show_password.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jCheck_show_password.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jCheck_show_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheck_show_passwordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bg_show_passwordLayout = new javax.swing.GroupLayout(bg_show_password);
         bg_show_password.setLayout(bg_show_passwordLayout);
@@ -141,8 +146,8 @@ public class DangNhapGUI extends javax.swing.JFrame {
             bg_show_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_show_passwordLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheck_show_password, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jCheck_show_password, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         bg_show_passwordLayout.setVerticalGroup(
             bg_show_passwordLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +273,7 @@ public class DangNhapGUI extends javax.swing.JFrame {
         bg.add(bglogin);
         bglogin.setBounds(0, 170, 560, 470);
 
-        images_bg.setIcon(new javax.swing.ImageIcon("F:\\document\\Do_an_PTTK\\src\\Doan\\images\\dangnhap\\bg_dangnhap.png")); // NOI18N
+        images_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/bg_dangnhap.png"))); // NOI18N
         images_bg.setText("jLabel1");
         bg.add(images_bg);
         images_bg.setBounds(0, 0, 570, 640);
@@ -296,6 +301,10 @@ public class DangNhapGUI extends javax.swing.JFrame {
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_button_loginActionPerformed
+
+    private void jCheck_show_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheck_show_passwordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheck_show_passwordActionPerformed
 
     /**
      * @param args the command line arguments

@@ -303,8 +303,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="jCheck_show_password" min="-2" pref="148" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jCheck_show_password" min="-2" pref="155" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -330,6 +330,9 @@
                     <Property name="horizontalAlignment" type="int" value="2"/>
                     <Property name="horizontalTextPosition" type="int" value="4"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheck_show_passwordActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -468,7 +471,7 @@
         <Component class="javax.swing.JLabel" name="images_bg">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="F:\document\Do_an_PTTK\src\Doan\images\dangnhap\bg_dangnhap.png"/>
+              <Image iconType="3" name="/Doan/images/dangnhap/bg_dangnhap.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>

@@ -469,9 +469,10 @@ public class Chu_Quan extends javax.swing.JFrame {
 
         button_dangxuat.setBackground(new java.awt.Color(255, 255, 255));
         button_dangxuat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        button_dangxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_shutdown_48px.png"))); // NOI18N
+        button_dangxuat.setForeground(new java.awt.Color(204, 0, 0));
+        button_dangxuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_logout_rounded_left_24px_1.png"))); // NOI18N
         button_dangxuat.setText("Đăng Xuất");
-        button_dangxuat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        button_dangxuat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
         button_dangxuat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         button_dangxuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,16 +485,16 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_thoatLayout.setHorizontalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addContainerGap(533, Short.MAX_VALUE)
+                .addContainerGap(555, Short.MAX_VALUE)
                 .addComponent(button_dangxuat)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bg_thoatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(button_dangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addComponent(button_dangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         bg.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 690, 60));
