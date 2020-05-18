@@ -54,12 +54,12 @@ public class Ban_GUI extends javax.swing.JFrame {
         jButton_xoa = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jText_Khuvuc = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jComboBox_Soghe = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jComboBox_Trangthai = new javax.swing.JComboBox<>();
         jButton_huy = new javax.swing.JButton();
+        jText_Khuvuc = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -273,19 +273,13 @@ public class Ban_GUI extends javax.swing.JFrame {
         jLabel1.setText("Khu vực ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 21));
 
-        jText_Khuvuc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jText_Khuvuc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jText_Khuvuc.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jText_Khuvuc.setFocusTraversalPolicyProvider(true);
-        jPanel1.add(jText_Khuvuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 260, 30));
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Trạng thái");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 89, 21));
 
         jComboBox_Soghe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "4", "6", "8" }));
-        jPanel1.add(jComboBox_Soghe, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 40, 30));
+        jPanel1.add(jComboBox_Soghe, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 40, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -294,7 +288,7 @@ public class Ban_GUI extends javax.swing.JFrame {
 
         jComboBox_Trangthai.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jComboBox_Trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trống", "Đã đặt" }));
-        jPanel1.add(jComboBox_Trangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 100, 30));
+        jPanel1.add(jComboBox_Trangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 100, 30));
 
         jButton_huy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_huy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
@@ -306,6 +300,9 @@ public class Ban_GUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton_huy, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 90, 30));
+
+        jText_Khuvuc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(jText_Khuvuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 240, 30));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 280, 200));
 

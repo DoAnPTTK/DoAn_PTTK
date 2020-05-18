@@ -45,26 +45,25 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtSdt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtTenncc = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtDc = new javax.swing.JTextPane();
+        txtTenncc = new javax.swing.JTextField();
+        txtSdt = new javax.swing.JTextField();
+        txtDc = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtTenhang = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        txtSl = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtDongia = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        txtThanhtien = new javax.swing.JTextField();
         cboDv = new javax.swing.JComboBox<>();
         btnHuy = new javax.swing.JButton();
+        txtTenhang = new javax.swing.JTextField();
+        txtSl = new javax.swing.JTextField();
+        txtDongia = new javax.swing.JTextField();
+        txtThanhtien = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -206,15 +205,6 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         jLabel1.setText("Tên nhà cung cấp");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 100, 30));
 
-        txtSdt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtSdt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        txtSdt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSdtActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 160, 30));
-
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("SĐT");
@@ -226,19 +216,19 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         jLabel2.setText("Thông tin nhà cung cấp");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 21));
 
-        txtTenncc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtTenncc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(txtTenncc, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, 160, 30));
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Địa chỉ");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 50, 30));
 
-        txtDc.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jScrollPane2.setViewportView(txtDc);
+        txtTenncc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txtTenncc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 200, 30));
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 280, 50));
+        txtSdt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txtSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 200, 30));
+
+        txtDc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txtDc, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 200, 30));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 340, 180));
 
@@ -261,36 +251,20 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         jLabel4.setText("Thông tin nhập hàng");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 21));
 
-        txtTenhang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtTenhang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel3.add(txtTenhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 230, 30));
-
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Số lượng");
         jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 50, 30));
-
-        txtSl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtSl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel3.add(txtSl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 80, 30));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Đơn giá");
         jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 50, 30));
 
-        txtDongia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtDongia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel3.add(txtDongia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 180, 30));
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Thành tiền");
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 70, 30));
-
-        txtThanhtien.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtThanhtien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel3.add(txtThanhtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 180, 30));
 
         cboDv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilogam", "Lít", "Cái" }));
         jPanel3.add(cboDv, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 80, 30));
@@ -305,6 +279,18 @@ public class NhapHang_GUI extends javax.swing.JFrame {
             }
         });
         jPanel3.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 90, 30));
+
+        txtTenhang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel3.add(txtTenhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 230, 30));
+
+        txtSl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel3.add(txtSl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 80, 30));
+
+        txtDongia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel3.add(txtDongia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 230, 30));
+
+        txtThanhtien.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel3.add(txtThanhtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 230, 30));
 
         bg_chuquan.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 340, 240));
 
@@ -401,10 +387,6 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void txtSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSdtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSdtActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -475,12 +457,11 @@ public class NhapHang_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JLabel text_trangchu7;
-    private javax.swing.JTextPane txtDc;
+    private javax.swing.JTextField txtDc;
     private javax.swing.JTextField txtDongia;
     private javax.swing.JTextField txtSdt;
     private javax.swing.JTextField txtSl;

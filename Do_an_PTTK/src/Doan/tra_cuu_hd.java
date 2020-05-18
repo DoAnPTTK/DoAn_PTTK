@@ -169,14 +169,13 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         text_search.setBackground(new java.awt.Color(85, 65, 118));
         text_search.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         text_search.setForeground(new java.awt.Color(255, 255, 255));
-        text_search.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         text_search.setBorder(null);
         text_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 text_searchActionPerformed(evt);
             }
         });
-        search.add(text_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 30));
+        search.add(text_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 30));
 
         javax.swing.GroupLayout gachchanLayout = new javax.swing.GroupLayout(gachchan);
         gachchan.setLayout(gachchanLayout);

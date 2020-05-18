@@ -45,11 +45,11 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtTenmon = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtGia = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         btnHuy = new javax.swing.JButton();
+        txtTenmon = new javax.swing.JTextField();
+        txtGia = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -192,20 +192,10 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         jLabel1.setText("Tên món");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 21));
 
-        txtTenmon.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtTenmon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        txtTenmon.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtTenmon.setDoubleBuffered(true);
-        jPanel1.add(txtTenmon, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 260, 30));
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Giá");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 89, 21));
-
-        txtGia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtGia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(txtGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 160, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,6 +212,12 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 90, 30));
+
+        txtTenmon.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txtTenmon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 210, 30));
+
+        txtGia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txtGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 140, 30));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 280, 210));
 
@@ -336,16 +332,15 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
         txtTenmon.setText(null);
         txtGia.setText(null);
-
     }//GEN-LAST:event_btnHuyActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
      * @param args the command line arguments

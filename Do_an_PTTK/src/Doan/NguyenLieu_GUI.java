@@ -56,15 +56,15 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtSlc = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        btnHuy = new javax.swing.JButton();
         txtNl = new javax.swing.JTextField();
+        txtSlc = new javax.swing.JTextField();
         txtHsd = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtCd = new javax.swing.JTextPane();
-        btnHuy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,10 +256,6 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jLabel1.setText("Tên nguyên liệu");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 21));
 
-        txtSlc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtSlc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(txtSlc, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 110, 30));
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Công dụng");
@@ -275,19 +271,6 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jLabel9.setText("Số lượng còn");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 80, 21));
 
-        txtNl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtNl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(txtNl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 280, 30));
-
-        txtHsd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        txtHsd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(txtHsd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
-
-        txtCd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jScrollPane2.setViewportView(txtCd);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 280, 80));
-
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
         btnHuy.setText("Hủy");
@@ -298,6 +281,20 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 90, 30));
+
+        txtNl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txtNl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 30));
+
+        txtSlc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txtSlc, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 100, 30));
+
+        txtHsd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txtHsd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, 30));
+
+        txtCd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jScrollPane2.setViewportView(txtCd);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 240, 80));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 300, 330));
 
