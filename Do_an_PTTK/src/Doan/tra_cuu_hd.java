@@ -39,9 +39,9 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         search = new javax.swing.JPanel();
-        icon_search = new javax.swing.JLabel();
         text_search = new javax.swing.JTextField();
         gachchan = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         them_hd = new javax.swing.JPanel();
         jTextField10 = new javax.swing.JTextField();
         bg_address = new javax.swing.JPanel();
@@ -107,8 +107,9 @@ public class tra_cuu_hd extends javax.swing.JFrame {
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 591, Short.MAX_VALUE)
-                .addComponent(button_thoat))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 581, Short.MAX_VALUE)
+                .addComponent(button_thoat)
+                .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,14 +166,6 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         search.setBackground(new java.awt.Color(85, 65, 118));
         search.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        icon_search.setBackground(new java.awt.Color(54, 33, 89));
-        icon_search.setForeground(new java.awt.Color(255, 255, 255));
-        icon_search.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/banhang/icons8_search_26px.png"))); // NOI18N
-        icon_search.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        icon_search.setOpaque(true);
-        search.add(icon_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 34, 40));
-
         text_search.setBackground(new java.awt.Color(85, 65, 118));
         text_search.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         text_search.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,6 +190,11 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         );
 
         search.add(gachchan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 160, 1));
+
+        jButton1.setBackground(new java.awt.Color(54, 33, 89));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/banhang/icons8_search_26px.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        search.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 40, 40));
 
         bg_home_banhang.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 200, 40));
 
@@ -319,8 +317,8 @@ public class tra_cuu_hd extends javax.swing.JFrame {
     private javax.swing.JPanel gachchan;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
-    private javax.swing.JLabel icon_search;
     private javax.swing.JLabel icon_trangchu7;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;

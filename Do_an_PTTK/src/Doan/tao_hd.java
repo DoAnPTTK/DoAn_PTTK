@@ -5,6 +5,12 @@
  */
 package Doan;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MSI2
@@ -62,32 +68,33 @@ public class tao_hd extends javax.swing.JFrame {
         button_thoat = new javax.swing.JButton();
         bg_home_banhang = new javax.swing.JPanel();
         them_hd = new javax.swing.JPanel();
-        themhd = new javax.swing.JPanel();
-        icon_themhd = new javax.swing.JLabel();
-        button_themhd = new javax.swing.JButton();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        jText_TenMon = new javax.swing.JTextField();
+        jText_MaKH = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jSpinner3 = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
-        jTextField11 = new javax.swing.JTextField();
+        jSpinner_SoLuong = new javax.swing.JSpinner();
+        jText_TongCong = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jTextField12 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
+        jText_GiamGia = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
+        jText_ThanhToan = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jTextField16 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton_them_luachon = new javax.swing.JButton();
+        jComboBox_MaBan = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTable_CTHD = new javax.swing.JTable();
         jTextField9 = new javax.swing.JTextField();
+        jButton_bochon = new javax.swing.JButton();
+        jButton_Thanhtoan = new javax.swing.JButton();
+        themhd = new javax.swing.JPanel();
+        icon_themhd = new javax.swing.JLabel();
+        button_themhd = new javax.swing.JButton();
         jTextField10 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         bg_address = new javax.swing.JPanel();
         text_cafeomely1 = new javax.swing.JLabel();
         icon_cafe1 = new javax.swing.JLabel();
@@ -399,8 +406,172 @@ public class tao_hd extends javax.swing.JFrame {
 
         them_hd.setBackground(new java.awt.Color(54, 33, 89));
         them_hd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        bg_home_banhang.add(them_hd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 40));
 
-        themhd.setBackground(new java.awt.Color(85, 65, 118));
+        jTextField5.setBackground(new java.awt.Color(54, 33, 89));
+        jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField5.setText("Số lượng");
+        jTextField5.setBorder(null);
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        bg_home_banhang.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 90, 30));
+
+        jText_TenMon.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jText_TenMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jText_TenMonActionPerformed(evt);
+            }
+        });
+        bg_home_banhang.add(jText_TenMon, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 50, 240, 30));
+
+        jText_MaKH.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bg_home_banhang.add(jText_MaKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 240, 30));
+
+        jTextField8.setBackground(new java.awt.Color(54, 33, 89));
+        jTextField8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField8.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField8.setText("Tên món");
+        jTextField8.setBorder(null);
+        bg_home_banhang.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 130, 30));
+        bg_home_banhang.add(jSpinner_SoLuong, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, 80, 30));
+
+        jText_TongCong.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bg_home_banhang.add(jText_TongCong, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 380, 240, 30));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("%");
+        bg_home_banhang.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 420, 50, 30));
+
+        jTextField12.setBackground(new java.awt.Color(54, 33, 89));
+        jTextField12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField12.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField12.setText("%Giảm giá:");
+        jTextField12.setBorder(null);
+        jTextField12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField12ActionPerformed(evt);
+            }
+        });
+        bg_home_banhang.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 420, 120, 30));
+
+        jText_GiamGia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bg_home_banhang.add(jText_GiamGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 420, 50, 30));
+
+        jTextField14.setBackground(new java.awt.Color(54, 33, 89));
+        jTextField14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField14.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField14.setText("Thanh toán:");
+        jTextField14.setBorder(null);
+        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField14ActionPerformed(evt);
+            }
+        });
+        bg_home_banhang.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 460, 120, 30));
+
+        jText_ThanhToan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bg_home_banhang.add(jText_ThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 460, 240, 30));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("VND");
+        bg_home_banhang.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 460, 50, 30));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Mã khách hàng");
+        bg_home_banhang.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 110, 30));
+
+        jTextField16.setBackground(new java.awt.Color(54, 33, 89));
+        jTextField16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField16.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField16.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField16.setText("Tổng cộng:");
+        jTextField16.setBorder(null);
+        jTextField16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField16ActionPerformed(evt);
+            }
+        });
+        bg_home_banhang.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 120, 30));
+
+        jButton_them_luachon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton_them_luachon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_new_16px.png"))); // NOI18N
+        jButton_them_luachon.setText("Thêm");
+        jButton_them_luachon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 51), 2));
+        jButton_them_luachon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_them_luachonActionPerformed(evt);
+            }
+        });
+        bg_home_banhang.add(jButton_them_luachon, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 100, 30));
+
+        jComboBox_MaBan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MS21", "MS11", "MS23", "MS46", "MS38", " " }));
+        bg_home_banhang.add(jComboBox_MaBan, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 10, 80, 30));
+
+        jPanel1.setBackground(new java.awt.Color(85, 65, 118));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable_CTHD.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã khách hàng", "Mã bàn", "Tên món", "Số lượng"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable_CTHD);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 900, 160));
+
+        jTextField9.setBackground(new java.awt.Color(85, 65, 118));
+        jTextField9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField9.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField9.setText("Thông tin chi tiết hóa đơn");
+        jTextField9.setBorder(null);
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 250, 30));
+
+        jButton_bochon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton_bochon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
+        jButton_bochon.setText("Bỏ chọn");
+        jButton_bochon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 51, 0), 2));
+        jButton_bochon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_bochonActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_bochon, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 100, 30));
+
+        jButton_Thanhtoan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton_Thanhtoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cash_in_hand_40px.png"))); // NOI18N
+        jButton_Thanhtoan.setText("Thanh toán");
+        jButton_Thanhtoan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 0), 2));
+        jButton_Thanhtoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ThanhtoanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton_Thanhtoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 140, 40));
+
+        themhd.setBackground(new java.awt.Color(204, 255, 204));
 
         icon_themhd.setBackground(new java.awt.Color(54, 33, 89));
         icon_themhd.setForeground(new java.awt.Color(255, 255, 255));
@@ -410,7 +581,7 @@ public class tao_hd extends javax.swing.JFrame {
         icon_themhd.setOpaque(true);
 
         button_themhd.setBackground(new java.awt.Color(54, 33, 89));
-        button_themhd.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        button_themhd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         button_themhd.setForeground(new java.awt.Color(255, 255, 255));
         button_themhd.setText("Thêm hóa đơn mới");
         button_themhd.setOpaque(false);
@@ -426,9 +597,9 @@ public class tao_hd extends javax.swing.JFrame {
             themhdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(themhdLayout.createSequentialGroup()
                 .addComponent(icon_themhd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(button_themhd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 46, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(button_themhd)
+                .addGap(0, 9, Short.MAX_VALUE))
         );
         themhdLayout.setVerticalGroup(
             themhdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -436,170 +607,9 @@ public class tao_hd extends javax.swing.JFrame {
             .addComponent(icon_themhd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        them_hd.add(themhd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 310, 40));
+        jPanel1.add(themhd, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 210, -1));
 
-        bg_home_banhang.add(them_hd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 40));
-
-        jTextField5.setBackground(new java.awt.Color(54, 33, 89));
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField5.setText("Số lượng");
-        jTextField5.setBorder(null);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        bg_home_banhang.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 90, 30));
-
-        jTextField6.setBackground(new java.awt.Color(54, 33, 89));
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField6.setText("Mã khách hàng");
-        jTextField6.setBorder(null);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        bg_home_banhang.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 130, 30));
-
-        jTextField4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        bg_home_banhang.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 240, 30));
-
-        jTextField7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        bg_home_banhang.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 240, 30));
-
-        jTextField8.setBackground(new java.awt.Color(54, 33, 89));
-        jTextField8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField8.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField8.setText("Tên món");
-        jTextField8.setBorder(null);
-        bg_home_banhang.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
-        bg_home_banhang.add(jSpinner3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 80, 30));
-
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cash_in_hand_40px.png"))); // NOI18N
-        jButton1.setText("Thanh toán");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        bg_home_banhang.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 380, 140, 40));
-
-        jTextField11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        bg_home_banhang.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 240, 30));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("%");
-        bg_home_banhang.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 50, 30));
-
-        jTextField12.setBackground(new java.awt.Color(54, 33, 89));
-        jTextField12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField12.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField12.setText("%Giảm giá:");
-        jTextField12.setBorder(null);
-        jTextField12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField12ActionPerformed(evt);
-            }
-        });
-        bg_home_banhang.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 120, 30));
-
-        jTextField13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        bg_home_banhang.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 50, 30));
-
-        jTextField14.setBackground(new java.awt.Color(54, 33, 89));
-        jTextField14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField14.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField14.setText("Thanh toán:");
-        jTextField14.setBorder(null);
-        jTextField14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField14ActionPerformed(evt);
-            }
-        });
-        bg_home_banhang.add(jTextField14, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 120, 30));
-
-        jTextField15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        bg_home_banhang.add(jTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 470, 240, 30));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("VND");
-        bg_home_banhang.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 470, 50, 30));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("VND");
-        bg_home_banhang.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 390, 50, 30));
-
-        jTextField16.setBackground(new java.awt.Color(54, 33, 89));
-        jTextField16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField16.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField16.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField16.setText("Tổng cộng:");
-        jTextField16.setBorder(null);
-        jTextField16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField16ActionPerformed(evt);
-            }
-        });
-        bg_home_banhang.add(jTextField16, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 120, 30));
-
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_new_16px.png"))); // NOI18N
-        jButton2.setText("Thêm");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        bg_home_banhang.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 100, 30));
-
-        bg_home_banhang.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 70, 80, 30));
-
-        jPanel1.setBackground(new java.awt.Color(85, 65, 118));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Mã khách hàng", "Mã bàn", "Tên món", "Số lượng", "Ngày hóa đơn"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 900, 160));
-
-        jTextField9.setBackground(new java.awt.Color(85, 65, 118));
-        jTextField9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTextField9.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField9.setText("Thông tin chi tiết hóa đơn");
-        jTextField9.setBorder(null);
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 250, 30));
-
-        bg_home_banhang.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 940, 200));
+        bg_home_banhang.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 960, 270));
 
         jTextField10.setBackground(new java.awt.Color(54, 33, 89));
         jTextField10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -607,7 +617,13 @@ public class tao_hd extends javax.swing.JFrame {
         jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField10.setText("Mã bàn");
         jTextField10.setBorder(null);
-        bg_home_banhang.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 110, 30));
+        bg_home_banhang.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 110, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("VND");
+        bg_home_banhang.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 380, 50, 30));
 
         bg7.add(bg_home_banhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 510));
 
@@ -679,27 +695,55 @@ public class tao_hd extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField16ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton_ThanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ThanhtoanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_jButton_ThanhtoanActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jText_TenMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText_TenMonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jText_TenMonActionPerformed
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
         new home_banhang().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
+
+    private void jButton_them_luachonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_them_luachonActionPerformed
+        // TODO add your handling code here:
+        if((jText_MaKH.getText().equals("")) || (jText_TenMon.getText().equals("")))
+        {
+            JOptionPane.showMessageDialog(null,"Dữ liệu chưa được nhập đủ! Hãy thử lại!", "Lỗi",JOptionPane.INFORMATION_MESSAGE);
+        }
+        else 
+        {
+            DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
+            Object [] row = new Object[4];
+            row[0] = jText_MaKH.getText();
+            row[1] = jComboBox_MaBan.getSelectedItem().toString();
+            row[2] = jText_TenMon.getText();
+            row[3] = jSpinner_SoLuong.getValue();
+            model.addRow(row);
+        }
+    }//GEN-LAST:event_jButton_them_luachonActionPerformed
+
+    private void jButton_bochonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_bochonActionPerformed
+        // TODO add your handling code here:
+          DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
+        //Delete Selected Row        
+        int getSelectedRowForDeletion = jTable_CTHD.getSelectedRow();
+        //Check if their is a row selected
+        if (getSelectedRowForDeletion >= 0) {
+            model.removeRow(getSelectedRowForDeletion);
+            JOptionPane.showMessageDialog(null, "Row Deleted");
+        } else {
+            JOptionPane.showMessageDialog(null, "Unable To Delete");
+        }
+    }//GEN-LAST:event_jButton_bochonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -767,30 +811,31 @@ public class tao_hd extends javax.swing.JFrame {
     private javax.swing.JLabel icon_thucdon2;
     private javax.swing.JLabel icon_trangchu7;
     private javax.swing.JLabel icon_trangchu9;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton_Thanhtoan;
+    private javax.swing.JButton jButton_bochon;
+    private javax.swing.JButton jButton_them_luachon;
+    private javax.swing.JComboBox<String> jComboBox_MaBan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner jSpinner3;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JSpinner jSpinner_SoLuong;
+    private javax.swing.JTable jTable_CTHD;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jText_GiamGia;
+    private javax.swing.JTextField jText_MaKH;
+    private javax.swing.JTextField jText_TenMon;
+    private javax.swing.JTextField jText_ThanhToan;
+    private javax.swing.JTextField jText_TongCong;
     private javax.swing.JPanel sidepane9;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
