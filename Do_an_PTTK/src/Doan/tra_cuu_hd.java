@@ -167,7 +167,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         search.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text_search.setBackground(new java.awt.Color(85, 65, 118));
-        text_search.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        text_search.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         text_search.setForeground(new java.awt.Color(255, 255, 255));
         text_search.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         text_search.setBorder(null);

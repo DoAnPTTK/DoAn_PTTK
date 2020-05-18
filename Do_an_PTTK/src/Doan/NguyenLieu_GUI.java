@@ -56,15 +56,15 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        text_tennv = new javax.swing.JTextField();
+        txtSlc = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        text_tennv1 = new javax.swing.JTextField();
-        text_tennv2 = new javax.swing.JTextField();
+        txtNl = new javax.swing.JTextField();
+        txtHsd = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jButton6 = new javax.swing.JButton();
+        txtCd = new javax.swing.JTextPane();
+        btnHuy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,9 +256,9 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jLabel1.setText("Tên nguyên liệu");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 21));
 
-        text_tennv.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        text_tennv.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(text_tennv, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 110, 30));
+        txtSlc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtSlc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
+        jPanel1.add(txtSlc, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 110, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,28 +275,29 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jLabel9.setText("Số lượng còn");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 80, 21));
 
-        text_tennv1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        text_tennv1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(text_tennv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 280, 30));
+        txtNl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtNl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
+        jPanel1.add(txtNl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 280, 30));
 
-        text_tennv2.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        text_tennv2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(text_tennv2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
+        txtHsd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtHsd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
+        jPanel1.add(txtHsd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 130, 30));
 
-        jScrollPane2.setViewportView(jTextPane1);
+        txtCd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jScrollPane2.setViewportView(txtCd);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 280, 80));
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
-        jButton6.setText("Hủy");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
+        btnHuy.setText("Hủy");
+        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnHuyActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 90, 30));
+        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 90, 30));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 300, 330));
 
@@ -317,9 +318,13 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        txtNl.setText(null);
+        txtHsd.setText(null);
+        txtSlc.setText(null);
+        txtCd.setText(null);
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -371,6 +376,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bgnv;
+    private javax.swing.JButton btnHuy;
     private javax.swing.JButton button_thoat;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
@@ -379,7 +385,6 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
@@ -398,12 +403,12 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
-    private javax.swing.JTextField text_tennv;
-    private javax.swing.JTextField text_tennv1;
-    private javax.swing.JTextField text_tennv2;
     private javax.swing.JLabel text_trangchu7;
+    private javax.swing.JTextPane txtCd;
+    private javax.swing.JTextField txtHsd;
+    private javax.swing.JTextField txtNl;
+    private javax.swing.JTextField txtSlc;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,14 +45,14 @@ public class QL_KH_GUI extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        text_tennv = new javax.swing.JTextField();
+        txtTenkh = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        text_SDT = new javax.swing.JTextField();
-        text_mucluong = new javax.swing.JTextField();
+        txtSdt = new javax.swing.JTextField();
+        txtDtl = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        box_gioitinh = new javax.swing.JComboBox<>();
-        jButton6 = new javax.swing.JButton();
+        cboGt = new javax.swing.JComboBox<>();
+        btnHuy = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -200,9 +200,9 @@ public class QL_KH_GUI extends javax.swing.JFrame {
         jLabel1.setText("Tên Khách Hàng");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 21));
 
-        text_tennv.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        text_tennv.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(text_tennv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 260, 30));
+        txtTenkh.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtTenkh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
+        jPanel1.add(txtTenkh, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 260, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -214,32 +214,33 @@ public class QL_KH_GUI extends javax.swing.JFrame {
         jLabel7.setText("SĐT");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 89, 21));
 
-        text_SDT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        text_SDT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
-        jPanel1.add(text_SDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 160, 30));
+        txtSdt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtSdt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
+        jPanel1.add(txtSdt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 160, 30));
 
-        text_mucluong.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        text_mucluong.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
-        jPanel1.add(text_mucluong, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 50, 30));
+        txtDtl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtDtl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        jPanel1.add(txtDtl, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, 50, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Điểm Tích Lũy");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, 80, 21));
 
-        box_gioitinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Không xác định" }));
-        jPanel1.add(box_gioitinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 80, 30));
+        cboGt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        cboGt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Không xác định" }));
+        jPanel1.add(cboGt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 80, 30));
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
-        jButton6.setText("Hủy");
-        jButton6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
+        btnHuy.setText("Hủy");
+        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnHuyActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 90, 30));
+        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 90, 30));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 340, 250));
 
@@ -351,9 +352,13 @@ public class QL_KH_GUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        txtTenkh.setText(null);
+        txtSdt.setText(null);
+        cboGt.setSelectedItem("Nam");
+        txtDtl.setText(null);
+    }//GEN-LAST:event_btnHuyActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -405,15 +410,15 @@ public class QL_KH_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bgnv;
-    private javax.swing.JComboBox<String> box_gioitinh;
+    private javax.swing.JButton btnHuy;
     private javax.swing.JButton button_thoat;
+    private javax.swing.JComboBox<String> cboGt;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
@@ -430,11 +435,11 @@ public class QL_KH_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField text_SDT;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
-    private javax.swing.JTextField text_mucluong;
-    private javax.swing.JTextField text_tennv;
     private javax.swing.JLabel text_trangchu7;
+    private javax.swing.JTextField txtDtl;
+    private javax.swing.JTextField txtSdt;
+    private javax.swing.JTextField txtTenkh;
     // End of variables declaration//GEN-END:variables
 }

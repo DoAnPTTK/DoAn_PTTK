@@ -175,7 +175,7 @@ public class TraCuuHD_NV_GUI extends javax.swing.JFrame {
         search.add(icon_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 34, 40));
 
         text_search.setBackground(new java.awt.Color(85, 65, 118));
-        text_search.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        text_search.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         text_search.setForeground(new java.awt.Color(255, 255, 255));
         text_search.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         text_search.setBorder(null);

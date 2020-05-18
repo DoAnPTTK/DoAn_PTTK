@@ -170,6 +170,8 @@ public class ThongKe_nv_GUI extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Chi tiết doanh thu");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 160, 21));
+
+        jTextField1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 210, 30));
 
         bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 940, 330));
@@ -234,7 +236,7 @@ public class ThongKe_nv_GUI extends javax.swing.JFrame {
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 580, 90));

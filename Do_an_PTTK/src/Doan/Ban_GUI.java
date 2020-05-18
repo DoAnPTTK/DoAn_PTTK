@@ -273,8 +273,10 @@ public class Ban_GUI extends javax.swing.JFrame {
         jLabel1.setText("Khu vực ");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 21));
 
-        jText_Khuvuc.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jText_Khuvuc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jText_Khuvuc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(207, 232, 220)));
+        jText_Khuvuc.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jText_Khuvuc.setFocusTraversalPolicyProvider(true);
         jPanel1.add(jText_Khuvuc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 260, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -290,7 +292,7 @@ public class Ban_GUI extends javax.swing.JFrame {
         jLabel8.setText("Số ghế");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 89, 21));
 
-        jComboBox_Trangthai.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jComboBox_Trangthai.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jComboBox_Trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trống", "Đã đặt" }));
         jPanel1.add(jComboBox_Trangthai, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 100, 30));
 
