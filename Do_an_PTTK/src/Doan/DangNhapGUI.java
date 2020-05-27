@@ -5,11 +5,37 @@
  */
 package Doan;
 
+import DAL.DangNhapChuQuanDAL;
+import DAL.DangNhapNVDAL;
+import DTO.DangNhapDTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MSI2
  */
 public class DangNhapGUI extends javax.swing.JFrame {
+
+    protected void XuLyDangNhap() {
+        DangNhapNVDAL NV_DangNhap = new DangNhapNVDAL();
+        DangNhapChuQuanDAL ChuQuan_DangNhap = new DangNhapChuQuanDAL();
+        DangNhapDTO NV = NV_DangNhap.DangNhap(jTextField_username.getText(), jPassword.getText());
+        DangNhapDTO ChuQuan = ChuQuan_DangNhap.DangNhap(jTextField_username.getText(), jPassword.getText());
+        
+        System.out.println(jTextField_username.getText()+" "+ jPassword.getText());
+        if (NV != null) {
+            JOptionPane.showMessageDialog(null, "Đăng nhập thành công.");
+            new NV_thungan().setVisible(true);
+            this.dispose();
+        } else if (ChuQuan != null) {
+            JOptionPane.showMessageDialog(null, "Đăng nhập thành công.");
+            new Chu_Quan().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Đăng nhập thất bại.");
+        }
+
+    }
 
     /**
      * Creates new form DangNhapGUI
@@ -300,10 +326,17 @@ public class DangNhapGUI extends javax.swing.JFrame {
 
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
         // TODO add your handling code here:
+        XuLyDangNhap();
     }//GEN-LAST:event_button_loginActionPerformed
 
     private void jCheck_show_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheck_show_passwordActionPerformed
         // TODO add your handling code here:
+        if (jCheck_show_password.isSelected()) {
+            jPassword.setEchoChar((char) 0);
+        } else {
+            jPassword.setEchoChar('*');
+        }
+
     }//GEN-LAST:event_jCheck_show_passwordActionPerformed
 
     /**
