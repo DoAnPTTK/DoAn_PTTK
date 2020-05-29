@@ -15,14 +15,13 @@ public class TaiKhoanDTO {
     private String Role;
     private String TrangThai;
 
-    public TaiKhoanDTO(String TenTK, String MK, String Role, String TrangThai) 
+    public TaiKhoanDTO(String TenTK, String MK, String Role) 
     {
         this.TenTK = TenTK;
         this.MK = MK;
         this.Role = Role;
-        this.TrangThai = TrangThai;
     }
-
+    
     public TaiKhoanDTO() 
     {
         

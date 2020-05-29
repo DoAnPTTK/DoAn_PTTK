@@ -5,6 +5,14 @@
  */
 package Doan;
 
+import BLL.QuanLyNV_BLL;
+import DTO.NhanVienDTO;
+import DTO.TaiKhoanDTO;
+import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MSI2
@@ -49,7 +57,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        cboGt = new javax.swing.JComboBox<>();
+        cbo_loaitk = new javax.swing.JComboBox<>();
         btnHuy = new javax.swing.JButton();
         txtTennv = new javax.swing.JTextField();
         txtCmnd = new javax.swing.JTextField();
@@ -59,9 +67,13 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         txtSdt = new javax.swing.JTextField();
         txtMucluong = new javax.swing.JTextField();
         txtTentk = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        cboGt1 = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        txt_nsinh = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_ttNV = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -69,10 +81,10 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        bt_themNV = new javax.swing.JButton();
+        bt_xoaNV = new javax.swing.JButton();
+        bt_suaNV = new javax.swing.JButton();
+        bt_timNV = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,22 +179,22 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tên Nhân Viên");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 89, 21));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 89, 21));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Số CMND");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 89, 21));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 89, 21));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Giới Tính");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 89, 21));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 89, 21));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Địa chỉ");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 89, 21));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 89, 21));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,33 +218,38 @@ public class QL_NV_GUI extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Tên tài khoản");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 89, 21));
+        jLabel11.setText("Loại tài khoản");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 89, 21));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Mật khẩu");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 89, 21));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 89, 21));
 
-        cboGt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Không xác định" }));
-        jPanel1.add(cboGt, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 80, 30));
+        cbo_loaitk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên", "Chủ quán" }));
+        cbo_loaitk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_loaitkActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbo_loaitk, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 110, 30));
 
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
         btnHuy.setText("Hủy");
-        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51), 2));
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHuyActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 90, 30));
+        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 120, 30));
 
         txtTennv.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(txtTennv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, 30));
+        jPanel1.add(txtTennv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 150, 30));
 
         txtCmnd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(txtCmnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 140, 30));
+        jPanel1.add(txtCmnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 140, 30));
 
         txtDc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtDc.addActionListener(new java.awt.event.ActionListener() {
@@ -240,12 +257,27 @@ public class QL_NV_GUI extends javax.swing.JFrame {
                 txtDcActionPerformed(evt);
             }
         });
-        jPanel1.add(txtDc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 310, 30));
+        jPanel1.add(txtDc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 310, 30));
 
         txtMk.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(txtMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 140, 30));
+        jPanel1.add(txtMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 140, 30));
 
         txtNvl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtNvl.setForeground(new java.awt.Color(204, 204, 204));
+        txtNvl.setText("dd-mm-yyyy");
+        txtNvl.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtNvlFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNvlFocusLost(evt);
+            }
+        });
+        txtNvl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNvlActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtNvl, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 150, 30));
 
         txtSdt.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -257,24 +289,55 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         txtTentk.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(txtTentk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 140, 30));
 
-        bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 450));
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Tên tài khoản");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 89, 21));
+
+        cboGt1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        jPanel1.add(cboGt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 80, 30));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Ngày Sinh");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 100, 21));
+
+        txt_nsinh.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txt_nsinh.setForeground(new java.awt.Color(204, 204, 204));
+        txt_nsinh.setText("dd-mm-yyyy");
+        txt_nsinh.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_nsinhFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txt_nsinhFocusLost(evt);
+            }
+        });
+        txt_nsinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nsinhActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txt_nsinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 150, 30));
+
+        bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 480));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_ttNV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Nhân Viên", "CMND", "Họ và tên", "Địa chỉ", "Giởi tính", "SĐT", "NGVL", "Mức lương", "Tên tài khoản"
+                "Mã Nhân Viên", "Tên tài khoản", "Họ và tên", "CMND", "Ngày sinh", "Địa chỉ", "Giởi tính", "SĐT", "NGVL", "Mức lương"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_ttNV);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 610, 340));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 620, 340));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -292,7 +355,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         });
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 50, 40));
 
-        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 630, 390));
+        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 640, 390));
 
         jPanel4.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -310,26 +373,31 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_30px.png"))); // NOI18N
-        jButton9.setText("Thêm");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        bt_themNV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bt_themNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_30px.png"))); // NOI18N
+        bt_themNV.setText("Thêm");
+        bt_themNV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 0), 2));
+        bt_themNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_themNVActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
-        jButton4.setText("Xóa");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        bt_xoaNV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bt_xoaNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
+        bt_xoaNV.setText("Xóa");
+        bt_xoaNV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 0), 2));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
-        jButton3.setText("Cập nhật");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        bt_suaNV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bt_suaNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
+        bt_suaNV.setText("Cập nhật");
+        bt_suaNV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 204, 255), 2));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
-        jButton2.setText("Tra cứu");
-        jButton2.setAlignmentY(0.0F);
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        bt_timNV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bt_timNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
+        bt_timNV.setText("Tra cứu");
+        bt_timNV.setAlignmentY(0.0F);
+        bt_timNV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -339,20 +407,20 @@ public class QL_NV_GUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_themNV, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_timNV, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)))
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(bt_xoaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_suaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -370,18 +438,18 @@ public class QL_NV_GUI extends javax.swing.JFrame {
                                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(bt_timNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(bt_themNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(bt_xoaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bt_suaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1, 1, 1)))
                 .addGap(40, 40, 40))
         );
 
-        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 410, 600, 80));
+        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 620, 80));
 
         bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 560));
 
@@ -406,8 +474,10 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         txtCmnd.setText(null);
         txtSdt.setText(null);
         txtDc.setText(null);
-        cboGt.setSelectedItem("Nam");
+        cboGt1.setSelectedIndex(0);
+        cbo_loaitk.setSelectedIndex(0);
         txtNvl.setText(null);
+        txt_nsinh.setText(null);
         txtTentk.setText(null);
         txtMucluong.setText(null);
         txtMk.setText(null);
@@ -427,6 +497,115 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDcActionPerformed
 
+    private void cbo_loaitkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_loaitkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbo_loaitkActionPerformed
+
+    private void bt_themNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_themNVActionPerformed
+        // TODO add your handling code here:
+        QuanLyNV_BLL ql_nv = new QuanLyNV_BLL();
+        String Ten_nv = txtTennv.getText();
+        String cmnd = txtCmnd.getText();
+        String ngaysinh = txt_nsinh.getText();
+        String diachi = txtDc.getText();
+        String gioitinh = "";
+        String sdt = txtSdt.getText();
+        String mucluong = txtMucluong.getText();
+        String nvl = txtNvl.getText();
+        
+        String tentk = txtTentk.getText();
+        String mk = txtMk.getText();
+        String role = "";
+        
+        if (cboGt1.getSelectedItem().equals("Nam"))
+            gioitinh = "Nam";
+        else gioitinh = "Nữ";
+        
+        if (cbo_loaitk.getSelectedItem().equals("Nhân viên"))
+            role = "0";
+        else role = "1";       
+                       
+        boolean kq = ql_nv.ThemNV(new NhanVienDTO(tentk, Ten_nv, cmnd, ngaysinh, diachi, gioitinh, sdt, mucluong, nvl), new TaiKhoanDTO(tentk, mk,role));
+        if (kq == true)
+        {   
+            System.out.println("thêm thành công"); 
+            this.setDefaultNhanVien();
+        } 
+        else System.out.println("thêm không thành công");
+        
+    }//GEN-LAST:event_bt_themNVActionPerformed
+
+    private void txt_nsinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nsinhActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nsinhActionPerformed
+
+    private void txt_nsinhFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_nsinhFocusLost
+        // TODO add your handling code here:
+        if(txt_nsinh.getText().equals(""))
+        {
+            txt_nsinh.setText("dd-mm-yyyy");
+            txt_nsinh.setForeground(new Color(204,204,204));
+        }
+    }//GEN-LAST:event_txt_nsinhFocusLost
+
+    private void txt_nsinhFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_nsinhFocusGained
+        // TODO add your handling code here:
+        if(txt_nsinh.getText().equals("dd-mm-yyyy"))
+        {
+            txt_nsinh.setText("");
+            txt_nsinh.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txt_nsinhFocusGained
+
+    private void txtNvlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNvlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNvlActionPerformed
+
+    private void txtNvlFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNvlFocusGained
+        // TODO add your handling code here:
+        if(txtNvl.getText().equals("dd-mm-yyyy"))
+        {
+            txtNvl.setText("");
+            txtNvl.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtNvlFocusGained
+
+    private void txtNvlFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNvlFocusLost
+        // TODO add your handling code here:
+        if(txtNvl.getText().equals(""))
+        {
+            txtNvl.setText("dd-mm-yyyy");
+            txtNvl.setForeground(new Color(204,204,204));
+        }
+    }//GEN-LAST:event_txtNvlFocusLost
+
+    
+    public void setDefaultNhanVien()
+    {
+        QuanLyNV_BLL ql = new QuanLyNV_BLL();
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã nhân viên", "Tên TK", "Họ tên", "Số cmnd", "Ngày vào làm", "Địa chỉ", "Giới tính", "SĐT", "Mức lương", "Ngày vào làm"};
+        model.setColumnIdentifiers(title);
+        ArrayList<NhanVienDTO> ar = ql.getAllNhanVien();
+        for(int i=0;i < ar.size();i++)
+        {
+            NhanVienDTO nv = ar.get(i);
+            String Manv = nv.getMaNV();
+            String Ten_nv = nv.getHoTen();
+            String cmnd = nv.getCMND();
+            String ngaysinh = nv.getNgaysinh();
+            String diachi = nv.getDiaChi();
+            String gioitinh = nv.getGioiTinh();
+            String sdt = nv.getSDT();
+            String mucluong = nv.getMucLuong();
+            String nvl = nv.getNVL();
+
+            String tentk = nv.getTenTK();
+            Object[]temp={Manv, tentk, Ten_nv, cmnd, ngaysinh, diachi, gioitinh, sdt, nvl, mucluong};
+            model.addRow(temp);
+        }
+        this.tb_ttNV.setModel(model);
+    }
     /**
      * @param args the command line arguments
      */
@@ -466,23 +645,26 @@ public class QL_NV_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bgnv;
+    private javax.swing.JButton bt_suaNV;
+    private javax.swing.JButton bt_themNV;
+    private javax.swing.JButton bt_timNV;
+    private javax.swing.JButton bt_xoaNV;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton button_thoat;
-    private javax.swing.JComboBox<String> cboGt;
+    private javax.swing.JComboBox<String> cboGt1;
+    private javax.swing.JComboBox<String> cbo_loaitk;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -496,7 +678,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tb_ttNV;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JLabel text_trangchu7;
@@ -508,5 +690,6 @@ public class QL_NV_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtSdt;
     private javax.swing.JTextField txtTennv;
     private javax.swing.JTextField txtTentk;
+    private javax.swing.JTextField txt_nsinh;
     // End of variables declaration//GEN-END:variables
 }
