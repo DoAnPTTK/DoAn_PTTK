@@ -6,11 +6,16 @@
 package Doan;
 
 import BLL.QuanLyNV_BLL;
+import DAL.NhanVienDAL;
 import DTO.NhanVienDTO;
 import DTO.TaiKhoanDTO;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,7 +63,6 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         cbo_loaitk = new javax.swing.JComboBox<>();
-        btnHuy = new javax.swing.JButton();
         txtTennv = new javax.swing.JTextField();
         txtCmnd = new javax.swing.JTextField();
         txtDc = new javax.swing.JTextField();
@@ -68,14 +72,16 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         txtMucluong = new javax.swing.JTextField();
         txtTentk = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        cboGt1 = new javax.swing.JComboBox<>();
+        cboGt = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
         txt_nsinh = new javax.swing.JTextField();
+        btn_huy = new javax.swing.JButton();
+        btn_dy = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_ttNV = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        bt_refresh = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -87,6 +93,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         bt_timNV = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bgnv.setBackground(new java.awt.Color(255, 255, 255));
         bgnv.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -127,8 +134,8 @@ public class QL_NV_GUI extends javax.swing.JFrame {
                 .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 589, Short.MAX_VALUE)
-                .addComponent(button_thoat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 782, Short.MAX_VALUE)
+                .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -142,7 +149,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
             .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 60));
 
         bg_chuquan.setBackground(new java.awt.Color(54, 33, 89));
         bg_chuquan.setToolTipText("");
@@ -155,11 +162,11 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         text_cafeomely.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely.setText("Đ/C: Thị trấn Phú Phong, huyện Tây Sơn, tỉnh Bình Định.");
-        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 0, 523, 56));
+        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 523, 56));
 
         icon_cafe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_address_50px_1.png"))); // NOI18N
-        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 79, 56));
+        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 79, 56));
 
         icon_cafe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_cafe_50px.png"))); // NOI18N
@@ -171,7 +178,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         text_cafeomely1.setText("OMELY QUÁN ");
         bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 980, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 506, 1190, 50));
 
         jPanel1.setBackground(new java.awt.Color(85, 65, 118));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -209,7 +216,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("VNĐ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 40, 30));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 30, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,12 +226,12 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Loại tài khoản");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 89, 21));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 89, 21));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Mật khẩu");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 89, 21));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 89, 21));
 
         cbo_loaitk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên", "Chủ quán" }));
         cbo_loaitk.addActionListener(new java.awt.event.ActionListener() {
@@ -232,18 +239,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
                 cbo_loaitkActionPerformed(evt);
             }
         });
-        jPanel1.add(cbo_loaitk, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 110, 30));
-
-        btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
-        btnHuy.setText("Hủy");
-        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51), 2));
-        btnHuy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHuyActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 440, 120, 30));
+        jPanel1.add(cbo_loaitk, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 120, 30));
 
         txtTennv.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(txtTennv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 150, 30));
@@ -260,7 +256,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jPanel1.add(txtDc, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 310, 30));
 
         txtMk.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(txtMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 140, 30));
+        jPanel1.add(txtMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 370, 150, 30));
 
         txtNvl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtNvl.setForeground(new java.awt.Color(204, 204, 204));
@@ -294,8 +290,13 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         jLabel15.setText("Tên tài khoản");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 89, 21));
 
-        cboGt1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
-        jPanel1.add(cboGt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 80, 30));
+        cboGt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        cboGt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboGtActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cboGt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 80, 30));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -320,16 +321,37 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         });
         jPanel1.add(txt_nsinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 150, 30));
 
-        bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 480));
+        btn_huy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_huy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
+        btn_huy.setText("Hủy");
+        btn_huy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 0), 2));
+        btn_huy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_huyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_huy, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 130, 40));
+
+        btn_dy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_dy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/dong y.png"))); // NOI18N
+        btn_dy.setText("Đồng ý");
+        btn_dy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 0), 2));
+        btn_dy.setEnabled(false);
+        btn_dy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_dyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_dy, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 130, 40));
+
+        bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 490));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tb_ttNV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Mã Nhân Viên", "Tên tài khoản", "Họ và tên", "CMND", "Ngày sinh", "Địa chỉ", "Giởi tính", "SĐT", "NGVL", "Mức lương"
@@ -337,25 +359,25 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tb_ttNV);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 620, 340));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 820, 340));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Thông tin nhân viên");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 160, 30));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 270, 30));
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        bt_refresh.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bt_refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
+        bt_refresh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        bt_refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                bt_refreshActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 50, 40));
+        jPanel2.add(bt_refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 50, 40));
 
-        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 640, 390));
+        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 840, 390));
 
         jPanel4.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -387,17 +409,32 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         bt_xoaNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
         bt_xoaNV.setText("Xóa");
         bt_xoaNV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 0), 2));
+        bt_xoaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_xoaNVActionPerformed(evt);
+            }
+        });
 
         bt_suaNV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bt_suaNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
         bt_suaNV.setText("Cập nhật");
         bt_suaNV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 204, 255), 2));
+        bt_suaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_suaNVActionPerformed(evt);
+            }
+        });
 
         bt_timNV.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         bt_timNV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
         bt_timNV.setText("Tra cứu");
         bt_timNV.setAlignmentY(0.0F);
         bt_timNV.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2));
+        bt_timNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_timNVActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -449,9 +486,9 @@ public class QL_NV_GUI extends javax.swing.JFrame {
                 .addGap(40, 40, 40))
         );
 
-        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 620, 80));
+        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, 620, 80));
 
-        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 560));
+        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -468,24 +505,11 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+    private void bt_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_refreshActionPerformed
         // TODO add your handling code here:
-        txtTennv.setText(null);
-        txtCmnd.setText(null);
-        txtSdt.setText(null);
-        txtDc.setText(null);
-        cboGt1.setSelectedIndex(0);
-        cbo_loaitk.setSelectedIndex(0);
-        txtNvl.setText(null);
-        txt_nsinh.setText(null);
-        txtTentk.setText(null);
-        txtMucluong.setText(null);
-        txtMk.setText(null);
-    }//GEN-LAST:event_btnHuyActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+        this.setDefaultNhanVien();
+        
+    }//GEN-LAST:event_bt_refreshActionPerformed
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
@@ -502,11 +526,16 @@ public class QL_NV_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cbo_loaitkActionPerformed
 
     private void bt_themNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_themNVActionPerformed
-        // TODO add your handling code here:
+        if(btn_dy.isEnabled())
+        {
+            JOptionPane.showMessageDialog(rootPane, "Nhân viên này đã tồn tại !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
         QuanLyNV_BLL ql_nv = new QuanLyNV_BLL();
         String Ten_nv = txtTennv.getText();
         String cmnd = txtCmnd.getText();
         String ngaysinh = txt_nsinh.getText();
+          
         String diachi = txtDc.getText();
         String gioitinh = "";
         String sdt = txtSdt.getText();
@@ -517,22 +546,36 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         String mk = txtMk.getText();
         String role = "";
         
-        if (cboGt1.getSelectedItem().equals("Nam"))
+        if (cboGt.getSelectedItem().equals("Nam"))
             gioitinh = "Nam";
         else gioitinh = "Nữ";
         
         if (cbo_loaitk.getSelectedItem().equals("Nhân viên"))
             role = "0";
         else role = "1";       
-                       
-        boolean kq = ql_nv.ThemNV(new NhanVienDTO(tentk, Ten_nv, cmnd, ngaysinh, diachi, gioitinh, sdt, mucluong, nvl), new TaiKhoanDTO(tentk, mk,role));
-        if (kq == true)
-        {   
-            System.out.println("thêm thành công"); 
-            this.setDefaultNhanVien();
-        } 
-        else System.out.println("thêm không thành công");
         
+        if(Ten_nv.equals("") || cmnd.equals("") || diachi.equals("") || ngaysinh.equals("dd-MM-yyyy") 
+           || sdt.equals("") || mucluong.equals("") || nvl.equals("dd-MM-yyyy") 
+           || tentk.equals("") || mk.equals(""))   
+        {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin của nhân viên !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        else 
+        {
+            boolean kq = ql_nv.ThemNV(new NhanVienDTO(tentk, Ten_nv, cmnd, ngaysinh, diachi, gioitinh, sdt, mucluong, nvl), new TaiKhoanDTO(tentk, mk,role));
+            if (kq == true)
+            {   
+                JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên mới thành công !", "Thông báo", JOptionPane.NO_OPTION);
+                this.setDefaultNhanVien();
+                return;
+            } 
+            else 
+            {
+                JOptionPane.showMessageDialog(rootPane, "Thêm nhân viên mới thất bại !", "Thông báo", JOptionPane.NO_OPTION);
+                return;
+            }
+        } 
     }//GEN-LAST:event_bt_themNVActionPerformed
 
     private void txt_nsinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nsinhActionPerformed
@@ -579,12 +622,179 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNvlFocusLost
 
+    private void bt_timNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_timNVActionPerformed
+        // TODO add your handling code here:
+        Form_tracuu tc = new Form_tracuu();
+        tc.setStr("Tim nhan vien");
+        tc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bt_timNVActionPerformed
+
+    private void bt_xoaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_xoaNVActionPerformed
+        // TODO add your handling code here:
+        int choose = this.tb_ttNV.getSelectedRow();
+        if(choose < 0){
+            
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn một một nhân viên trước khi muốn xóa !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        else{
+            if(JOptionPane.showConfirmDialog(rootPane, "Bạn có thực sự muốn xóa nhân viên này !", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            {
+                QuanLyNV_BLL ql = new QuanLyNV_BLL();
+                String manv = tb_ttNV.getModel().getValueAt(choose, 0).toString();
+//                System.out.println(manv);
+                String tentk = tb_ttNV.getModel().getValueAt(choose, 1).toString();
+                boolean kq = ql.XoaNV(manv, tentk);
+                if(kq == true)
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Nhân viên đã được xóa bỏ !", "Thông báo", JOptionPane.NO_OPTION);
+                    this.setDefaultNhanVien();
+                    return;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Xóa nhân viên không thành công !", "Thông báo", JOptionPane.NO_OPTION);
+                    return;
+                }
+                
+            }
+            return;
+        }
+    }//GEN-LAST:event_bt_xoaNVActionPerformed
+
+    private void bt_suaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_suaNVActionPerformed
+        // TODO add your handling code here:
+        int choose = this.tb_ttNV.getSelectedRow();
+        if(choose < 0){
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn 1 nhân viên có trong danh sách để cập nhật thông tin !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        else{
+            QuanLyNV_BLL ql = new QuanLyNV_BLL();
+            NhanVienDTO nv = ql.getNhanVien(tb_ttNV.getModel().getValueAt(choose, 0).toString());
+            
+            String tentk = nv.getTenTK();
+            this.txtTentk.setText(tentk);  
+            this.txtTentk.setEnabled(false);
+            
+            String tennv = nv.getHoTen();
+            this.txtTennv.setText(tennv); 
+            
+            String cmnd = nv.getCMND();
+            this.txtCmnd.setText(cmnd); 
+            
+            String ngsinh = nv.getNgaysinh();
+            this.txt_nsinh.setForeground(Color.BLACK);
+            this.txt_nsinh.setText(ngsinh); 
+            
+            String diachi = nv.getDiaChi();
+            this.txtDc.setText(diachi);
+            
+            String gt = nv.getGioiTinh();
+            if(gt.equals("Nam"))
+                this.cboGt.setSelectedIndex(0);
+            else this.cboGt.setSelectedIndex(1);
+            this.cboGt.setEnabled(false);
+            
+            String sdt = nv.getSDT();
+            this.txtSdt.setText(sdt); 
+            
+            String nvl = nv.getNVL();
+            this.txtNvl.setForeground(Color.BLACK);
+            this.txtNvl.setText(nvl); 
+            
+            String luong = nv.getMucLuong();
+            this.txtMucluong.setText(luong);  
+            
+            TaiKhoanDTO tk = ql.getTaiKhoan(txtTentk.getText());
+            
+            String mk = tk.getMK();
+            this.txtMk.setText(mk);
+            
+            String loaitk = tk.getRole();
+            if(loaitk.equalsIgnoreCase("1"))
+                this.cbo_loaitk.setSelectedIndex(1);
+            else this.cbo_loaitk.setSelectedIndex(0);
+            this.cbo_loaitk.setEnabled(false); 
+            this.btn_dy.setEnabled(true);
+            return;
+        }
+            
+        
+    }//GEN-LAST:event_bt_suaNVActionPerformed
+
     
+    private void cboGtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboGtActionPerformed
+
+    private void btn_huyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_huyActionPerformed
+        // TODO add your handling code here:
+        this.txtTennv.setText(null);
+        this.txtCmnd.setText(null);
+        this.txtSdt.setText(null);
+        this.txtDc.setText(null);
+        this.cboGt.setSelectedIndex(0);
+        this.cbo_loaitk.setSelectedIndex(0);
+        this.txtNvl.setText(null);
+        this.txt_nsinh.setText(null);
+        this.txtTentk.setText(null);
+        this.txtMucluong.setText(null);
+        this.txtMk.setText(null);
+        
+    }//GEN-LAST:event_btn_huyActionPerformed
+
+    private void btn_dyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dyActionPerformed
+        // TODO add your handling code here:
+        QuanLyNV_BLL ql = new QuanLyNV_BLL();
+        NhanVienDTO nv = ql.getNhanVien_TK(this.txtTentk.getText());
+        TaiKhoanDTO tk_nv = ql.getTaiKhoan(this.txtTentk.getText());
+        
+        nv.setHoTen(this.txtTennv.getText());
+        nv.setCMND(this.txtCmnd.getText());
+        nv.setDiaChi(this.txtDc.getText());
+        nv.setNgaysinh(this.txt_nsinh.getText());
+        nv.setSDT(this.txtSdt.getText());
+        nv.setNVL(this.txtNvl.getText());
+        nv.setMucLuong(this.txtMucluong.getText());
+        
+        tk_nv.setMK(this.txtMk.getText());
+        
+        boolean kq = ql.CapNhatNV(nv, tk_nv);
+        if(kq == true)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Bạn vừa cập nhật thông tin 1 nhân viên thành công !", "Thông báo", JOptionPane.NO_OPTION);
+            this.txtTennv.setText(null);
+            this.txtCmnd.setText(null);
+            this.txtSdt.setText(null);
+            this.txtDc.setText(null);
+            this.cboGt.setSelectedIndex(0);
+            this.cboGt.setEnabled(true);
+            this.cbo_loaitk.setSelectedIndex(0);
+            this.cbo_loaitk.setEnabled(true);
+            this.txtNvl.setText(null);
+            this.txt_nsinh.setText(null);
+            this.txtTentk.setText(null);
+            this.txtTentk.setEnabled(true);
+            this.txtMucluong.setText(null);
+            this.txtMk.setText(null);
+            this.btn_dy.setEnabled(false);
+            this.setDefaultNhanVien();
+            return;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(rootPane, "Cập nhật thông tin nhân viên thất bại !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+    }//GEN-LAST:event_btn_dyActionPerformed
+
     public void setDefaultNhanVien()
     {
         QuanLyNV_BLL ql = new QuanLyNV_BLL();
         DefaultTableModel model = new DefaultTableModel();
-        String[] title = {"Mã nhân viên", "Tên TK", "Họ tên", "Số cmnd", "Ngày vào làm", "Địa chỉ", "Giới tính", "SĐT", "Mức lương", "Ngày vào làm"};
+        String[] title = {"Mã nhân viên", "Tên TK", "Họ tên", "Số cmnd", "Ngày sinh", "Địa chỉ", "Giới tính", "SĐT", "Mức lương", "Ngày vào làm"};
         model.setColumnIdentifiers(title);
         ArrayList<NhanVienDTO> ar = ql.getAllNhanVien();
         for(int i=0;i < ar.size();i++)
@@ -601,11 +811,36 @@ public class QL_NV_GUI extends javax.swing.JFrame {
             String nvl = nv.getNVL();
 
             String tentk = nv.getTenTK();
-            Object[]temp={Manv, tentk, Ten_nv, cmnd, ngaysinh, diachi, gioitinh, sdt, nvl, mucluong};
+            
+            Object[]temp={Manv, tentk, Ten_nv, cmnd, diachi, ngaysinh, gioitinh,sdt, mucluong, nvl};
             model.addRow(temp);
         }
         this.tb_ttNV.setModel(model);
     }
+    
+    public void setTable_tracuu(NhanVienDTO nv)
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã nhân viên", "Tên TK", "Họ tên", "Số cmnd", "Ngày sinh", "Địa chỉ", "Giới tính", "SĐT", "Mức lương", "Ngày vào làm"};
+        model.setColumnIdentifiers(title);
+        String Manv = nv.getMaNV();
+        String hoten = nv.getHoTen();
+        String cmnd = nv.getCMND();
+        String ngaysinh = nv.getNgaysinh();
+        String diachi = nv.getDiaChi();
+        String gioitinh = nv.getGioiTinh();
+        String sdt = nv.getSDT();
+        String mucluong = nv.getMucLuong();
+        String nvl = nv.getNVL();
+
+        String tentk = nv.getTenTK();
+        Object[]temp={Manv, tentk, hoten, cmnd, ngaysinh, diachi, gioitinh, sdt, mucluong, nvl};
+        model.addRow(temp);
+        if(0 == model.getRowCount())
+            JOptionPane.showMessageDialog(null, "Không có kết quả cần tìm!");
+        this.tb_ttNV.setModel(model);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -645,18 +880,19 @@ public class QL_NV_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bgnv;
+    private javax.swing.JButton bt_refresh;
     private javax.swing.JButton bt_suaNV;
     private javax.swing.JButton bt_themNV;
     private javax.swing.JButton bt_timNV;
     private javax.swing.JButton bt_xoaNV;
-    private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btn_dy;
+    private javax.swing.JButton btn_huy;
     private javax.swing.JButton button_thoat;
-    private javax.swing.JComboBox<String> cboGt1;
+    private javax.swing.JComboBox<String> cboGt;
     private javax.swing.JComboBox<String> cbo_loaitk;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -23,7 +23,7 @@ public class DangNhapGUI extends javax.swing.JFrame {
         DangNhapDTO NV = NV_DangNhap.DangNhap(Text_user.getText(), Text_password.getText());
         DangNhapDTO ChuQuan = ChuQuan_DangNhap.DangNhap(Text_user.getText(), Text_password.getText());
         
-        System.out.println(Text_user.getText()+" "+ Text_password.getText());
+        
         if (NV != null) {
             JOptionPane.showMessageDialog(null, "Đăng nhập thành công.");
             new NV_thungan().setVisible(true);
@@ -82,6 +82,7 @@ public class DangNhapGUI extends javax.swing.JFrame {
         setMaximizedBounds(new java.awt.Rectangle(300, 100, 715, 845));
         setMaximumSize(new java.awt.Dimension(565, 675));
         setMinimumSize(new java.awt.Dimension(565, 675));
+        setUndecorated(true);
 
         bg.setLayout(null);
 
@@ -312,26 +313,26 @@ public class DangNhapGUI extends javax.swing.JFrame {
                 .addComponent(bg_cafeomely, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bg_address, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         bg.add(bglogin);
-        bglogin.setBounds(0, 170, 560, 470);
+        bglogin.setBounds(0, 170, 560, 500);
 
         images_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/bg_dangnhap.png"))); // NOI18N
         images_bg.setText("jLabel1");
         bg.add(images_bg);
-        images_bg.setBounds(0, 0, 570, 640);
+        images_bg.setBounds(0, 0, 570, 680);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 640, Short.MAX_VALUE)
+            .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
         );
 
         pack();

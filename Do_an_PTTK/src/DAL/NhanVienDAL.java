@@ -9,8 +9,9 @@ import static DAL.Database.conectionJDBC;
 import java.sql.ResultSet;
 import DTO.NhanVienDTO;
 import DTO.TaiKhoanDTO;
-import com.sun.jdi.connect.spi.Connection;
+
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -25,23 +26,23 @@ public class NhanVienDAL {
     public ArrayList<NhanVienDTO> getALLNhanVien()//Hiển thị tất cả nhân viên có trong quán lên table
     {
         ArrayList<NhanVienDTO> AL = new ArrayList<NhanVienDTO>();
-        String sql = "select * from NHANVIEN";
+        String sql = "select MANV, TENTK, HOTEN, CMND, TO_CHAR(NGAYSINH, 'dd-MM-yyyy') NGAYSINH, DIACHI, GIOITINH, SDT, MUCLUONG, TO_CHAR(NVL,'dd-MM-yyyy') NVL from NHANVIEN order by MANV";
         ResultSet rs = Database.getData(conectionJDBC (),sql);
         try 
         {
             while(rs.next())
             {
                 NhanVienDTO nv_DTO = new NhanVienDTO();
-                nv_DTO.setMaNV(rs.getString("MANV"));
-                nv_DTO.setTenTK(rs.getString("TENTK"));
-                nv_DTO.setHoTen(rs.getString("HOTEN"));
-                nv_DTO.setCMND(rs.getString("CMND"));
-                nv_DTO.setDiaChi(rs.getString("NGAYSINH"));
-                nv_DTO.setDiaChi(rs.getString("DIACHI"));
-                nv_DTO.setGioiTinh(rs.getString("GIOITINH"));
-                nv_DTO.setSDT(rs.getString("SDT"));
-                nv_DTO.setMucLuong(rs.getString("MUCLUONG"));
-                nv_DTO.setNVL(rs.getString("NVL"));
+                nv_DTO.setMaNV(rs.getString(1));
+                nv_DTO.setTenTK(rs.getString(2));
+                nv_DTO.setHoTen(rs.getString(3));
+                nv_DTO.setCMND(rs.getString(4));
+                nv_DTO.setDiaChi(rs.getString(5));
+                nv_DTO.setNgaysinh(rs.getString(6));
+                nv_DTO.setGioiTinh(rs.getString(7));
+                nv_DTO.setSDT(rs.getString(8));
+                nv_DTO.setMucLuong(rs.getString(9));
+                nv_DTO.setNVL(rs.getString(10));
                 AL.add(nv_DTO);
             }
             rs.close();
@@ -52,35 +53,86 @@ public class NhanVienDAL {
         return AL;
     }
     
-    public ArrayList<NhanVienDTO> getNhanVien(String TT_NV)//Chọn những Nhân viên có manv hay hoten là TT_NV
+    public NhanVienDTO getNhanVien(String MaNV)//Chọn những Nhân viên có manv hay hoten là MaNV
     {
-        ArrayList<NhanVienDTO> AL = new ArrayList<NhanVienDTO>();
-        String sql = "select * from NHANVIEN where MANV like '%"+ TT_NV +"%' or HOTEN like '%"+ TT_NV +"%'";
+        NhanVienDTO nv_DTO = new NhanVienDTO();
+        String sql = "select MANV, TENTK, HOTEN, CMND, TO_CHAR(NGAYSINH, 'dd-MM-yyyy') NGAYSINH, DIACHI, GIOITINH, SDT, MUCLUONG, TO_CHAR(NVL,'dd-MM-yyyy') NVL from NHANVIEN where MANV = "+ MaNV+" or TENTK = '"+ MaNV +"'";
         ResultSet rs =Database.getData(conectionJDBC (),sql);
         try 
         {
             while(rs.next())
             {
-                NhanVienDTO nv_DTO = new NhanVienDTO();
-                nv_DTO.setMaNV(rs.getString("MANV"));
-                nv_DTO.setTenTK(rs.getString("TENTK"));
-                nv_DTO.setHoTen(rs.getString("HOTEN"));
-                nv_DTO.setCMND(rs.getString("CMND"));
-                nv_DTO.setDiaChi(rs.getString("DIACHI"));
-                nv_DTO.setGioiTinh(rs.getString("GIOITINH"));
-                nv_DTO.setSDT(rs.getString("SDT"));
-                nv_DTO.setMucLuong(rs.getString("MUCLUONG"));
-                nv_DTO.setNVL(rs.getString("NVL"));
+                nv_DTO.setMaNV(rs.getString(1));
+                nv_DTO.setTenTK(rs.getString(2));
+                nv_DTO.setHoTen(rs.getString(3));
+                nv_DTO.setCMND(rs.getString(4));
+                nv_DTO.setNgaysinh(rs.getString(5));
+                nv_DTO.setDiaChi(rs.getString(6));
+                nv_DTO.setGioiTinh(rs.getString(7));
+                nv_DTO.setSDT(rs.getString(8));
+                nv_DTO.setMucLuong(rs.getString(9));
+                nv_DTO.setNVL(rs.getString(10));
             }
             rs.close();
         } catch (SQLException ex) 
         {
             Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return AL;
+        return nv_DTO;
     }
     
-     public boolean ThemNV(NhanVienDTO nv, TaiKhoanDTO tk){
+    public NhanVienDTO getNhanVien_TK(String TenTK)//Chọn những Nhân viên có manv hay hoten là MaNV
+    {
+        NhanVienDTO nv_DTO = new NhanVienDTO();
+        String sql = "select MANV, TENTK, HOTEN, CMND, TO_CHAR(NGAYSINH, 'dd-MM-yyyy') NGAYSINH, DIACHI, GIOITINH, SDT, MUCLUONG, TO_CHAR(NVL,'dd-MM-yyyy') NVL from NHANVIEN where TENTK = '"+ TenTK +"'";
+        ResultSet rs =Database.getData(conectionJDBC (),sql);
+        try 
+        {
+            while(rs.next())
+            {
+                nv_DTO.setMaNV(rs.getString(1));
+                nv_DTO.setTenTK(rs.getString(2));
+                nv_DTO.setHoTen(rs.getString(3));
+                nv_DTO.setCMND(rs.getString(4));
+                nv_DTO.setNgaysinh(rs.getString(5));
+                nv_DTO.setDiaChi(rs.getString(6));
+                nv_DTO.setGioiTinh(rs.getString(7));
+                nv_DTO.setSDT(rs.getString(8));
+                nv_DTO.setMucLuong(rs.getString(9));
+                nv_DTO.setNVL(rs.getString(10));
+            }
+            rs.close();
+        } catch (SQLException ex) 
+        {
+            Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nv_DTO;
+    }
+    
+    
+    public TaiKhoanDTO getTaiKhoan(String TenTK)//Lay thong tin tai khoan tu TenTK
+    {
+        TaiKhoanDTO taikhoan = new TaiKhoanDTO();
+        String sql = "select TenTK, MK,ROLE from TAIKHOAN where TenTK = '"+ TenTK +"'";
+        ResultSet rs = Database.getData(conectionJDBC (),sql);
+        try 
+        {
+            while(rs.next())
+            {
+                taikhoan.setTenTK(rs.getString(1));
+                taikhoan.setMK(rs.getString(2));
+                taikhoan.setRole(rs.getString(3));
+            }
+            rs.close();
+        } catch (SQLException ex) 
+        {
+            Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return taikhoan;
+    }
+    
+    
+    public boolean ThemNV(NhanVienDTO nv, TaiKhoanDTO tk){
         String call = "{call Them_Nhan_Vien(?,?,?,?,?,?,?,?,?,?,?)}";
         int n = 0;
         CallableStatement pr;
@@ -100,6 +152,7 @@ public class NhanVienDAL {
             n = pr.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         if(n>0){
             return true;
@@ -107,5 +160,57 @@ public class NhanVienDAL {
             return false;
         }
     }
+     
+    public boolean XoaNV(String manv, String tentk){
+        String sql = "{call Xoa_Nhan_Vien(?,?)}";
+        int n = 0;
+        try {
+            CallableStatement pr=conectionJDBC ().prepareCall(sql);
+            pr.setString(1, manv);
+            pr.setString(2, tentk);
+            n = pr.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(n>0){
+            System.out.println("Xóa thành công");
+            return true;
+        }else{
+            System.out.println("Xóa không thành công");
+            return false;
+        }
+    }
     
+    public boolean CapNhatNV(NhanVienDTO nv, TaiKhoanDTO tk)
+    {
+        
+        String update_nv = "update NHANVIEN set HOTEN=?, CMND=?, NGAYSINH= TO_DATE(?,'dd-MM-yyyy'), DIACHI=?, SDT=?, MUCLUONG=?, NVL= TO_DATE(?,'dd-MM-yyyy') where TenTK = '"+ tk.getTenTK()+"'";
+        String update_tk = "update TAIKHOAN set MK=? where TenTK = '"+ tk.getTenTK()+"'";
+        PreparedStatement pr_nv,pr_tk;
+        int n=0, m =0;
+        try {
+            pr_nv = conectionJDBC ().prepareStatement(update_nv);
+            pr_tk = conectionJDBC ().prepareStatement(update_tk);
+            
+            pr_nv.setString(1, nv.getHoTen());
+            pr_nv.setString(2, nv.getCMND());
+            pr_nv.setString(3, nv.getNgaysinh());
+            pr_nv.setString(4, nv.getDiaChi());
+            pr_nv.setString(5, nv.getSDT());
+            pr_nv.setString(6, nv.getMucLuong());
+            pr_nv.setString(7, nv.getNVL());
+            
+            pr_tk.setString(1, tk.getMK());
+
+            n = pr_nv.executeUpdate();
+            m = pr_tk.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(n>0 && m>0)
+            return true;
+        else
+            return false;
+        
+    }
 }

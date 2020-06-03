@@ -21,13 +21,32 @@ public class QuanLyNV_BLL {
         return nv_DAL.getALLNhanVien();
     }
     
-    public ArrayList<NhanVienDTO> getNhanVien(String TT_NV)
+    public NhanVienDTO getNhanVien(String TT_NV)
     {
         return nv_DAL.getNhanVien(TT_NV);
+    }
+    
+    public NhanVienDTO getNhanVien_TK(String TenTK)
+    {
+        return nv_DAL.getNhanVien_TK(TenTK);
+    }
+    
+    public TaiKhoanDTO getTaiKhoan(String TenTK)
+    {
+        return nv_DAL.getTaiKhoan(TenTK);
     }
     
     public boolean ThemNV(NhanVienDTO nv, TaiKhoanDTO TK)
     {
         return nv_DAL.ThemNV(nv,TK);
+    }
+    
+    public boolean XoaNV(String manv, String tentk)
+    {
+        return nv_DAL.XoaNV(manv, tentk);
+    }
+    public boolean CapNhatNV(NhanVienDTO nv, TaiKhoanDTO TK)
+    {
+        return nv_DAL.CapNhatNV(nv, TK);
     }
 }

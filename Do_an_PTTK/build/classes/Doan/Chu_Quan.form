@@ -6,6 +6,7 @@
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
       <Color id="Default Cursor"/>
     </Property>
+    <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -838,7 +839,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="310" y="0" width="690" height="60"/>
+              <AbsoluteConstraints x="310" y="0" width="890" height="60"/>
             </Constraint>
           </Constraints>
 
@@ -846,8 +847,8 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="555" max="32767" attributes="0"/>
-                      <Component id="button_dangxuat" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="743" max="32767" attributes="0"/>
+                      <Component id="button_dangxuat" min="-2" pref="135" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -901,7 +902,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="310" y="60" width="690" height="560"/>
+              <AbsoluteConstraints x="310" y="60" width="890" height="560"/>
             </Constraint>
           </Constraints>
 
@@ -917,19 +918,19 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="500" width="680" height="-1"/>
+                  <AbsoluteConstraints x="10" y="500" width="870" height="-1"/>
                 </Constraint>
               </Constraints>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="41" pref="41" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace pref="150" max="32767" attributes="0"/>
                           <Component id="icon_cafe" min="-2" pref="79" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="text_cafeomely" min="-2" pref="523" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -971,17 +972,17 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="70" width="900" height="420"/>
+                  <AbsoluteConstraints x="10" y="70" width="870" height="420"/>
                 </Constraint>
               </Constraints>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="158" max="32767" attributes="0"/>
                           <Component id="image_cafe_cake" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="266" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1010,7 +1011,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="10" y="10" width="680" height="-1"/>
+                  <AbsoluteConstraints x="10" y="10" width="870" height="-1"/>
                 </Constraint>
               </Constraints>
 
@@ -1018,9 +1019,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
                           <Component id="icon_cafe1" min="-2" pref="79" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="text_cafeomely1" min="-2" pref="291" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>

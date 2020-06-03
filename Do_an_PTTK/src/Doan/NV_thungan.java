@@ -394,8 +394,8 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_thoatLayout.setHorizontalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addContainerGap(555, Short.MAX_VALUE)
-                .addComponent(button_dangxuat)
+                .addContainerGap(543, Short.MAX_VALUE)
+                .addComponent(button_dangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(

@@ -7,8 +7,7 @@ package DAL;
 
 import static DAL.Database.conectionJDBC;
 import DTO.DangNhapDTO;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +22,7 @@ public class DangNhapNVDAL {
        try {
             PreparedStatement pst;
             DangNhapDTO account = null;
-            String sql = "select TENTK, MK, ROLE from Do_An_PTTK.TAIKHOAN where ROLE=0 and upper(TENTK)=upper('" + TenTK + "') and MK='" + MK+"'";
+            String sql = "select TENTK, MK, ROLE from Do_An_PTTK.TAIKHOAN where ROLE=0 and upper(TENTK) = upper('" + TenTK + "') and MK='" + MK+"'";
             ResultSet rs = conectionJDBC().createStatement().executeQuery(sql);
             if (rs.next()) {
                 account = new DangNhapDTO();

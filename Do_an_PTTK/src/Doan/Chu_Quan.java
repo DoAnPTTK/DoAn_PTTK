@@ -76,6 +76,7 @@ public class Chu_Quan extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -490,8 +491,8 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_thoatLayout.setHorizontalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addContainerGap(555, Short.MAX_VALUE)
-                .addComponent(button_dangxuat)
+                .addContainerGap(743, Short.MAX_VALUE)
+                .addComponent(button_dangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -502,7 +503,7 @@ public class Chu_Quan extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bg.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 690, 60));
+        bg.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 890, 60));
 
         bg_chuquan.setBackground(new java.awt.Color(54, 33, 89));
         bg_chuquan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -522,11 +523,11 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_cafeomelyLayout.setHorizontalGroup(
             bg_cafeomelyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_cafeomelyLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(icon_cafe, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(text_cafeomely, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(100, 100, 100))
         );
         bg_cafeomelyLayout.setVerticalGroup(
             bg_cafeomelyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,7 +535,7 @@ public class Chu_Quan extends javax.swing.JFrame {
             .addComponent(text_cafeomely, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 680, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 870, -1));
 
         bg_cafe_cake.setBackground(new java.awt.Color(54, 33, 89));
 
@@ -545,17 +546,17 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_cafe_cake.setLayout(bg_cafe_cakeLayout);
         bg_cafe_cakeLayout.setHorizontalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bg_cafe_cakeLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_cafe_cakeLayout.createSequentialGroup()
+                .addContainerGap(158, Short.MAX_VALUE)
                 .addComponent(image_cafe_cake)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGap(112, 112, 112))
         );
         bg_cafe_cakeLayout.setVerticalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(image_cafe_cake, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        bg_chuquan.add(bg_cafe_cake, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 900, 420));
+        bg_chuquan.add(bg_cafe_cake, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 870, 420));
 
         bg_address.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -572,9 +573,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_addressLayout.setHorizontalGroup(
             bg_addressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_addressLayout.createSequentialGroup()
-                .addGap(147, 147, 147)
+                .addGap(271, 271, 271)
                 .addComponent(icon_cafe1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(text_cafeomely1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -584,9 +585,9 @@ public class Chu_Quan extends javax.swing.JFrame {
             .addComponent(text_cafeomely1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bg_chuquan.add(bg_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 680, -1));
+        bg_chuquan.add(bg_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 870, -1));
 
-        bg.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 690, 560));
+        bg.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 890, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
