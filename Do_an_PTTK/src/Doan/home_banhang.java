@@ -11,9 +11,26 @@ package Doan;
  */
 public class home_banhang extends javax.swing.JFrame {
 
-    /**
-     * Creates new form home_banhang
-     */
+    private String TaiKhoan;
+    private String nguoigoi;
+
+    public String getNguoigoi() {
+        return nguoigoi;
+    }
+
+    public void setNguoigoi(String nguoigoi) {
+        this.nguoigoi = nguoigoi;
+    }
+    
+    public String getTaiKhoan() {
+        return TaiKhoan;
+    }
+
+    public void setTaiKhoan(String TaiKhoan) {
+        this.TaiKhoan = TaiKhoan;
+    }
+
+    
     public home_banhang() {
         initComponents();
     }
@@ -50,6 +67,7 @@ public class home_banhang extends javax.swing.JFrame {
         icon_cafe1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bgnv.setBackground(new java.awt.Color(255, 255, 255));
         bgnv.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -83,8 +101,9 @@ public class home_banhang extends javax.swing.JFrame {
         bg_banhangLayout.setHorizontalGroup(
             bg_banhangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_banhangLayout.createSequentialGroup()
-                .addComponent(icon_banhang, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
+                .addComponent(icon_banhang, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button_themhd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 46, Short.MAX_VALUE))
         );
@@ -122,8 +141,9 @@ public class home_banhang extends javax.swing.JFrame {
         bg_thucdonLayout.setHorizontalGroup(
             bg_thucdonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_thucdonLayout.createSequentialGroup()
-                .addComponent(icon_thucdon, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(6, 6, 6)
+                .addComponent(icon_thucdon, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button_tracuuhd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 48, Short.MAX_VALUE))
         );
@@ -138,11 +158,13 @@ public class home_banhang extends javax.swing.JFrame {
         bgnv.add(sidepane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 310, 560));
 
         bg_thoat.setBackground(new java.awt.Color(85, 65, 118));
+        bg_thoat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text_trangchu7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         text_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
         text_trangchu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_trangchu7.setText("Bán hàng");
+        bg_thoat.add(text_trangchu7, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 13, 239, 34));
 
         icon_trangchu7.setBackground(new java.awt.Color(255, 255, 255));
         icon_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
@@ -150,6 +172,7 @@ public class home_banhang extends javax.swing.JFrame {
         icon_trangchu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_online_store_32px.png"))); // NOI18N
         icon_trangchu7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         icon_trangchu7.setOpaque(true);
+        bg_thoat.add(icon_trangchu7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 65, 60));
 
         button_thoat.setBackground(new java.awt.Color(255, 255, 255));
         button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -163,31 +186,9 @@ public class home_banhang extends javax.swing.JFrame {
                 button_thoatActionPerformed(evt);
             }
         });
+        bg_thoat.add(button_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 15, 110, -1));
 
-        javax.swing.GroupLayout bg_thoatLayout = new javax.swing.GroupLayout(bg_thoat);
-        bg_thoat.setLayout(bg_thoatLayout);
-        bg_thoatLayout.setHorizontalGroup(
-            bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 589, Short.MAX_VALUE)
-                .addComponent(button_thoat)
-                .addContainerGap())
-        );
-        bg_thoatLayout.setVerticalGroup(
-            bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(bg_thoatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(text_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 60));
 
         bg_chuquan.setBackground(new java.awt.Color(54, 33, 89));
         bg_chuquan.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -207,11 +208,11 @@ public class home_banhang extends javax.swing.JFrame {
         bg_cafeomelyLayout.setHorizontalGroup(
             bg_cafeomelyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_cafeomelyLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap(120, Short.MAX_VALUE)
                 .addComponent(icon_cafe, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addComponent(text_cafeomely, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(108, 108, 108))
         );
         bg_cafeomelyLayout.setVerticalGroup(
             bg_cafeomelyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +220,7 @@ public class home_banhang extends javax.swing.JFrame {
             .addComponent(text_cafeomely, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 680, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 870, -1));
 
         bg_cafe_cake.setBackground(new java.awt.Color(54, 33, 89));
 
@@ -232,15 +233,15 @@ public class home_banhang extends javax.swing.JFrame {
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_cafe_cakeLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(image_cafe_cake)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addComponent(image_cafe_cake, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         bg_cafe_cakeLayout.setVerticalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(image_cafe_cake, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        bg_chuquan.add(bg_cafe_cake, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 680, 420));
+        bg_chuquan.add(bg_cafe_cake, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 880, 420));
 
         bg_address.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -257,9 +258,9 @@ public class home_banhang extends javax.swing.JFrame {
         bg_addressLayout.setHorizontalGroup(
             bg_addressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_addressLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addGap(231, 231, 231)
                 .addComponent(icon_cafe1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(text_cafeomely1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -269,9 +270,9 @@ public class home_banhang extends javax.swing.JFrame {
             .addComponent(text_cafeomely1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bg_chuquan.add(bg_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 680, -1));
+        bg_chuquan.add(bg_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 870, -1));
 
-        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 690, 560));
+        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 890, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -290,20 +291,65 @@ public class home_banhang extends javax.swing.JFrame {
 
     private void button_tracuuhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_tracuuhdActionPerformed
         // TODO add your handling code here:
-        new tra_cuu_hd().setVisible(true);
-        this.dispose();
+        if(nguoigoi.equals("Chu Quan"))
+        {
+            tra_cuu_hd tim_hd = new tra_cuu_hd();
+            tim_hd.setTaiKhoan(TaiKhoan);
+            tim_hd.setVisible(true);
+            this.dispose();
+            return;
+        }
+        if(nguoigoi.equals("Nhan Vien"))
+        {
+            TraCuuHD_NV_GUI tim_hd = new TraCuuHD_NV_GUI();
+            tim_hd.setTaiKhoan(TaiKhoan);
+            tim_hd.setVisible(true);
+            this.dispose();
+            return;
+        
+        }
     }//GEN-LAST:event_button_tracuuhdActionPerformed
 
     private void button_themhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_themhdActionPerformed
         // TODO add your handling code here:
-        new tao_hd().setVisible(true);
-        this.dispose();
+        if(nguoigoi.equals("Chu Quan"))
+        {
+            tao_hd new_hd = new tao_hd();
+            new_hd.setTaiKhoan(TaiKhoan);
+            new_hd.setVisible(true);
+            this.dispose();
+            return;
+        }
+        if(nguoigoi.equals("Nhan Vien"))
+        {
+            TaoHD_NV_GUI new_hd = new TaoHD_NV_GUI();
+            new_hd.setTaiKhoan(TaiKhoan);
+            new_hd.setVisible(true);
+            this.dispose();
+            return;
+        
+        }
     }//GEN-LAST:event_button_themhdActionPerformed
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new Chu_Quan().setVisible(true);
-        this.dispose();
+        if(nguoigoi.equals("Chu Quan"))
+        {
+            Chu_Quan cq = new Chu_Quan();
+            cq.setTaiKhoan(TaiKhoan);
+            cq.setVisible(true);
+            this.dispose();
+            return;
+        }
+        else
+        {
+            NV_thungan nv = new NV_thungan();
+            nv.setTaiKhoan(TaiKhoan);
+            nv.setVisible(true);
+            this.dispose();
+            return;
+        }
+
     }//GEN-LAST:event_button_thoatActionPerformed
 
     /**

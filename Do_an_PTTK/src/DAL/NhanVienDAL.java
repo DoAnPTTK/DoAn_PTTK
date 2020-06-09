@@ -81,6 +81,25 @@ public class NhanVienDAL {
         return nv_DTO;
     }
     
+    public String getNhanVienBangTaiKhoan(String TenTK)//Chọn những Nhân viên có manv hay hoten là MaNV
+    {
+        String sql = "select MANV from NHANVIEN where TENTK = '"+ TenTK +"'";
+        ResultSet rs =Database.getData(conectionJDBC (),sql);
+        try 
+        {
+            while(rs.next())
+            {
+                return rs.getString(1);
+            }
+            rs.close();
+        } catch (SQLException ex) 
+        {
+            Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return null;
+    }
+    
     public NhanVienDTO getNhanVien_TK(String TenTK)//Chọn những Nhân viên có manv hay hoten là MaNV
     {
         NhanVienDTO nv_DTO = new NhanVienDTO();
@@ -212,5 +231,19 @@ public class NhanVienDAL {
         else
             return false;
         
+    }
+    
+    public String getRole(String TenTK)
+    {
+        String sql = "select ROLE from NHANVIEN where TENTK = '"+TenTK+"'";
+        ResultSet rs = Database.getData(conectionJDBC(), sql);
+        try {
+            while(rs.next())
+                return rs.getString(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return null;
     }
 }

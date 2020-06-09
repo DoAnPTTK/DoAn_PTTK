@@ -5,7 +5,9 @@
  */
 package Doan;
 
+import BLL.QuanLyKH_BLL;
 import BLL.QuanLyNV_BLL;
+import DTO.KhachHangDTO;
 import DTO.NhanVienDTO;
 
 /**
@@ -42,7 +44,7 @@ public class Form_tracuu extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        bt_thoat = new javax.swing.JButton();
         ma_trcuu = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         bt_tim = new javax.swing.JButton();
@@ -58,12 +60,12 @@ public class Form_tracuu extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Thông báo nhập thông tin mã tra cứu");
 
-        jButton1.setBackground(new java.awt.Color(85, 65, 118));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_48px_1.png"))); // NOI18N
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bt_thoat.setBackground(new java.awt.Color(85, 65, 118));
+        bt_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_48px_1.png"))); // NOI18N
+        bt_thoat.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        bt_thoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bt_thoatActionPerformed(evt);
             }
         });
 
@@ -75,7 +77,7 @@ public class Form_tracuu extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bt_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
         );
         jPanel2Layout.setVerticalGroup(
@@ -84,7 +86,7 @@ public class Form_tracuu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bt_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -149,7 +151,7 @@ public class Form_tracuu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bt_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_thoatActionPerformed
         // TODO add your handling code here:
         if(this.str.equals("Tim nhan vien"))
         {
@@ -158,7 +160,14 @@ public class Form_tracuu extends javax.swing.JFrame {
             ql_nvGUI.setDefaultNhanVien();
             this.dispose();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+         if(this.str.equals("Tim khach hang"))
+        {
+            QL_KH_GUI ql_khGUI = new QL_KH_GUI();
+            ql_khGUI.setVisible(true);
+            ql_khGUI.setDefaultKH();
+            this.dispose();
+        }
+    }//GEN-LAST:event_bt_thoatActionPerformed
 
     private void bt_timActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_timActionPerformed
         // TODO add your handling code here:
@@ -171,7 +180,16 @@ public class Form_tracuu extends javax.swing.JFrame {
             ql_nvGUI.setTable_tracuu(nv);
             this.dispose();
         }
-        
+
+         if(this.str.equals("Tim khach hang"))
+        {
+            QuanLyKH_BLL ql_kh = new QuanLyKH_BLL();
+            KhachHangDTO nv = ql_kh.getKhachHang(this.ma_trcuu.getText());
+            QL_KH_GUI ql_khGUI = new QL_KH_GUI();
+            ql_khGUI.setVisible(true);
+            ql_khGUI.setTable_tracuu(nv);
+            this.dispose();
+        }
     }//GEN-LAST:event_bt_timActionPerformed
 
     /**
@@ -210,8 +228,8 @@ public class Form_tracuu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bt_thoat;
     private javax.swing.JButton bt_tim;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

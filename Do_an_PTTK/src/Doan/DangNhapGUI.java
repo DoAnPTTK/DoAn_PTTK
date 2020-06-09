@@ -5,6 +5,7 @@
  */
 package Doan;
 
+import BLL.QuanLyNV_BLL;
 import DAL.DangNhapChuQuanDAL;
 import DAL.DangNhapNVDAL;
 import DTO.DangNhapDTO;
@@ -22,15 +23,22 @@ public class DangNhapGUI extends javax.swing.JFrame {
         DangNhapChuQuanDAL ChuQuan_DangNhap = new DangNhapChuQuanDAL();
         DangNhapDTO NV = NV_DangNhap.DangNhap(Text_user.getText(), Text_password.getText());
         DangNhapDTO ChuQuan = ChuQuan_DangNhap.DangNhap(Text_user.getText(), Text_password.getText());
+
+        String tk = this.Text_user.getText();
         
         
         if (NV != null) {
             JOptionPane.showMessageDialog(null, "Đăng nhập thành công.");
-            new NV_thungan().setVisible(true);
+            
+            NV_thungan nv = new NV_thungan();
+            nv.setTaiKhoan(tk);
+            nv.setVisible(true);
             this.dispose();
         } else if (ChuQuan != null) {
             JOptionPane.showMessageDialog(null, "Đăng nhập thành công.");
-            new Chu_Quan().setVisible(true);
+            Chu_Quan cq = new Chu_Quan();
+            cq.setTaiKhoan(tk);
+            cq.setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Đăng nhập thất bại.");

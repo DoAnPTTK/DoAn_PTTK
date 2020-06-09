@@ -11,6 +11,17 @@ package Doan;
  */
 public class tra_cuu_hd extends javax.swing.JFrame {
 
+    
+    private String TaiKhoan;
+
+    public String getTaiKhoan() {
+        return TaiKhoan;
+    }
+
+    public void setTaiKhoan(String TaiKhoan) {
+        this.TaiKhoan = TaiKhoan;
+    }
+    
     /**
      * Creates new form tra_cuu_hd
      */
@@ -107,7 +118,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 581, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 782, Short.MAX_VALUE)
                 .addComponent(button_thoat)
                 .addContainerGap())
         );
@@ -122,7 +133,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bg7.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        bg7.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 60));
 
         bg_home_banhang.setBackground(new java.awt.Color(54, 33, 89));
         bg_home_banhang.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -134,13 +145,13 @@ public class tra_cuu_hd extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã hóa đơn", "Mã khách hàng", "Thành tiền", "Mã nhân viên", "Ngày lập"
+                "Mã hóa đơn", "Mã khách hàng", "Thành tiền", "Mã nhân viên", "Ngày lập", "Trạng thái"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
 
         jLabel2.setBackground(new java.awt.Color(85, 65, 118));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Kết quả tra cứu hóa đơn");
@@ -149,7 +160,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         bg_cafe_cake.setLayout(bg_cafe_cakeLayout);
         bg_cafe_cakeLayout.setHorizontalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         bg_cafe_cakeLayout.setVerticalGroup(
@@ -157,11 +168,11 @@ public class tra_cuu_hd extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_cafe_cakeLayout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        bg_home_banhang.add(bg_cafe_cake, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 980, 240));
+        bg_home_banhang.add(bg_cafe_cake, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 1180, 310));
 
         search.setBackground(new java.awt.Color(85, 65, 118));
         search.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -195,7 +206,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         search.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 40, 40));
 
-        bg_home_banhang.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 200, 40));
+        bg_home_banhang.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 200, 40));
 
         them_hd.setBackground(new java.awt.Color(54, 33, 89));
         them_hd.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -212,9 +223,9 @@ public class tra_cuu_hd extends javax.swing.JFrame {
                 jTextField10ActionPerformed(evt);
             }
         });
-        bg_home_banhang.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 80, 150, 40));
+        bg_home_banhang.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 150, 40));
 
-        bg7.add(bg_home_banhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 510));
+        bg7.add(bg_home_banhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 510));
 
         bg_address.setBackground(new java.awt.Color(85, 65, 118));
         bg_address.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -223,23 +234,23 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         text_cafeomely1.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely1.setText("OMELY QUÁN ");
-        bg_address.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 235, 56));
+        bg_address.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, 280, 56));
 
         icon_cafe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_cafe_50px.png"))); // NOI18N
-        bg_address.add(icon_cafe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+        bg_address.add(icon_cafe1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, -1));
 
         icon_cafe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_address_50px_1.png"))); // NOI18N
-        bg_address.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 79, 56));
+        bg_address.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 60, 50));
 
         text_cafeomely.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         text_cafeomely.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely.setText("Đ/C: Thị trấn Phú Phong, huyện Tây Sơn, tỉnh Bình Định.");
-        bg_address.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 523, 50));
+        bg_address.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 523, 50));
 
-        bg7.add(bg_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 1000, 50));
+        bg7.add(bg_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 1200, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,8 +277,12 @@ public class tra_cuu_hd extends javax.swing.JFrame {
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new home_banhang().setVisible(true);
+        home_banhang hbh = new home_banhang();
+        hbh.setNguoigoi("Chu Quan");
+        hbh.setTaiKhoan(TaiKhoan);
+        hbh.setVisible(true);
         this.dispose();
+        return;
     }//GEN-LAST:event_button_thoatActionPerformed
 
     /**

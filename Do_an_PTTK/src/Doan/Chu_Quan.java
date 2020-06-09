@@ -13,9 +13,17 @@ import javax.swing.JFrame;
  */
 public class Chu_Quan extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Chu_Quan
-     */
+    private String TaiKhoan;
+
+    public String getTaiKhoan() 
+    {
+        return TaiKhoan;
+    }
+
+    public void setTaiKhoan(String TaiKhoan) {
+        this.TaiKhoan = TaiKhoan;
+    }
+    
     public Chu_Quan() {
         initComponents();
     }
@@ -638,7 +646,10 @@ public class Chu_Quan extends javax.swing.JFrame {
 
     private void button_banhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_banhangActionPerformed
         // TODO add your handling code here:
-        new home_banhang().setVisible(true);
+        home_banhang bh = new home_banhang();
+        bh.setTaiKhoan(TaiKhoan);
+        bh.setNguoigoi("Chu Quan");
+        bh.setVisible(true);
         this.dispose();
         
     }//GEN-LAST:event_button_banhangActionPerformed

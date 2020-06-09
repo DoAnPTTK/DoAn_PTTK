@@ -26,6 +26,11 @@ public class QuanLyNV_BLL {
         return nv_DAL.getNhanVien(TT_NV);
     }
     
+     public String getNhanVienBangTaiKhoan(String TenTK)
+    {
+        return nv_DAL.getNhanVienBangTaiKhoan(TenTK);
+    }
+    
     public NhanVienDTO getNhanVien_TK(String TenTK)
     {
         return nv_DAL.getNhanVien_TK(TenTK);
@@ -34,6 +39,11 @@ public class QuanLyNV_BLL {
     public TaiKhoanDTO getTaiKhoan(String TenTK)
     {
         return nv_DAL.getTaiKhoan(TenTK);
+    }
+    
+    public String getRole(String TenTK)
+    {
+        return nv_DAL.getRole(TenTK);
     }
     
     public boolean ThemNV(NhanVienDTO nv, TaiKhoanDTO TK)

@@ -836,9 +836,14 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         String tentk = nv.getTenTK();
         Object[]temp={Manv, tentk, hoten, cmnd, ngaysinh, diachi, gioitinh, sdt, mucluong, nvl};
         model.addRow(temp);
-        if(0 == model.getRowCount())
-            JOptionPane.showMessageDialog(null, "Không có kết quả cần tìm!");
         this.tb_ttNV.setModel(model);
+        Object value = model.getValueAt(0,0);
+        if (value ==null)
+        {
+                JOptionPane.showMessageDialog(null, "Không có kết quả cần tìm!");
+                return;
+        }
+        return;
     }
     
     /**

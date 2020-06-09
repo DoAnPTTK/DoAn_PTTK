@@ -11,9 +11,19 @@ package Doan;
  */
 public class NV_thungan extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NV_thungan
-     */
+    private String TaiKhoan;
+
+
+    public String getTaiKhoan() {
+        return TaiKhoan;
+    }
+
+    public void setTaiKhoan(String TaiKhoan) {
+        this.TaiKhoan = TaiKhoan;
+    }
+    
+    
+    
     public NV_thungan() {
         initComponents();
     }
@@ -308,11 +318,11 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_cafeomelyLayout.setHorizontalGroup(
             bg_cafeomelyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_cafeomelyLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(icon_cafe, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(text_cafeomely, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(91, 91, 91))
         );
         bg_cafeomelyLayout.setVerticalGroup(
             bg_cafeomelyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,7 +330,7 @@ public class NV_thungan extends javax.swing.JFrame {
             .addComponent(text_cafeomely, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 680, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 870, -1));
 
         bg_cafe_cake.setBackground(new java.awt.Color(54, 33, 89));
 
@@ -331,17 +341,17 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_cafe_cake.setLayout(bg_cafe_cakeLayout);
         bg_cafe_cakeLayout.setHorizontalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(bg_cafe_cakeLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(image_cafe_cake)
-                .addContainerGap(46, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_cafe_cakeLayout.createSequentialGroup()
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addComponent(image_cafe_cake, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         bg_cafe_cakeLayout.setVerticalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(image_cafe_cake, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        bg_chuquan.add(bg_cafe_cake, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 680, 420));
+        bg_chuquan.add(bg_cafe_cake, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 870, 420));
 
         bg_address.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -358,11 +368,11 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_addressLayout.setHorizontalGroup(
             bg_addressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_addressLayout.createSequentialGroup()
-                .addGap(91, 91, 91)
+                .addContainerGap(271, Short.MAX_VALUE)
                 .addComponent(icon_cafe1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text_cafeomely1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(text_cafeomely1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(228, 228, 228))
         );
         bg_addressLayout.setVerticalGroup(
             bg_addressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,9 +380,9 @@ public class NV_thungan extends javax.swing.JFrame {
             .addComponent(text_cafeomely1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        bg_chuquan.add(bg_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 680, -1));
+        bg_chuquan.add(bg_address, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 870, -1));
 
-        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 690, 560));
+        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 890, 560));
 
         bg_thoat.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -394,7 +404,7 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_thoatLayout.setHorizontalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addContainerGap(543, Short.MAX_VALUE)
+                .addContainerGap(743, Short.MAX_VALUE)
                 .addComponent(button_dangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -406,7 +416,7 @@ public class NV_thungan extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 690, 60));
+        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 890, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -431,7 +441,10 @@ public class NV_thungan extends javax.swing.JFrame {
 
     private void button_banhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_banhangActionPerformed
         // TODO add your handling code here:
-        new home_banhang_nv().setVisible(true);
+        home_banhang bh = new home_banhang();
+        bh.setTaiKhoan(TaiKhoan);
+        bh.setNguoigoi("Nhan Vien");
+        bh.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_banhangActionPerformed
 
