@@ -214,7 +214,7 @@ public class QL_KH_GUI extends javax.swing.JFrame {
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 120, 80, 21));
 
         cboGt.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        cboGt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ", "Không xác định" }));
+        cboGt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
         jPanel1.add(cboGt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 80, 30));
 
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -387,6 +387,7 @@ public class QL_KH_GUI extends javax.swing.JFrame {
         txtSdt.setText(null);
         cboGt.setSelectedItem("Nam");
         txtDtl.setText(null);
+        bt_dy.setEnabled(false);
         return;
     }//GEN-LAST:event_btnHuyActionPerformed
 
@@ -489,6 +490,7 @@ public class QL_KH_GUI extends javax.swing.JFrame {
 
     private void bt_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_xoaActionPerformed
         // TODO add your handling code here:
+        
         int choose = this.table_ttKH.getSelectedRow();
         if(choose < 0){
             
@@ -544,7 +546,7 @@ public class QL_KH_GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bt_suaActionPerformed
 
-       public void setDefaultKH()
+    public void setDefaultKH()
     {
         BLL.QuanLyKH_BLL ql = new BLL.QuanLyKH_BLL();
         DefaultTableModel model = new DefaultTableModel();

@@ -26,6 +26,8 @@ import javax.swing.table.DefaultTableModel;
 public class TaoHD_NV_GUI extends javax.swing.JFrame {
     
     private String TaiKhoan;
+    private String MaHD;
+    
 
     public String getTaiKhoan() {
         return TaiKhoan;
@@ -86,6 +88,7 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         bt_themhd = new javax.swing.JButton();
         bt_thanhtoan = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        bt_Xuathd = new javax.swing.JButton();
         bt_bochon = new javax.swing.JButton();
         cb_makh = new javax.swing.JComboBox<>();
         cb_tenmon = new javax.swing.JComboBox<>();
@@ -400,6 +403,15 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Chức năng");
 
+        bt_Xuathd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_Xuathd.setText("Xuất hóa đơn");
+        bt_Xuathd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 204)));
+        bt_Xuathd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_XuathdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -407,7 +419,9 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(themhd, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(bt_Xuathd, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(bt_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -420,12 +434,14 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bt_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(bt_thanhtoan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_Xuathd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(themhd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        bg_home_banhang.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 440, -1));
+        bg_home_banhang.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 630, -1));
 
         bt_bochon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_bochon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
@@ -548,60 +564,98 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField16ActionPerformed
 
     private void bt_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_themActionPerformed
-
-        String check = sp_sl.getValue().toString();
+  String check = sp_sl.getValue().toString();
         if(check.equals("0"))
         {
             JOptionPane.showMessageDialog(null,"Số lượng phải lớn hơn 0 !", "Thông báo",JOptionPane.NO_OPTION);
             return;
         }
-        else
-        {
-            HoaDonDTO hd = new HoaDonDTO();
-            CTHD_DTO cthd = new CTHD_DTO();
-            QuanLyBH_BLL qlbh = new QuanLyBH_BLL();
-            QuanLyNV_BLL qlnv = new QuanLyNV_BLL();
-
-            hd.setMaKH(this.cb_makh.getSelectedItem().toString());
-            hd.setMaNV(qlnv.getNhanVienBangTaiKhoan(this.TaiKhoan));
-            hd.setNgayLap(getTimeNow());
-            hd.setGiamGia(qlbh.getGiamGia(this.cb_makh.getSelectedItem().toString()));
-
-            cthd.setMaBan(this.cb_maban.getSelectedItem().toString());
-            cthd.setSL(sp_sl.getValue().toString());
-            cthd.setMaMon(qlbh.getMaMon(this.cb_tenmon.getSelectedItem().toString()));
-
-            String MaHD = qlbh.ThemHD(hd, cthd);
-            System.out.printf(hd.getMaKH()+"\t");
-            System.out.printf(hd.getMaNV()+"\t");
-            System.out.printf(hd.getNgayLap()+"\t");
-            System.out.printf(hd.getGiamGia()+"\t");
-            System.out.printf(MaHD+"\t");
-            System.out.printf(cthd.getSL()+"\t");
-            System.out.printf(cthd.getMaMon()+"\t");
-
-            if(MaHD != null)
+        else 
+        {   
+            if (cb_makh.isEnabled() == true && cb_maban.isEnabled() == true)
             {
-                JOptionPane.showMessageDialog(null,"Thêm hóa đơn mới, cthd thành công !", "Thông báo",JOptionPane.NO_OPTION);
-                DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
-                Object[] data = new Object[6];
-                data[0] = MaHD;
-                data[1] = cb_makh.getSelectedItem().toString();
-                data[2] = cb_maban.getSelectedItem().toString();
-                data[3] = cb_tenmon.getSelectedItem().toString();
-                data[4] = sp_sl.getValue();
-                data[5] = tx_gia.getText();
-                model.addRow(data);
+                HoaDonDTO hd = new HoaDonDTO();
+                CTHD_DTO cthd = new CTHD_DTO();
+                QuanLyBH_BLL qlbh = new QuanLyBH_BLL();
+                QuanLyNV_BLL qlnv = new QuanLyNV_BLL();
 
-                this.cb_makh.setEnabled(false);
-                this.cb_maban.setEnabled(false);
-                return;
+                hd.setMaKH(this.cb_makh.getSelectedItem().toString());
+                hd.setMaNV(qlnv.getNhanVienBangTaiKhoan(this.TaiKhoan));
+                hd.setNgayLap(getTimeNow());
+                hd.setGiamGia(qlbh.getGiamGia(this.cb_makh.getSelectedItem().toString()));
+
+                cthd.setMaBan(this.cb_maban.getSelectedItem().toString());
+                cthd.setSL(sp_sl.getValue().toString());
+                cthd.setMaMon(qlbh.getMaMon(this.cb_tenmon.getSelectedItem().toString()));
+                
+                MaHD = qlbh.ThemHD(hd, cthd);
+                
+                if(MaHD!=null)
+                {
+                    JOptionPane.showMessageDialog(null,"Thêm hóa đơn mới, cthd thành công !", "Thông báo",JOptionPane.NO_OPTION);
+                    DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
+                    Object[] data = new Object[6];
+                    data[0] = MaHD;        
+                    data[1] = cb_makh.getSelectedItem().toString();
+                    data[2] = cb_maban.getSelectedItem().toString();
+                    data[3] = cb_tenmon.getSelectedItem().toString();
+                    data[4] = sp_sl.getValue();
+                    data[5] = tx_gia.getText();
+                    model.addRow(data);
+
+                    this.cb_makh.setEnabled(false);
+                    this.cb_maban.setEnabled(false);
+                    return;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Thêm hóa đơn mới, cthd không thành công !", "Thông báo",JOptionPane.NO_OPTION);
+                    return;
+                }   
             }
             else
             {
-                JOptionPane.showMessageDialog(null,"Thêm hóa đơn mới, cthd không thành công !", "Thông báo",JOptionPane.NO_OPTION);
-                return;
+                DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
+                String tenmon = this.cb_tenmon.getSelectedItem().toString();
+
+                for(int i = 0; i < model.getRowCount();i++ )
+                {
+                    if(tenmon.equals(model.getValueAt(i, 3)))
+                    {
+                        JOptionPane.showMessageDialog(null,"Khách hàng này đã chọn món này rồi !", "Thông báo",JOptionPane.NO_OPTION);
+                        return;
+                    }
+                }
+                
+                CTHD_DTO cthd = new CTHD_DTO();
+                QuanLyBH_BLL qlbh = new QuanLyBH_BLL();
+                cthd.setMaHD(MaHD);
+                cthd.setMaKH(this.cb_makh.getSelectedItem().toString());
+                cthd.setMaBan(this.cb_maban.getSelectedItem().toString());
+                cthd.setSL(sp_sl.getValue().toString());
+                cthd.setMaMon(qlbh.getMaMon(this.cb_tenmon.getSelectedItem().toString()));
+                
+                boolean kq = qlbh.ThemCTHD(cthd); 
+                if(kq == true)
+                {
+                    JOptionPane.showMessageDialog(null,"Thêm cthd thành công !", "Thông báo",JOptionPane.NO_OPTION);
+                    Object[] data = new Object[6];
+                    data[0] = MaHD;        
+                    data[1] = cb_makh.getSelectedItem().toString();
+                    data[2] = cb_maban.getSelectedItem().toString();
+                    data[3] = cb_tenmon.getSelectedItem().toString();
+                    data[4] = sp_sl.getValue();
+                    data[5] = tx_gia.getText();
+                    model.addRow(data);
+                    return;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Thêm cthd không thành công !", "Thông báo",JOptionPane.NO_OPTION);
+                    return;
+                }
             }
+            
         }
     }//GEN-LAST:event_bt_themActionPerformed
 
@@ -656,21 +710,28 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_themhdActionPerformed
 
     private void bt_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_thanhtoanActionPerformed
-        DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
+         DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
         String tt = "";
         long kq = ThanhToan(model);
         String thanhtoan = tt.valueOf(kq);
         this.tx_thanhtoan.setText(tt.valueOf(thanhtoan));
         QuanLyBH_BLL ql = new QuanLyBH_BLL();
-
+        
         String giamgia = ql.getGiamGia(this.cb_makh.getSelectedItem().toString());
         this.tx_giamgia.setText(giamgia);
-
+        
         long n_tt = Long.parseLong(thanhtoan);
         int n_giamgia = Integer.parseInt(giamgia);
         if(n_giamgia == 0)
         {
             this.txf_tongcong.setText(thanhtoan);
+            boolean rs = ql.ThanhToan(MaHD, MaHD, this.txf_tongcong.getText());
+            if(rs == true)
+            {
+                JOptionPane.showMessageDialog(null,"Thanh toán thành công !", "Thông báo",JOptionPane.NO_OPTION);
+                return;
+            }
+            JOptionPane.showMessageDialog(null,"Thanh toán thất bại !", "Thông báo",JOptionPane.NO_OPTION);
             return;
         }
         else
@@ -678,7 +739,13 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
             float tongcong = (n_tt * n_giamgia)/100;
 
             String total = String.valueOf(tongcong);
-            this.txf_tongcong.setText(total);
+            boolean rs = ql.ThanhToan(MaHD, MaHD, this.txf_tongcong.getText());
+            if(rs == true)
+            {
+                JOptionPane.showMessageDialog(null,"Thanh toán thành công !", "Thông báo",JOptionPane.NO_OPTION);
+                return;
+            }
+            JOptionPane.showMessageDialog(null,"Thanh toán thất bại !", "Thông báo",JOptionPane.NO_OPTION);
             return;
         }
     }//GEN-LAST:event_bt_thanhtoanActionPerformed
@@ -686,21 +753,27 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
     private void bt_bochonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_bochonActionPerformed
 
         DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
-        //Delete Selected Row
+        //Delete Selected Row  
         int choose = -1;
         choose = jTable_CTHD.getSelectedRow();
-
+        
         //Check if their is a row selected
-        if (choose < 0)
+        if (choose < 0) 
         {
             JOptionPane.showMessageDialog(null,"Bạn chưa chọn dòng nào để bỏ chọn !", "Thông báo",JOptionPane.NO_OPTION);
             return;
-
-        }
-        else
+        } 
+        else 
         {
-            model.removeRow(choose);
-            JOptionPane.showMessageDialog(null,"Bạn vừa bỏ 1 lựa chọn của khách hàng !", "Thông báo",JOptionPane.NO_OPTION);
+            QuanLyBH_BLL ql = new QuanLyBH_BLL();
+            boolean kq = ql.Xoa_CTHD(model.getValueAt(choose, 0).toString());
+            if(kq==true)
+            {
+                model.removeRow(choose);
+                JOptionPane.showMessageDialog(null,"Bạn vừa bỏ 1 lựa chọn của khách hàng và xóa bỏ cthd !", "Thông báo",JOptionPane.NO_OPTION);
+                return;
+            }
+            JOptionPane.showMessageDialog(null,"Lỗi xóa bỏ CTHD !", "Thông báo",JOptionPane.NO_OPTION);
             return;
         }
     }//GEN-LAST:event_bt_bochonActionPerformed
@@ -715,6 +788,10 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         this.tx_gia.setText(LoadDonGia(this.cb_tenmon.getSelectedItem().toString()));
 
     }//GEN-LAST:event_cb_tenmonActionPerformed
+
+    private void bt_XuathdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_XuathdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bt_XuathdActionPerformed
 
                                   
 
@@ -768,12 +845,12 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
     
     public long ThanhToan(DefaultTableModel model)
     {
-        long total = 0;
+       long total = 0;
         for(int i = 0; i < model.getRowCount(); i++)
         {
-           long n1 = Long.parseLong((model.getValueAt(i, 3)).toString());
+           long n1 = Long.parseLong((model.getValueAt(i, 4)).toString());
            System.out.println(n1);
-           long n2 = Long.parseLong((model.getValueAt(i, 4)).toString());
+           long n2 = Long.parseLong((model.getValueAt(i, 5)).toString());
            System.out.println(n2);
            total = (n1*n2) + total;
            System.out.println(total);
@@ -783,12 +860,27 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
     
     public void refresh()
     {
-        this.cb_makh.setEditable(true);
+        this.cb_makh.setEnabled(true);
         this.cb_maban.setEnabled(true);
+
+        this.cb_tenmon.setSelectedIndex(0);
         this.sp_sl.setValue(0);
+        
         this.tx_thanhtoan.setText(null);
+        
         this.tx_giamgia.setText(null);
+        
         this.txf_tongcong.setText(null);
+        
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã hóa đơn", "Mã khách hàng", "Mã bàn", "Tên món", "Số lượng", "Đơn giá"};
+        model.setColumnIdentifiers(title);
+        
+        this.jTable_CTHD.setModel(model);
+        
+        this.cb_makh.setSelectedItem(0);
+        this.cb_maban.setSelectedItem(0);
+        return;
     }
     
     
@@ -833,6 +925,7 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_home_banhang;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bg_trangchu7;
+    private javax.swing.JButton bt_Xuathd;
     private javax.swing.JButton bt_bochon;
     private javax.swing.JButton bt_thanhtoan;
     private javax.swing.JButton bt_them;

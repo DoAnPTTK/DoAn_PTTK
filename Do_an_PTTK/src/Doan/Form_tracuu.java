@@ -7,8 +7,10 @@ package Doan;
 
 import BLL.QuanLyKH_BLL;
 import BLL.QuanLyNV_BLL;
+import BLL.ThucDonBLL;
 import DTO.KhachHangDTO;
 import DTO.NhanVienDTO;
+import DTO.ThucDonDTO;
 
 /**
  *
@@ -160,11 +162,18 @@ public class Form_tracuu extends javax.swing.JFrame {
             ql_nvGUI.setDefaultNhanVien();
             this.dispose();
         }
-         if(this.str.equals("Tim khach hang"))
+        if(this.str.equals("Tim khach hang"))
         {
             QL_KH_GUI ql_khGUI = new QL_KH_GUI();
             ql_khGUI.setVisible(true);
             ql_khGUI.setDefaultKH();
+            this.dispose();
+        }
+        if(this.str.equals("Tim thuc don"))
+        {
+            Thuc_don_GUI thd = new Thuc_don_GUI();
+            thd.setVisible(true);
+            thd.setALLTable();
             this.dispose();
         }
     }//GEN-LAST:event_bt_thoatActionPerformed
@@ -188,6 +197,17 @@ public class Form_tracuu extends javax.swing.JFrame {
             QL_KH_GUI ql_khGUI = new QL_KH_GUI();
             ql_khGUI.setVisible(true);
             ql_khGUI.setTable_tracuu(nv);
+            this.dispose();
+        }
+         
+        if(this.str.equals("Tim thuc don"))
+        {
+            ThucDonBLL td = new ThucDonBLL();
+            int ma_td = Integer.parseInt(this.ma_trcuu.getText());
+            ThucDonDTO td_dto = td.getThucDon(ma_td);
+            Thuc_don_GUI thd = new Thuc_don_GUI();
+            thd.setTracuu(td_dto);
+            thd.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_bt_timActionPerformed

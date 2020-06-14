@@ -9,6 +9,7 @@ import DAL.BanHangDAL;
 import DTO.CTHD_DTO;
 import DTO.HoaDonDTO;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -50,4 +51,30 @@ public class QuanLyBH_BLL
     {
         return ql.ThemHD(hd,cthd);
     }
+    
+    public boolean ThemCTHD(CTHD_DTO cthd)
+    {
+        return ql.ThemCTHD(cthd);
+    }
+    
+    public boolean ThanhToan(String Makh, String MaHD, String Thanhtoan)
+    {
+        return ql.ThanhToan(Makh, MaHD, Thanhtoan);
+    }
+    
+    public boolean Xoa_CTHD(String Mahd)
+    {
+        return ql.Xoa_CTHD(Mahd);
+    }
+    
+    public ArrayList<HoaDonDTO> getAllHD()
+    {
+        return ql.getAllHD();
+    }
+    
+    public HoaDonDTO getHD(String MaHD)
+    {
+        return ql.getHD(MaHD);
+    }
+    
 }

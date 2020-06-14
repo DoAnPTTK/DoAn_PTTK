@@ -1135,7 +1135,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="280" y="380" width="440" height="-1"/>
+                  <AbsoluteConstraints x="100" y="380" width="620" height="-1"/>
                 </Constraint>
               </Constraints>
 
@@ -1144,8 +1144,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="themhd" min="-2" pref="210" max="-2" attributes="0"/>
-                          <EmptySpace pref="48" max="32767" attributes="0"/>
+                          <Component id="themhd" min="-2" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="bt_Xuathd" min="-2" pref="155" max="-2" attributes="0"/>
+                          <EmptySpace pref="44" max="32767" attributes="0"/>
                           <Component id="bt_thanhtoan" min="-2" pref="140" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
@@ -1161,7 +1163,10 @@
                           <Component id="jLabel6" pref="30" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="bt_thanhtoan" min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="bt_thanhtoan" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                                  <Component id="bt_Xuathd" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                              </Group>
                               <Component id="themhd" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -1183,7 +1188,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="icon_themhd" min="-2" pref="36" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="bt_themhd" min="-2" max="-2" attributes="0"/>
+                              <Component id="bt_themhd" min="-2" pref="159" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1270,6 +1275,24 @@
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="text" type="java.lang.String" value="Ch&#x1ee9;c n&#x103;ng"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="bt_Xuathd">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Segoe UI" size="14" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t h&#xf3;a &#x111;&#x1a1;n"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                        <LineBorder>
+                          <Color PropertyName="color" blue="cc" green="ff" red="0" type="rgb"/>
+                        </LineBorder>
+                      </Border>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_XuathdActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

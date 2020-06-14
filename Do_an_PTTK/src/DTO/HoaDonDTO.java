@@ -10,11 +10,29 @@ package DTO;
  * @author MSI2
  */
 public class HoaDonDTO {
+    private String MaHD;
     private String MaNV;
     private String MaKH;
     private String NgayLap;
     private String ThanhTien;
     private String GiamGia;
+    private String Trangthai;
+
+    public String getTrangthai() {
+        return Trangthai;
+    }
+
+    public void setTrangthai(String Trangthai) {
+        this.Trangthai = Trangthai;
+    }
+    
+    public String getMaHD() {
+        return MaHD;
+    }
+
+    public void setMaHD(String MaHD) {
+        this.MaHD = MaHD;
+    }
 
     public HoaDonDTO(String MaNV, String MaKH, String NgayLap, String ThanhTien, String GiamGia) 
     {

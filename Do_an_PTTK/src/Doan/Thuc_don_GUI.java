@@ -5,19 +5,60 @@
  */
 package Doan;
 
+import BLL.QuanLyNV_BLL;
+import BLL.ThucDonBLL;
+import DAL.ThucDonDAL;
+import DTO.NhanVienDTO;
+import DTO.ThucDonDTO;
+
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.lang.String;
+import javax.swing.JTable;
 /**
  *
  * @author MSI2
  */
 public class Thuc_don_GUI extends javax.swing.JFrame {
+    DefaultTableModel tableModel;
 
-    /**
-     * Creates new form Thuc_don_GUI
-     */
-    public Thuc_don_GUI() {
-        initComponents();
+    
+    public JTable getTblMenu() {
+        return tb_Thucdon;
     }
 
+    
+    public void setTblMenu(JTable tblMenu) {    
+        this.tb_Thucdon = tblMenu;
+    }
+
+    public Thuc_don_GUI() {
+        initComponents();
+        tableModel = (DefaultTableModel) tb_Thucdon.getModel();
+        showMenu();
+        loadCombobox();
+    }
+    private void loadCombobox(){
+        ThucDonDAL dal = new ThucDonDAL();
+        ArrayList<String> list = dal.loadDataToCombobox();
+        for (String item : list){
+            cb_maNL.addItem(item.toString());
+        }
+    }
+    private void showMenu(){
+        
+        ThucDonDAL menuDAL = new ThucDonDAL();
+        ArrayList<ThucDonDTO>  listMenu = menuDAL.getAllThucDon();
+        
+        tableModel.setRowCount(0);
+        
+        for(ThucDonDTO s : listMenu){
+            tableModel.addRow(new Object[]{s.getMaMon(), s.getTenMon(), s.getGia(),s.getMaNL()}
+            );
+    }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,25 +81,28 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         text_cafeomely1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_Thucdon = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        bt_refresh = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         btnHuy = new javax.swing.JButton();
-        txtTenmon = new javax.swing.JTextField();
-        txtGia = new javax.swing.JTextField();
+        tfGia = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        tfTenMon = new javax.swing.JTextField();
+        cb_maNL = new javax.swing.JComboBox<>();
+        btn_dy = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnThemMon = new javax.swing.JButton();
+        btnXoaMon = new javax.swing.JButton();
+        btnUpdateMon = new javax.swing.JButton();
+        btnTraCuu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,8 +144,8 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 558, Short.MAX_VALUE)
+                .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 776, Short.MAX_VALUE)
                 .addComponent(button_thoat)
                 .addContainerGap())
         );
@@ -116,7 +160,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 60));
 
         bg_chuquan.setBackground(new java.awt.Color(54, 33, 89));
         bg_chuquan.setToolTipText("");
@@ -129,11 +173,11 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         text_cafeomely.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely.setText("Đ/C: Thị trấn Phú Phong, huyện Tây Sơn, tỉnh Bình Định.");
-        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 0, 523, 56));
+        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 523, 56));
 
         icon_cafe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_address_50px_1.png"))); // NOI18N
-        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 79, 56));
+        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 79, 56));
 
         icon_cafe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_cafe_50px.png"))); // NOI18N
@@ -145,81 +189,101 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         text_cafeomely1.setText("OMELY QUÁN");
         bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 980, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1200, -1));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Thucdon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Mã món", "Tên món", "Giá"
+                "Mã món", "Tên món", "Giá", "Mã nguyên liệu"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_Thucdon);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 670, 320));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 840, 300));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Thông tin thực đơn");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 160, 30));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 360, 40));
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        bt_refresh.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bt_refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
+        bt_refresh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        bt_refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                bt_refreshActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, 50, 40));
+        jPanel2.add(bt_refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 10, 50, 40));
 
-        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 690, 370));
+        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 860, 360));
 
         jPanel1.setBackground(new java.awt.Color(85, 65, 118));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tên món");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 110, 21));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 1, 110, 30));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Giá");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 89, 21));
+        jLabel7.setText("Mã nguyên liệu");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, 120, 30));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("VNĐ");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 111, 30, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 30, 30));
 
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
         btnHuy.setText("Hủy");
-        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHuyActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 90, 30));
+        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 100, 40));
 
-        txtTenmon.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(txtTenmon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 210, 30));
+        tfGia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(tfGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 140, 30));
 
-        txtGia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(txtGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 140, 30));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Giá");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 89, 21));
 
-        bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 280, 210));
+        tfTenMon.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(tfTenMon, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 30));
+
+        cb_maNL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_maNLActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cb_maNL, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 50, 30));
+
+        btn_dy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_dy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/dong y.png"))); // NOI18N
+        btn_dy.setText("Đồng ý");
+        btn_dy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 0), 2));
+        btn_dy.setEnabled(false);
+        btn_dy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_dyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_dy, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 110, 40));
+
+        bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 310, 300));
 
         jPanel4.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -237,26 +301,46 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         jPanel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_30px.png"))); // NOI18N
-        jButton9.setText("Thêm");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnThemMon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnThemMon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_30px.png"))); // NOI18N
+        btnThemMon.setText("Thêm");
+        btnThemMon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 2));
+        btnThemMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemMonActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
-        jButton4.setText("Xóa");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnXoaMon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnXoaMon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
+        btnXoaMon.setText("Xóa");
+        btnXoaMon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51), 2));
+        btnXoaMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaMonActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
-        jButton3.setText("Cập nhật");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnUpdateMon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnUpdateMon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
+        btnUpdateMon.setText("Cập nhật");
+        btnUpdateMon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2));
+        btnUpdateMon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateMonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
-        jButton2.setText("Tra cứu");
-        jButton2.setAlignmentY(0.0F);
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnTraCuu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
+        btnTraCuu.setText("Tra cứu");
+        btnTraCuu.setAlignmentY(0.0F);
+        btnTraCuu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2));
+        btnTraCuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraCuuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -266,21 +350,21 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnThemMon, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)))
+                        .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)))
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(btnXoaMon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUpdateMon, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -289,14 +373,14 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 26, Short.MAX_VALUE)
+                        .addGap(0, 27, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnXoaMon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnUpdateMon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnThemMon, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -307,9 +391,9 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
                 .addGap(51, 51, 51))
         );
 
-        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 600, 80));
+        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 600, 80));
 
-        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 560));
+        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -332,16 +416,182 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void bt_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_refreshActionPerformed
+        setALLTable();
+    }//GEN-LAST:event_bt_refreshActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
-        txtTenmon.setText(null);
-        txtGia.setText(null);
+        Refresh();
     }//GEN-LAST:event_btnHuyActionPerformed
 
+    private void btnThemMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMonActionPerformed
+        if(btn_dy.isEnabled())
+        {
+            JOptionPane.showMessageDialog(rootPane, "Món này đã có trong danh sách thực đơn !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        if(tfTenMon.getText().equals("") || tfGia.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin của nhân viên !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        ThucDonBLL td = new ThucDonBLL();
+        String value = cb_maNL.getSelectedItem().toString();
+        boolean rs = td.addmenu(Integer.parseInt(value), tfTenMon.getText(), Integer.parseInt(tfGia.getText()));
+
+        if(rs==true)
+        {
+            JOptionPane.showMessageDialog(null,"Bạn vừa thêm món mới thành công !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Thêm món mới thất bại !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
+        }
+    }//GEN-LAST:event_btnThemMonActionPerformed
+
+    private void btnXoaMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaMonActionPerformed
+
+        int choose = this.tb_Thucdon.getSelectedRow();
+        if(choose < 0){
+            
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn món bạn muốn xóa bỏ !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        else{
+            if(JOptionPane.showConfirmDialog(rootPane, "Bạn có thực sự muốn xóa món này !", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            {
+                ThucDonBLL thd = new ThucDonBLL();
+                String mamon = tb_Thucdon.getModel().getValueAt(choose, 0).toString();
+//                System.out.println(manv);
+                boolean kq = thd.removeMon(mamon);
+                if(kq == true)
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Món vừa được xóa bỏ !", "Thông báo", JOptionPane.NO_OPTION);
+                    this.setALLTable();
+                    return;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Xóa món không thành công !", "Thông báo", JOptionPane.NO_OPTION);
+                    return;
+                }
+                
+            }
+            return;
+        }
+    }//GEN-LAST:event_btnXoaMonActionPerformed
+
+    private void btnUpdateMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateMonActionPerformed
+    
+        int choose = this.tb_Thucdon.getSelectedRow();
+        if(choose < 0){
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn 1 món có trong danh sách để cập nhật thông tin !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        else
+        {
+            int value = Integer.parseInt(tb_Thucdon.getValueAt(choose, 0).toString());
+            ThucDonBLL td = new ThucDonBLL();
+            ThucDonDTO thd = td.getThucDon(value);
+            
+            this.tfTenMon.setText(thd.getTenMon());
+            this.tfGia.setText(String.valueOf(thd.getGia()));
+            this.cb_maNL.setSelectedItem(thd.getMaNL());
+            this.cb_maNL.setEnabled(false);
+            
+            this.btn_dy.setEnabled(true);
+            return;
+        }
+        
+    }//GEN-LAST:event_btnUpdateMonActionPerformed
+
+    private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
+        //JOptionPane.showMessageDialog(rootPane, "aaaa");
+        Form_tracuu tc = new Form_tracuu();
+        tc.setStr("Tim thuc don");
+        tc.setVisible(true);
+        this.dispose();
+        return;
+    }//GEN-LAST:event_btnTraCuuActionPerformed
+
+    private void cb_maNLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_maNLActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_maNLActionPerformed
+
+    private void btn_dyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dyActionPerformed
+        // TODO add your handling code here:
+        String Tenmon = tfTenMon.getText();
+        int gia  = Integer.parseInt(tfGia.getText());
+        int choose = tb_Thucdon.getSelectedRow();
+        int Mamon = Integer.parseInt(tb_Thucdon.getValueAt(choose, 0).toString());
+        
+        ThucDonBLL td = new ThucDonBLL();
+        boolean kq = td.updateMon(Tenmon, gia, Mamon);
+        if(kq)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Bạn vừa cập nhật thông tin món thành công !", "Thông báo", JOptionPane.NO_OPTION);
+            Refresh();
+            return;
+        }
+        JOptionPane.showMessageDialog(rootPane, "Cập nhật thông tin món thất bại !", "Thông báo", JOptionPane.NO_OPTION);
+        Refresh();
+        return;
+    }//GEN-LAST:event_btn_dyActionPerformed
+
+    
+    public void setALLTable()
+    {
+        ThucDonBLL td = new ThucDonBLL();
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã món", "Tên món", "Giá", "Mã nguyên liệu"};
+        model.setColumnIdentifiers(title);
+        ArrayList<ThucDonDTO> ar = td.getAllThucDon();
+        for(int i=0;i < ar.size();i++)
+        {
+            ThucDonDTO thd = ar.get(i);
+            int MaMon = thd.getMaMon();
+            String TenMon = thd.getTenMon();
+            int Gia = thd.getGia();
+            int MaNL = thd.getMaNL();
+            
+            Object[]temp={MaMon,TenMon,Gia,MaNL};
+            model.addRow(temp);
+        }
+        this.tb_Thucdon.setModel(model);
+    }
+    
+    public void setTracuu(ThucDonDTO thd)
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã món", "Tên món", "Giá", "Mã nguyên liệu"};
+        model.setColumnIdentifiers(title);
+        int MaMon = thd.getMaMon();
+        String TenMon = thd.getTenMon();
+        int Gia = thd.getGia();
+        int MaNL = thd.getMaNL();
+        Object[] temp = {MaMon, TenMon, Gia, MaNL};
+        model.addRow(temp);
+        Object value = model.getValueAt(0,0);
+        if (value == null)
+        {
+                JOptionPane.showMessageDialog(null, "Không có kết quả cần tìm!");
+                return;
+        }
+        this.tb_Thucdon.setModel(model);
+        return;
+    }
+    
+    public void Refresh()
+    {
+        tfTenMon.setText(null);
+        tfGia.setText(null);
+        cb_maNL.setSelectedIndex(0);
+        btn_dy.setEnabled(false);
+        return;
+    }
     /**
      * @param args the command line arguments
      */
@@ -368,6 +618,9 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Thuc_don_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -382,21 +635,24 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bgnv;
+    private javax.swing.JButton bt_refresh;
     private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btnThemMon;
+    private javax.swing.JButton btnTraCuu;
+    private javax.swing.JButton btnUpdateMon;
+    private javax.swing.JButton btnXoaMon;
+    private javax.swing.JButton btn_dy;
     private javax.swing.JButton button_thoat;
+    private javax.swing.JComboBox<String> cb_maNL;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -404,11 +660,11 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tb_Thucdon;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JLabel text_trangchu7;
-    private javax.swing.JTextField txtGia;
-    private javax.swing.JTextField txtTenmon;
+    private javax.swing.JTextField tfGia;
+    private javax.swing.JTextField tfTenMon;
     // End of variables declaration//GEN-END:variables
 }

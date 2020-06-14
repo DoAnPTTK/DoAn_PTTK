@@ -5,19 +5,40 @@
  */
 package Doan;
 
+import BLL.NguyenLieuBLL;
+import DAL.NguyenLieuDAL;
+import DAL.ThucDonDAL;
+import DTO.NguyenLieuDTO;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MSI2
  */
 public class NguyenLieu_GUI extends javax.swing.JFrame {
-
+    DefaultTableModel tableModel;
     /**
      * Creates new form NguyenLieu_GUI
      */
     public NguyenLieu_GUI() {
         initComponents();
+        tableModel = (DefaultTableModel) tblNguyenLieu.getModel();
+        showNL();
     }
-
+    
+    private void showNL(){
+        NguyenLieuDAL dal = new NguyenLieuDAL();
+        ArrayList<NguyenLieuDTO>  listNL = dal.getAllNguyenLieu();
+        
+        tableModel.setRowCount(0);
+        
+        for(NguyenLieuDTO s : listNL){
+            tableModel.addRow(new Object[]{s.getMaNL(), s.getTenNL(), s.getHSD(),s.getSlCon(), s.getCongDung()});
+    }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +61,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         text_cafeomely1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblNguyenLieu = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -49,11 +70,11 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnKiemTraTon = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnTraCuu = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -107,7 +128,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
                 .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 558, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 759, Short.MAX_VALUE)
                 .addComponent(button_thoat)
                 .addContainerGap())
         );
@@ -122,7 +143,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
             .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 60));
 
         bg_chuquan.setBackground(new java.awt.Color(54, 33, 89));
         bg_chuquan.setToolTipText("");
@@ -151,12 +172,12 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         text_cafeomely1.setText("OMELY QUÁN");
         bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 980, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 1190, -1));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNguyenLieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -168,15 +189,19 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
                 "Mã nguyên liệu", "Tên nguyên liệu", "Hạn sử dụng", "Số lượng còn", "Công dụng"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblNguyenLieu);
+        if (tblNguyenLieu.getColumnModel().getColumnCount() > 0) {
+            tblNguyenLieu.getColumnModel().getColumn(3).setMaxWidth(300);
+            tblNguyenLieu.getColumnModel().getColumn(4).setMinWidth(200);
+        }
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 650, 340));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 850, 340));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Thông tin nguyên liệu");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 160, 30));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 220, 30));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
@@ -186,9 +211,9 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 0, 40, 40));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 40, 40));
 
-        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 670, 390));
+        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 870, 390));
 
         jPanel4.setBackground(new java.awt.Color(85, 65, 118));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -215,38 +240,63 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(704, 27, -1, 59));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_checkmark_50px_1.png"))); // NOI18N
-        jButton1.setText("Kiểm tra tồn");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 29, 130, 40));
+        btnKiemTraTon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnKiemTraTon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_checkmark_50px_1.png"))); // NOI18N
+        btnKiemTraTon.setText("Kiểm tra tồn");
+        btnKiemTraTon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnKiemTraTon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKiemTraTonActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnKiemTraTon, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 29, 130, 40));
 
-        jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_30px.png"))); // NOI18N
-        jButton9.setText("Thêm");
-        jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 110, 40));
+        btnThem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_30px.png"))); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnThem, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 110, 40));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
-        jButton2.setText("Tra cứu");
-        jButton2.setAlignmentY(0.0F);
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 110, 40));
+        btnTraCuu.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
+        btnTraCuu.setText("Tra cứu");
+        btnTraCuu.setAlignmentY(0.0F);
+        btnTraCuu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnTraCuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraCuuActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnTraCuu, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 110, 40));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
-        jButton3.setText("Cập nhật");
-        jButton3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 100, 40));
+        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
+        btnUpdate.setText("Cập nhật");
+        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 100, 40));
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
-        jButton4.setText("Xóa");
-        jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 100, 40));
+        btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
+        btnDelete.setText("Xóa");
+        btnDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 100, 40));
 
-        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 700, 80));
+        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 700, 80));
 
         jPanel1.setBackground(new java.awt.Color(85, 65, 118));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -280,7 +330,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
                 btnHuyActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 90, 30));
+        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 90, 30));
 
         txtNl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(txtNl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 30));
@@ -298,7 +348,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 300, 330));
 
-        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 560));
+        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,7 +374,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        new NguyenLieu_GUI().setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
@@ -333,6 +383,89 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 
+    private void btnKiemTraTonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKiemTraTonActionPerformed
+        this.setVisible(false);
+        checkTonKho form = new checkTonKho();
+        form.setLocationRelativeTo(null);
+        form.setVisible(true);
+    }//GEN-LAST:event_btnKiemTraTonActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        try {
+            NguyenLieuDAL nguyenlieuDAL = new NguyenLieuDAL();
+            if (nguyenlieuDAL.addNguyenLieu(txtNl.getText(), txtHsd.getText(), Integer.parseInt(txtSlc.getText()), txtCd.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "success");
+                new NguyenLieu_GUI().setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "error");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(rootPane, "Khong duoc de trong");
+
+        }
+ 
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        int x = tblNguyenLieu.getSelectedRow();
+        String maMon = tblNguyenLieu.getValueAt(x, 0).toString();
+        NguyenLieuDAL dal = new NguyenLieuDAL();
+        if(dal.removeNL(maMon)){
+            JOptionPane.showMessageDialog(rootPane, "success");
+            new NguyenLieu_GUI().setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "eror");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
+//        bienTam.a = 2;
+//        formSearch fs = new formSearch();
+//        fs.setLocationRelativeTo(null);
+//        fs.setVisible(true);
+//        this.setVisible(false);
+    }//GEN-LAST:event_btnTraCuuActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        NguyenLieuBLL bll = new NguyenLieuBLL();
+        int x = tblNguyenLieu.getSelectedRow();
+        String maNL = tblNguyenLieu.getValueAt(x, 0).toString();
+        String tenNL = txtNl.getText();
+        String hsd = txtHsd.getText();
+        String slCon = txtSlc.getText();
+        String congDung = txtCd.getText();
+        JOptionPane.showMessageDialog(rootPane, "Bạn có chắc sẽ cập nhật?", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        if (bll.updateNguyenLieu(x, tenNL, hsd, Integer.parseInt(slCon), congDung)){
+            JOptionPane.showMessageDialog(rootPane, "success");
+            new NguyenLieu_GUI().setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "error");
+        }
+        
+    }//GEN-LAST:event_btnUpdateActionPerformed
+    public void show1NguyenLieu(int maNL){
+        int rowCount = tblNguyenLieu.getRowCount();
+        int temp = 0;
+        for (int i = 0;i< rowCount;i++){
+            if (String.valueOf(maNL).equals(tblNguyenLieu.getValueAt(i, 0).toString())){
+                NguyenLieuBLL nlBLL = new NguyenLieuBLL();
+                NguyenLieuDTO nl = nlBLL.getNL(maNL);
+                tableModel.setRowCount(0);
+                tableModel.addRow(new Object[]{nl.getMaNL(), nl.getTenNL(),nl.getHSD(), nl.getSlCon(), nl.getCongDung()});
+                temp++;
+                break;
+            }
+            }
+        if (temp == 1){
+            JOptionPane.showMessageDialog(rootPane, "Tim thanh cong");
+        }
+        else {
+            JOptionPane.showMessageDialog(rootPane,"Không có mã nguyên liệu vừa tìm", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -359,6 +492,13 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(NguyenLieu_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -373,17 +513,17 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bgnv;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnHuy;
+    private javax.swing.JButton btnKiemTraTon;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnTraCuu;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton button_thoat;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -399,7 +539,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblNguyenLieu;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JLabel text_trangchu7;
@@ -408,4 +548,6 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtNl;
     private javax.swing.JTextField txtSlc;
     // End of variables declaration//GEN-END:variables
+
+   
 }

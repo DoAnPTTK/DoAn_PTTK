@@ -8,10 +8,13 @@ package DAL;
 import static DAL.Database.conectionJDBC;
 import DTO.CTHD_DTO;
 import DTO.HoaDonDTO;
+import DTO.NhanVienDTO;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -87,7 +90,7 @@ public class BanHangDAL
                 +"','"+cthd.getMaMon()+"','"+cthd.getSL()+"')}";
         CallableStatement pr;
         String mahd = null;
-        System.out.println(call);
+
         try {
             pr = conectionJDBC().prepareCall(call);
             pr.registerOutParameter(1, Types.INTEGER);
@@ -117,5 +120,105 @@ public class BanHangDAL
         return null;
     }
     
-
+    public boolean ThemCTHD(CTHD_DTO cthd)
+    {
+        String sql = "insert into CTHD values ('" + cthd.getMaKH() + "', '"+ cthd.getMaBan()+ "', '"+ cthd.getMaMon()+ "', '"+ cthd.getMaHD()+ "', '"+ cthd.getSL()+ "')";
+        int n = 0;
+        try {
+            Statement stmt = Database.conectionJDBC().createStatement();
+            n = stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(BanHangDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(n==0)
+            return false;
+        return true; 
+    }
+    
+    public boolean ThanhToan(String Makh, String MaHD, String Thanhtoan)
+    {
+        String call = "{call THANHTOAN(?,?,?)}";
+        int n = 0;
+        CallableStatement pr;
+        try {
+            pr = conectionJDBC().prepareCall(call);
+            pr.setString(1, Makh);
+            pr.setString(2, MaHD);
+            pr.setString(3, Thanhtoan);
+            n = pr.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(n>0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public boolean Xoa_CTHD(String MaHD)
+    {
+        String sql = "delete from CTHD where MAHD = "+ MaHD;
+        int n = 0;
+        Statement stmt;
+        try {
+            stmt = conectionJDBC().createStatement();
+            n = stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(BanHangDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(n>0)
+            return true;
+        return false;
+    }
+    
+    public ArrayList<HoaDonDTO> getAllHD()
+    {
+        ArrayList<HoaDonDTO> AL = new ArrayList<HoaDonDTO>();
+        String sql = "select MAHD, MAKH, THANHTIEN, TO_CHAR(NGAYLAP, 'dd-MM-yyyy HH24:MI') NGAYLAP, MANV, GIAMGIA, TRANGTHAI from HOADON order by MAHD";
+        ResultSet rs = Database.getData(conectionJDBC(),sql);
+        try {
+            while(rs.next())
+            {
+                HoaDonDTO hd_dto = new HoaDonDTO();
+                hd_dto.setMaHD(rs.getString(1));
+                hd_dto.setMaKH(rs.getString(2));
+                hd_dto.setThanhTien(rs.getString(3));
+                hd_dto.setNgayLap(rs.getString(4));
+                hd_dto.setMaNV(rs.getString(5));
+                hd_dto.setGiamGia(rs.getString(6));
+                hd_dto.setTrangthai(rs.getString(7));
+                AL.add(hd_dto);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(BanHangDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return AL;
+    }
+    
+    public HoaDonDTO getHD(String MaHD)
+    {
+        HoaDonDTO hd = new HoaDonDTO();
+        String sql = "select MAHD, MAKH, THANHTIEN, TO_CHAR(NGAYLAP, 'dd-MM-yyyy HH24:MI') NGAYLAP, MANV, GIAMGIA, TRANGTHAI from HOADON where MAHD = " + MaHD;
+        ResultSet rs = Database.getData(conectionJDBC(), sql);
+        try {
+            while(rs.next())
+            {
+                hd.setMaHD(rs.getString(1));
+                hd.setMaKH(rs.getString(2));
+                hd.setThanhTien(rs.getString(3));
+                hd.setNgayLap(rs.getString(4));
+                hd.setMaNV(rs.getString(5));
+                hd.setGiamGia(rs.getString(6));
+                hd.setTrangthai(rs.getString(7));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BanHangDAL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hd;
+    }
 }
+

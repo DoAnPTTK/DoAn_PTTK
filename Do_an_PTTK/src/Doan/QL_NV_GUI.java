@@ -635,7 +635,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         int choose = this.tb_ttNV.getSelectedRow();
         if(choose < 0){
             
-            JOptionPane.showMessageDialog(rootPane, "Hãy chọn một một nhân viên trước khi muốn xóa !", "Thông báo", JOptionPane.NO_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn một nhân viên trước khi muốn xóa !", "Thông báo", JOptionPane.NO_OPTION);
             return;
         }
         else{
@@ -742,6 +742,8 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         this.txtTentk.setText(null);
         this.txtMucluong.setText(null);
         this.txtMk.setText(null);
+        btn_dy.setEnabled(false);
+        return;
         
     }//GEN-LAST:event_btn_huyActionPerformed
 

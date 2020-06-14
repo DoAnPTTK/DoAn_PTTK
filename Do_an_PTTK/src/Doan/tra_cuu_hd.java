@@ -5,6 +5,24 @@
  */
 package Doan;
 
+import BLL.QuanLyBH_BLL;
+import BLL.QuanLyNV_BLL;
+import DTO.HoaDonDTO;
+import DTO.NhanVienDTO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.Action;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MSI2
@@ -27,6 +45,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
      */
     public tra_cuu_hd() {
         initComponents();
+        setTable();
     }
 
     /**
@@ -38,6 +57,8 @@ public class tra_cuu_hd extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        PMenu = new javax.swing.JPopupMenu();
+        cthd = new javax.swing.JMenuItem();
         bg7 = new javax.swing.JPanel();
         bg_thoat = new javax.swing.JPanel();
         bg_trangchu7 = new javax.swing.JPanel();
@@ -47,12 +68,12 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         bg_home_banhang = new javax.swing.JPanel();
         bg_cafe_cake = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tb_hd = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         search = new javax.swing.JPanel();
         text_search = new javax.swing.JTextField();
         gachchan = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        bt_tim = new javax.swing.JButton();
         them_hd = new javax.swing.JPanel();
         jTextField10 = new javax.swing.JTextField();
         bg_address = new javax.swing.JPanel();
@@ -60,6 +81,11 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         icon_cafe1 = new javax.swing.JLabel();
         icon_cafe = new javax.swing.JLabel();
         text_cafeomely = new javax.swing.JLabel();
+
+        cthd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cthd.setForeground(new java.awt.Color(0, 255, 51));
+        cthd.setText("Chi tiết hóa đơn");
+        PMenu.add(cthd);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,8 +144,8 @@ public class tra_cuu_hd extends javax.swing.JFrame {
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 782, Short.MAX_VALUE)
-                .addComponent(button_thoat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 759, Short.MAX_VALUE)
+                .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -140,15 +166,21 @@ public class tra_cuu_hd extends javax.swing.JFrame {
 
         bg_cafe_cake.setBackground(new java.awt.Color(85, 65, 118));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tb_hd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tb_hd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã hóa đơn", "Mã khách hàng", "Thành tiền", "Mã nhân viên", "Ngày lập", "Trạng thái"
+                "Mã hóa đơn", "Mã khách hàng", "Thành tiền", "Ngày lập", "Mã nhân viên", "Giảm giá", "Trạng thái"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        tb_hd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                tb_hdMouseReleased(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tb_hd);
 
         jLabel2.setBackground(new java.awt.Color(85, 65, 118));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -160,14 +192,17 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         bg_cafe_cake.setLayout(bg_cafe_cakeLayout);
         bg_cafe_cakeLayout.setHorizontalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE)
+            .addGroup(bg_cafe_cakeLayout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 587, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         bg_cafe_cakeLayout.setVerticalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_cafe_cakeLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(40, Short.MAX_VALUE))
         );
@@ -178,7 +213,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         search.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text_search.setBackground(new java.awt.Color(85, 65, 118));
-        text_search.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        text_search.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         text_search.setForeground(new java.awt.Color(255, 255, 255));
         text_search.setBorder(null);
         text_search.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +221,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
                 text_searchActionPerformed(evt);
             }
         });
-        search.add(text_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 30));
+        search.add(text_search, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 30));
 
         javax.swing.GroupLayout gachchanLayout = new javax.swing.GroupLayout(gachchan);
         gachchan.setLayout(gachchanLayout);
@@ -201,10 +236,15 @@ public class tra_cuu_hd extends javax.swing.JFrame {
 
         search.add(gachchan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 160, 1));
 
-        jButton1.setBackground(new java.awt.Color(54, 33, 89));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/banhang/icons8_search_26px.png"))); // NOI18N
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
-        search.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 40, 40));
+        bt_tim.setBackground(new java.awt.Color(54, 33, 89));
+        bt_tim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/banhang/icons8_search_26px.png"))); // NOI18N
+        bt_tim.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        bt_tim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_timActionPerformed(evt);
+            }
+        });
+        search.add(bt_tim, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 40, 40));
 
         bg_home_banhang.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 70, 200, 40));
 
@@ -213,7 +253,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         bg_home_banhang.add(them_hd, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, 40));
 
         jTextField10.setBackground(new java.awt.Color(54, 33, 89));
-        jTextField10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jTextField10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jTextField10.setForeground(new java.awt.Color(255, 255, 255));
         jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField10.setText("Nhập mã hóa đơn:");
@@ -223,7 +263,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
                 jTextField10ActionPerformed(evt);
             }
         });
-        bg_home_banhang.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 150, 40));
+        bg_home_banhang.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 170, 40));
 
         bg7.add(bg_home_banhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 510));
 
@@ -285,6 +325,82 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         return;
     }//GEN-LAST:event_button_thoatActionPerformed
 
+    private void tb_hdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_hdMouseReleased
+        // TODO add your handling code here:
+        int choose = tb_hd.getSelectedRow();
+        if(evt.isPopupTrigger())
+        {
+            cthd.show();
+        }
+
+        
+        
+    }//GEN-LAST:event_tb_hdMouseReleased
+
+    private void bt_timActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_timActionPerformed
+        // TODO add your handling code here:
+        QuanLyBH_BLL ql = new QuanLyBH_BLL();
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã hóa đơn", "Mã khách hàng", "Thành tiền", "Ngày lập", "Mã nhân viên", "Giảm giá","Trạng thái"};
+        model.setColumnIdentifiers(title);
+        HoaDonDTO hd = ql.getHD(this.text_search.getText());
+        
+        String MaHD = hd.getMaHD();
+        String MaKH = hd.getMaKH();
+        String ThanhTien = hd.getThanhTien();
+        String NgayLap = hd.getNgayLap();
+        String MaNV = hd.getMaNV();
+        String Giamgia = hd.getGiamGia();
+        String TrangThai = hd.getTrangthai();
+        Object[] temp = {MaHD, MaKH, ThanhTien, NgayLap, MaNV, Giamgia, TrangThai};
+        model.addRow(temp);
+
+        Object value = model.getValueAt(0,0);
+        if (value == null)
+        {
+                JOptionPane.showMessageDialog(null, "Không có kết quả cần tìm!");
+                return;
+        }
+                
+        this.tb_hd.setModel(model);
+        return;
+        
+    }//GEN-LAST:event_bt_timActionPerformed
+
+    public void setTable()
+    {
+        QuanLyBH_BLL ql = new QuanLyBH_BLL();
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã hóa đơn", "Mã khách hàng", "Thành tiền", "Ngày lập", "Mã nhân viên", "Giảm giá","Trạng thái"};
+        model.setColumnIdentifiers(title);
+        ArrayList<HoaDonDTO> ar = ql.getAllHD();
+        for(int i=0;i < ar.size();i++)
+        {
+            HoaDonDTO hd = ar.get(i);
+            String MaHD = hd.getMaHD();
+            String MaKH = hd.getMaKH();
+            String ThanhTien = hd.getThanhTien();
+            String NgayLap = hd.getNgayLap();
+            String MaNV = hd.getMaNV();
+            String Giamgia = hd.getGiamGia();
+            String TrangThai = hd.getTrangthai();
+            Object[]temp={MaHD, MaKH, ThanhTien, NgayLap, MaNV, Giamgia, TrangThai};
+            model.addRow(temp);
+        }
+        this.tb_hd.setModel(model);
+        final   RowPopup pop = new RowPopup(tb_hd);
+        tb_hd.addMouseListener(new MouseAdapter(){
+                public void mouseClicked(MouseEvent me)
+                {
+                    if(SwingUtilities.isRightMouseButton(me))
+                    {
+                        pop.show(me.getComponent(),getX(),getY());
+                        
+                    }
+                }
+        });
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -319,25 +435,47 @@ public class tra_cuu_hd extends javax.swing.JFrame {
             }
         });
     }
+    
+    class RowPopup extends JPopupMenu
+    {
+        public RowPopup(JTable table)
+        {
+            JMenuItem cthd = new JMenuItem("Xem chi tiết hóa đơn");
+            cthd.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JOptionPane.showInputDialog(rootPane, "Thông tin chi tiết hóa đơn","Thông báo", JOptionPane.NO_OPTION);
+                    return;
+                }
+            
+            });
+            
+            add(cthd);
+        }
+    }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPopupMenu PMenu;
     private javax.swing.JPanel bg7;
     private javax.swing.JPanel bg_address;
     private javax.swing.JPanel bg_cafe_cake;
     private javax.swing.JPanel bg_home_banhang;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bg_trangchu7;
+    private javax.swing.JButton bt_tim;
     private javax.swing.JButton button_thoat;
+    private javax.swing.JMenuItem cthd;
     private javax.swing.JPanel gachchan;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JPanel search;
+    private javax.swing.JTable tb_hd;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JTextField text_search;

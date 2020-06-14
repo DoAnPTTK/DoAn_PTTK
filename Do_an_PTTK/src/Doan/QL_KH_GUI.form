@@ -419,10 +419,9 @@
                       <Font name="Arial" size="14" style="0"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
+                      <StringArray count="2">
                         <StringItem index="0" value="Nam"/>
                         <StringItem index="1" value="N&#x1eef;"/>
-                        <StringItem index="2" value="Kh&#xf4;ng x&#xe1;c &#x111;&#x1ecb;nh"/>
                       </StringArray>
                     </Property>
                   </Properties>
