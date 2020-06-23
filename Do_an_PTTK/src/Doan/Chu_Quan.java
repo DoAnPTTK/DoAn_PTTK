@@ -117,8 +117,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_trangchuLayout.setHorizontalGroup(
             bg_trangchuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_trangchuLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(icon_trangchu, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 253, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
             .addGroup(bg_trangchuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_trangchuLayout.createSequentialGroup()
                     .addContainerGap(61, Short.MAX_VALUE)
@@ -159,8 +160,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_banhangLayout.setHorizontalGroup(
             bg_banhangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_banhangLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_banhang, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_banhang, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 46, Short.MAX_VALUE))
         );
@@ -199,8 +201,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_nvLayout.setHorizontalGroup(
             bg_nvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_nvLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_nhanvien, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_nhanvien, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 48, Short.MAX_VALUE))
         );
@@ -240,8 +243,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_nhaphangLayout.setHorizontalGroup(
             bg_nhaphangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_nhaphangLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_nhaphang, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_nhaphang, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 46, Short.MAX_VALUE))
         );
@@ -278,8 +282,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_khachhangLayout.setHorizontalGroup(
             bg_khachhangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_khachhangLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_khachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_khachhang, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 48, Short.MAX_VALUE))
         );
@@ -316,8 +321,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_banLayout.setHorizontalGroup(
             bg_banLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_banLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 46, Short.MAX_VALUE))
         );
@@ -355,8 +361,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_thucdonLayout.setHorizontalGroup(
             bg_thucdonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_thucdonLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_thucdon, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_thucdon, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 48, Short.MAX_VALUE))
         );
@@ -396,8 +403,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_nguyenlieuLayout.setHorizontalGroup(
             bg_nguyenlieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_nguyenlieuLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_nguyenlieu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_nguyenlieu, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 44, Short.MAX_VALUE))
         );
@@ -434,8 +442,9 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_thongkeLayout.setHorizontalGroup(
             bg_thongkeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_thongkeLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_thongke, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_thongke, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 46, Short.MAX_VALUE))
         );
@@ -454,7 +463,7 @@ public class Chu_Quan extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_manager_26px.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -548,7 +557,7 @@ public class Chu_Quan extends javax.swing.JFrame {
         bg_cafe_cake.setBackground(new java.awt.Color(54, 33, 89));
 
         image_cafe_cake.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_cafe_cake.setIcon(new javax.swing.ImageIcon("F:\\document\\Do_an_PTTK\\src\\Doan\\images\\chuquan\\quan_càe.png")); // NOI18N
+        image_cafe_cake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/quan_cafe.png"))); // NOI18N
 
         javax.swing.GroupLayout bg_cafe_cakeLayout = new javax.swing.GroupLayout(bg_cafe_cake);
         bg_cafe_cake.setLayout(bg_cafe_cakeLayout);
@@ -618,25 +627,33 @@ public class Chu_Quan extends javax.swing.JFrame {
 
     private void button_nhanvienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nhanvienActionPerformed
         // TODO add your handling code here:
-         new QL_NV_GUI().setVisible(true);
-         this.dispose();
+        QL_NV_GUI nv = new QL_NV_GUI();
+        nv.setTentk(TaiKhoan);
+        nv.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_button_nhanvienActionPerformed
 
     private void button_thucdonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thucdonActionPerformed
         // TODO add your handling code here:
-        new Thuc_don_GUI().setVisible(true);
+        Thuc_don_GUI td = new Thuc_don_GUI();
+        td.setTentk(TaiKhoan);
+        td.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thucdonActionPerformed
 
     private void button_khachhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_khachhangActionPerformed
         // TODO add your handling code here:
-        new QL_KH_GUI().setVisible(true);
+        QL_KH_GUI kh = new QL_KH_GUI();
+        kh.setTentk(TaiKhoan);
+        kh.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_khachhangActionPerformed
 
     private void button_nhaphangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nhaphangActionPerformed
         // TODO add your handling code here:
-        new NhapHang_GUI().setVisible(true);
+        NhapHang_GUI nh = new NhapHang_GUI();
+        nh.setTentk(TaiKhoan);
+        nh.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_nhaphangActionPerformed
 
@@ -662,19 +679,26 @@ public class Chu_Quan extends javax.swing.JFrame {
 
     private void button_banActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_banActionPerformed
         // TODO add your handling code here:
-        new Ban_GUI().setVisible(true);
+        Ban_GUI ban = new Ban_GUI();
+        ban.setTentk(TaiKhoan);
+        ban.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_banActionPerformed
 
     private void button_nguyenlieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_nguyenlieuActionPerformed
         // TODO add your handling code here:
-        new NguyenLieu_GUI().setVisible(true);
+        NguyenLieu_GUI nl = new NguyenLieu_GUI();
+        nl.setTentk(TaiKhoan);
+        nl.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_nguyenlieuActionPerformed
 
     private void button_thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thongkeActionPerformed
         // TODO add your handling code here:
-        new ThongKe_GUI().setVisible(true);
+        ThongKe_GUI tk = new ThongKe_GUI();
+        tk.setNguoigoi("Chu quan");
+        tk.setTentk(TaiKhoan);
+        tk.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thongkeActionPerformed
 

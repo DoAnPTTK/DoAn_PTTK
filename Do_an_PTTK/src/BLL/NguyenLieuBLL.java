@@ -34,4 +34,6 @@ public class NguyenLieuBLL {
     public boolean updateNguyenLieu(int maNL, String tenNL, String hsd, int slCon, String congDung ){
         return nlDAL.updateNguyenLieu(maNL, tenNL, hsd, slCon, congDung);
     }
+    
+    
 }

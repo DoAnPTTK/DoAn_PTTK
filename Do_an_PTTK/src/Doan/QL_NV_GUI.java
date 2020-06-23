@@ -23,12 +23,23 @@ import javax.swing.table.DefaultTableModel;
  * @author MSI2
  */
 public class QL_NV_GUI extends javax.swing.JFrame {
+    private String tentk;
+
+    public String getTentk() {
+        return tentk;
+    }
+
+    public void setTentk(String tentk) {
+        this.tentk = tentk;
+    }
+    
 
     /**
      * Creates new form QL_NV_GUI
      */
     public QL_NV_GUI() {
         initComponents();
+        setDefaultNhanVien();
     }
 
     /**
@@ -131,11 +142,12 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         bg_thoatLayout.setHorizontalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(14, 14, 14)
+                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 782, Short.MAX_VALUE)
-                .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 756, Short.MAX_VALUE)
+                .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -178,7 +190,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         text_cafeomely1.setText("OMELY QUÁN ");
         bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 506, 1190, 50));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 506, 1180, 50));
 
         jPanel1.setBackground(new java.awt.Color(85, 65, 118));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -513,7 +525,9 @@ public class QL_NV_GUI extends javax.swing.JFrame {
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new Chu_Quan().setVisible(true);
+        Chu_Quan cq = new Chu_Quan();
+        cq.setTaiKhoan(tentk);
+        cq.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 
@@ -626,6 +640,7 @@ public class QL_NV_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         Form_tracuu tc = new Form_tracuu();
         tc.setStr("Tim nhan vien");
+        tc.setTentk(tentk);
         tc.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bt_timNVActionPerformed

@@ -6,8 +6,19 @@
 package Doan;
 
 import BLL.NhapHangBLL;
+import BLL.QuanLyNV_BLL;
+import DTO.HANGHOADTO;
+import DTO.HoaDonDTO;
+import DTO.NCC_DTO;
 import DTO.NhapHangDTO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,33 +29,70 @@ import javax.swing.table.DefaultTableModel;
     
 public class NhapHang_GUI extends javax.swing.JFrame {
     DefaultTableModel tableModel;
+    
+    private String tentk;
+    private int flag = 1;
+
+    public void setTentk(String tentk) {
+        this.tentk = tentk;
+    }
+
+    public String getTentk() {
+        return tentk;
+    }
+    
+    
     /**
      * Creates new form NhapHang_GUI
      */
     public NhapHang_GUI() {
         initComponents();
-        tableModel = (DefaultTableModel) tblNhapHang.getModel();
-        showNH();
-        loadCombobox();
+        setNCC();
+        setAllTable();
+
     }
     
-    public void loadCombobox(){
-        NhapHangBLL bll = new NhapHangBLL();
-        ArrayList<String> list = bll.loadDataToCB();
-        for (String item : list){
-            cbMaNCC.addItem(item.toString());
+    void setNCC()
+    {
+        NhapHangBLL nh = new NhapHangBLL();
+        ArrayList<String> arr = nh.LoadNCC();
+        if (arr.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Tải dữ liệu lên CBB bị lỗi!", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        for (int i = 0; i < arr.size(); i++) {
+            cbMaNCC.addItem(arr.get(i));
         }
     }
-    public void showNH(){
-        NhapHangBLL bll = new NhapHangBLL();
-        ArrayList<NhapHangDTO> listNH = bll.getAllNhapHang();
-        
-        tableModel.setRowCount(0);
-        
-        for (NhapHangDTO s : listNH){
-            tableModel.addRow(new Object[]{s.getMaHang(), s.getNgayNhap(), s.getMaNCC(), s.getThanhTien()});
+    
+    void setHH()
+    {
+        NhapHangBLL nh = new NhapHangBLL();
+        flag = 0 ;
+        cbMaHang.removeAllItems();
+        ArrayList<String> arr = nh.LoadHH(this.cbMaNCC.getSelectedItem().toString());
+        if (arr.size() == 0) {
+            JOptionPane.showMessageDialog(null, "Tải dữ liệu lên CBB bị lỗi!", "Thông báo", JOptionPane.NO_OPTION);
+            return;
         }
+        for (int i = 0; i < arr.size(); i++) {
+            cbMaHang.addItem(arr.get(i));
+        }
+        flag = 1;
+        cbMaHang.setSelectedIndex(0);
+        setcbHH();
     }
+    
+//    public void showNH(){
+//        NhapHangBLL bll = new NhapHangBLL();
+//        ArrayList<NhapHangDTO> listNH = bll.getAllNhapHang();
+//        
+//        tableModel.setRowCount(0);
+//        
+//        for (NhapHangDTO s : listNH){
+//            tableModel.addRow(new Object[]{s.getMaHang(), s.getNgayNhap(), s.getMaNCC(), s.getThanhTien()});
+//        }
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,10 +103,6 @@ public class NhapHang_GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         bgnv = new javax.swing.JPanel();
-        bg_thoat = new javax.swing.JPanel();
-        text_trangchu7 = new javax.swing.JLabel();
-        icon_trangchu7 = new javax.swing.JLabel();
-        button_thoat = new javax.swing.JButton();
         bg_chuquan = new javax.swing.JPanel();
         bg_cafeomely = new javax.swing.JPanel();
         text_cafeomely = new javax.swing.JLabel();
@@ -77,10 +121,9 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         cbMaNCC = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        tfTenNCC = new javax.swing.JTextField();
-        tfSDT = new javax.swing.JTextField();
-        tfDiaChi = new javax.swing.JTextField();
-        btnLoad = new javax.swing.JButton();
+        txtTenNCC = new javax.swing.JTextField();
+        txtSDT = new javax.swing.JTextField();
+        txtDiaChi = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -88,13 +131,16 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        cboDv = new javax.swing.JComboBox<>();
         btnHuy = new javax.swing.JButton();
         txtTenhang = new javax.swing.JTextField();
-        txtSl = new javax.swing.JTextField();
         txtDongia = new javax.swing.JTextField();
         txtThanhtien = new javax.swing.JTextField();
-        btnThanhTien = new javax.swing.JButton();
+        cbMaHang = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        txtsl = new javax.swing.JTextField();
+        bttinhtien = new javax.swing.JButton();
+        txtdonvi = new javax.swing.JTextField();
+        bt_dy = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -103,64 +149,18 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         btnCapNhat = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnTraCuu = new javax.swing.JButton();
+        bg_thoat = new javax.swing.JPanel();
+        bg_trangchu7 = new javax.swing.JPanel();
+        text_trangchu7 = new javax.swing.JLabel();
+        icon_trangchu7 = new javax.swing.JLabel();
+        button_thoat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bgnv.setBackground(new java.awt.Color(255, 255, 255));
         bgnv.setMaximumSize(new java.awt.Dimension(1280, 1000));
         bgnv.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        bg_thoat.setBackground(new java.awt.Color(85, 65, 118));
-
-        text_trangchu7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        text_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
-        text_trangchu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        text_trangchu7.setText("Quản lý nhập hàng");
-
-        icon_trangchu7.setBackground(new java.awt.Color(255, 255, 255));
-        icon_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
-        icon_trangchu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        icon_trangchu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_partially_shipped_24px.png"))); // NOI18N
-        icon_trangchu7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        icon_trangchu7.setOpaque(true);
-
-        button_thoat.setBackground(new java.awt.Color(255, 255, 255));
-        button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        button_thoat.setForeground(new java.awt.Color(204, 51, 0));
-        button_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_back_arrow_30px.png"))); // NOI18N
-        button_thoat.setText("Thoát");
-        button_thoat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
-        button_thoat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        button_thoat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button_thoatActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout bg_thoatLayout = new javax.swing.GroupLayout(bg_thoat);
-        bg_thoat.setLayout(bg_thoatLayout);
-        bg_thoatLayout.setHorizontalGroup(
-            bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 558, Short.MAX_VALUE)
-                .addComponent(button_thoat)
-                .addContainerGap())
-        );
-        bg_thoatLayout.setVerticalGroup(
-            bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(bg_thoatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(text_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
 
         bg_chuquan.setBackground(new java.awt.Color(54, 33, 89));
         bg_chuquan.setToolTipText("");
@@ -173,11 +173,11 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         text_cafeomely.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely.setText("Đ/C: Thị trấn Phú Phong, huyện Tây Sơn, tỉnh Bình Định.");
-        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 0, 523, 56));
+        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 523, 56));
 
         icon_cafe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_address_50px_1.png"))); // NOI18N
-        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 79, 56));
+        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 79, 56));
 
         icon_cafe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_cafe_50px.png"))); // NOI18N
@@ -187,34 +187,31 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         text_cafeomely1.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely1.setText("OMELY QUÁN");
-        bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
+        bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 980, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 1190, -1));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        tblNhapHang.setAutoCreateRowSorter(true);
         tblNhapHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Mã hàng", "Ngày nhập", "Mã nhà cung cấp", "Thành tiền"
+                "Mã chi tiết nhập", "Mã hàng", "Mã nhà cung cấp", "Mã nhân viên", "Ngày nhập", "Số lượng nhập"
             }
         ));
         jScrollPane1.setViewportView(tblNhapHang);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 600, 310));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 810, 330));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Thông tin nhập hàng");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 160, 30));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 390, 40));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
@@ -224,147 +221,196 @@ public class NhapHang_GUI extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 0, 50, 40));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 50, 40));
 
-        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 620, 380));
+        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 830, 380));
 
         jPanel1.setBackground(new java.awt.Color(85, 65, 118));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mã nhà cung cấp");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 100, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 130, 30));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tên nhà cung cấp");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 100, 30));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 120, 30));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Thông tin nhà cung cấp");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 21));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 170, 30));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Địa chỉ");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 50, 30));
 
-        jPanel1.add(cbMaNCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 90, 30));
+        cbMaNCC.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbMaNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMaNCCActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbMaNCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 90, 30));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("SĐT");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 89, 20));
 
-        tfTenNCC.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        tfTenNCC.setEnabled(false);
-        tfTenNCC.addActionListener(new java.awt.event.ActionListener() {
+        txtTenNCC.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtTenNCC.setEnabled(false);
+        txtTenNCC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfTenNCCActionPerformed(evt);
+                txtTenNCCActionPerformed(evt);
             }
         });
-        jPanel1.add(tfTenNCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 200, -1));
+        jPanel1.add(txtTenNCC, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 190, -1));
 
-        tfSDT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        tfSDT.setEnabled(false);
-        tfSDT.addActionListener(new java.awt.event.ActionListener() {
+        txtSDT.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtSDT.setEnabled(false);
+        txtSDT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSDTActionPerformed(evt);
+                txtSDTActionPerformed(evt);
             }
         });
-        jPanel1.add(tfSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, -1));
+        jPanel1.add(txtSDT, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 190, -1));
 
-        tfDiaChi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        tfDiaChi.setEnabled(false);
-        tfDiaChi.addActionListener(new java.awt.event.ActionListener() {
+        txtDiaChi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtDiaChi.setEnabled(false);
+        txtDiaChi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDiaChiActionPerformed(evt);
+                txtDiaChiActionPerformed(evt);
             }
         });
-        jPanel1.add(tfDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 200, -1));
-
-        btnLoad.setText("Load");
-        btnLoad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoadActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnLoad, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, 70, 30));
+        jPanel1.add(txtDiaChi, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, 190, 30));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 340, 180));
 
         jPanel3.setBackground(new java.awt.Color(85, 65, 118));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Tên hàng");
+        jLabel3.setText("Mã hàng ");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, 30));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Đơn vị");
-        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 50, 30));
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 40, 50, 30));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Thông tin nhập hàng");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, 140, 21));
+        jLabel4.setText("Thông tin hàng hóa");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 0, 160, 30));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Số lượng");
-        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 50, 30));
+        jPanel3.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 80, 30));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Đơn giá");
-        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 50, 30));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 60, 30));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Thành tiền");
-        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 70, 30));
-
-        cboDv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilogam", "Lít", "Cái" }));
-        jPanel3.add(cboDv, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 80, 30));
+        jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 70, 30));
 
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
         btnHuy.setText("Hủy");
-        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51), 2));
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHuyActionPerformed(evt);
             }
         });
-        jPanel3.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 90, 30));
+        jPanel3.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 110, 30));
 
         txtTenhang.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel3.add(txtTenhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 230, 30));
-
-        txtSl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel3.add(txtSl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 80, 30));
-
-        txtDongia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel3.add(txtDongia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 230, 30));
-
-        txtThanhtien.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel3.add(txtThanhtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 230, 30));
-
-        btnThanhTien.setText("Thành tiền");
-        btnThanhTien.addActionListener(new java.awt.event.ActionListener() {
+        txtTenhang.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTenhang.setEnabled(false);
+        txtTenhang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThanhTienActionPerformed(evt);
+                txtTenhangActionPerformed(evt);
             }
         });
-        jPanel3.add(btnThanhTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, 30));
+        jPanel3.add(txtTenhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 230, 30));
 
-        bg_chuquan.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 340, 240));
+        txtDongia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtDongia.setEnabled(false);
+        jPanel3.add(txtDongia, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 230, 30));
+
+        txtThanhtien.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel3.add(txtThanhtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 230, 30));
+
+        cbMaHang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbMaHang.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMaHangItemStateChanged(evt);
+            }
+        });
+        cbMaHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMaHangActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cbMaHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 70, 30));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Tên hàng");
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 70, 30));
+
+        txtsl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtsl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtslActionPerformed(evt);
+            }
+        });
+        txtsl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtslKeyPressed(evt);
+            }
+        });
+        jPanel3.add(txtsl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 60, 30));
+
+        bttinhtien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/dong y.png"))); // NOI18N
+        bttinhtien.setText("Tính thành tiền");
+        bttinhtien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 153)));
+        bttinhtien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttinhtienActionPerformed(evt);
+            }
+        });
+        jPanel3.add(bttinhtien, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 120, 130, 30));
+
+        txtdonvi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtdonvi.setEnabled(false);
+        jPanel3.add(txtdonvi, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, 100, 30));
+
+        bt_dy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        bt_dy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/dong y.png"))); // NOI18N
+        bt_dy.setText("Đồng ý");
+        bt_dy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 2));
+        bt_dy.setEnabled(false);
+        bt_dy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_dyActionPerformed(evt);
+            }
+        });
+        jPanel3.add(bt_dy, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 120, 30));
+
+        bg_chuquan.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 340, 280));
 
         jPanel4.setBackground(new java.awt.Color(85, 65, 118));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -386,25 +432,30 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         btnXoa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
-        btnXoa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel4.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 100, 40));
+        btnXoa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51), 2));
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btnXoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, 100, 40));
 
         btnCapNhat.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
-        btnCapNhat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnCapNhat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2));
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatActionPerformed(evt);
             }
         });
-        jPanel4.add(btnCapNhat, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 100, 40));
+        jPanel4.add(btnCapNhat, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 30, 100, 40));
 
         btnThem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_30px.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setAlignmentY(0.0F);
-        btnThem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnThem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 255, 0), 2));
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -416,7 +467,7 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
         btnTraCuu.setText("Tra cứu");
         btnTraCuu.setAlignmentY(0.0F);
-        btnTraCuu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnTraCuu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2));
         btnTraCuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTraCuuActionPerformed(evt);
@@ -424,9 +475,61 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         });
         jPanel4.add(btnTraCuu, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 30, 110, 40));
 
-        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 400, 580, 80));
+        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 580, 80));
 
-        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 560));
+        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 560));
+
+        bg_thoat.setBackground(new java.awt.Color(85, 65, 118));
+        bg_thoat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bg_trangchu7.setBackground(new java.awt.Color(85, 65, 118));
+
+        text_trangchu7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        text_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
+        text_trangchu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text_trangchu7.setText("Quản lí nhập hàng");
+
+        icon_trangchu7.setBackground(new java.awt.Color(255, 255, 255));
+        icon_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
+        icon_trangchu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        icon_trangchu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_partially_shipped_24px.png"))); // NOI18N
+        icon_trangchu7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        icon_trangchu7.setOpaque(true);
+
+        javax.swing.GroupLayout bg_trangchu7Layout = new javax.swing.GroupLayout(bg_trangchu7);
+        bg_trangchu7.setLayout(bg_trangchu7Layout);
+        bg_trangchu7Layout.setHorizontalGroup(
+            bg_trangchu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bg_trangchu7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        bg_trangchu7Layout.setVerticalGroup(
+            bg_trangchu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(text_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+            .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        bg_thoat.add(bg_trangchu7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 1, -1, -1));
+
+        button_thoat.setBackground(new java.awt.Color(255, 255, 255));
+        button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        button_thoat.setForeground(new java.awt.Color(204, 51, 0));
+        button_thoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_back_arrow_30px.png"))); // NOI18N
+        button_thoat.setText("Thoát");
+        button_thoat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
+        button_thoat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        button_thoat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_thoatActionPerformed(evt);
+            }
+        });
+        bg_thoat.add(button_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 10, 110, -1));
+
+        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -443,94 +546,301 @@ public class NhapHang_GUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
-        // TODO add your handling code here:
-        new Chu_Quan().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_button_thoatActionPerformed
-
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-        // TODO add your handling code here:
-        cbMaNCC.setSelectedItem(0);
-        tfTenNCC.setText(null);
-        tfDiaChi.setText(null);
-        tfSDT.setText(null);
-        txtTenhang.setText(null);
-        cboDv.setSelectedItem("Kilogam");
-        txtSl.setText(null);
-        txtDongia.setText(null);
-        txtThanhtien.setText(null);
-    }//GEN-LAST:event_btnHuyActionPerformed
-
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        setAllTable();
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThemActionPerformed
-
-    private void btnThanhTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhTienActionPerformed
-        int a = Integer.parseInt(txtDongia.getText());
-        int b = Integer.parseInt(txtSl.getText());
-        int c = 0;
-        c = a*b;
+    private void txtTenNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenNCCActionPerformed
         
-        txtThanhtien.setText(String.valueOf(c));
-    }//GEN-LAST:event_btnThanhTienActionPerformed
+    }//GEN-LAST:event_txtTenNCCActionPerformed
+
+    private void txtSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSDTActionPerformed
+        
+    }//GEN-LAST:event_txtSDTActionPerformed
+
+    private void txtDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaChiActionPerformed
+
+    }//GEN-LAST:event_txtDiaChiActionPerformed
+
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        refresh();
+    }//GEN-LAST:event_btnHuyActionPerformed
+
+    private void txtTenhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenhangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenhangActionPerformed
+
+    private void cbMaHangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMaHangItemStateChanged
+//        int maHang = Integer.parseInt(cbMaHang.getSelectedItem().toString());
+//        NhapHangBLL bll = new NhapHangBLL();
+//        ArrayList<String> listHangHoa = bll.getInfoHangHoa(maHang);
+//        txtTenhang.setText(listHangHoa.get(0));
+//        cboDv.addItem(listHangHoa.get(1));
+//        txtDongia.setText(listHangHoa.get(2));
+    }//GEN-LAST:event_cbMaHangItemStateChanged
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        int choose = this.tblNhapHang.getSelectedRow();
+        if(choose < 0){
+            
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn đơn hàng nhập bạn muốn xóa bỏ !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        else{
+            if(JOptionPane.showConfirmDialog(rootPane, "Bạn có thực sự muốn xóa đơn hàng này !", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            {
+                NhapHangBLL nh = new NhapHangBLL();
+                String mactn = tblNhapHang.getValueAt(choose, 0).toString();
+                
+                boolean kq = nh.removeDonHang(mactn);
+                if(kq == true)
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Bạn vừa xóa một đơn hàng nhập !", "Thông báo", JOptionPane.NO_OPTION);
+                    this.setAllTable();
+                    return;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Xóa đơn hàng nhập không thành công !", "Thông báo", JOptionPane.NO_OPTION);
+                    return;
+                }
+                
+            }
+            return;
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        // TODO add your handling code here:
+        int choose = this.tblNhapHang.getSelectedRow();
+        if(choose < 0){
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn 1 đơn hàng có trong danh sách để cập nhật thông tin !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        else
+        {
+            String mahang = tblNhapHang.getValueAt(choose, 1).toString();
+            NhapHangBLL nh = new NhapHangBLL();
+            Object[] temp = nh.getDonHangCapNhat(mahang);
+            
+            this.cbMaNCC.setSelectedItem(temp[1]);
+            this.cbMaNCC.setEnabled(false);
+            this.cbMaHang.setSelectedItem(temp[0]);
+            this.cbMaHang.setEnabled(false);
+            this.txtsl.setText(String.valueOf(temp[2]));
+            this.bt_dy.setEnabled(true);
+            return;
+        }
+
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        if(bt_dy.isEnabled())
+        {
+            JOptionPane.showMessageDialog(rootPane, "Bạn phải cập nhật xong mới được thêm !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        if(txtsl.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập số lượng trước khi bấm thêm !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        NhapHangBLL nh = new NhapHangBLL();
+        String mahang = cbMaHang.getSelectedItem().toString();
+        QuanLyNV_BLL qlnv = new QuanLyNV_BLL();
+        
+        String manv = qlnv.getNhanVienBangTaiKhoan(tentk);
+        
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        Calendar cal = Calendar.getInstance();
+        String time = dateFormat.format(cal.getTime()).toUpperCase();
+        
+        boolean rs = nh.nhapMotDonHang(manv, mahang, time, txtsl.getText());
+        if(rs==true)
+        {
+            JOptionPane.showMessageDialog(null,"Bạn vừa thêm chi tiết nhập mới thành công !", "Thông báo",JOptionPane.NO_OPTION);
+            setAllTable();
+            return;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Thêm chi tiết nhập mới thất bại !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
     private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
-//        bienTam.a = 3;
-//        formSearch fs = new formSearch();
-//        fs.setLocationRelativeTo(null);
-//        fs.setVisible(true);
-//        this.setVisible(false);
+        Form_tracuu tc = new Form_tracuu();
+        tc.setStr("Tim don hang");
+        tc.setTentk(tentk);
+        tc.setVisible(true);
+        this.dispose();
+        return;
     }//GEN-LAST:event_btnTraCuuActionPerformed
 
-    private void tfTenNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTenNCCActionPerformed
+    private void txtslActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtslActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfTenNCCActionPerformed
+    }//GEN-LAST:event_txtslActionPerformed
 
-    private void tfSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSDTActionPerformed
+    private void txtslKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtslKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfSDTActionPerformed
+    }//GEN-LAST:event_txtslKeyPressed
 
-    private void tfDiaChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDiaChiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDiaChiActionPerformed
-
-    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
-        String value = cbMaNCC.getSelectedItem().toString();
-        NhapHangBLL bll = new NhapHangBLL();
-        ArrayList<String> listNCC = bll.getNCC(Integer.parseInt(value));
-        tfTenNCC.setText(listNCC.get(0));
-        tfDiaChi.setText(listNCC.get(1));
-        tfSDT.setText(listNCC.get(2));
-    }//GEN-LAST:event_btnLoadActionPerformed
-    public void show1hanghoa(int maHang){
-        int rowCount = tblNhapHang.getRowCount();
-        int temp = 0;
-        for (int i = 0;i< rowCount;i++){
-            if (String.valueOf(maHang).equals(tblNhapHang.getValueAt(i, 0).toString())){
-                NhapHangBLL nhBLL = new NhapHangBLL();
-                NhapHangDTO nh = nhBLL.get1NhapHang(maHang);
-                tableModel.setRowCount(0);
-                tableModel.addRow(new Object[]{nh.getMaHang(), nh.getNgayNhap(), nh.getMaNCC(),nh.getThanhTien()});
-                temp++;
-                break;
+    private void cbMaNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaNCCActionPerformed
+        try {
+            NhapHangBLL nh = new NhapHangBLL();
+            NCC_DTO ncc = nh.getNCC(this.cbMaNCC.getSelectedItem().toString());
+            if(ncc.getMaNCC() == null)
+            {
+                JOptionPane.showMessageDialog(null,"Tải dữ liệu lên CBB bị lỗi!", "Thông báo",JOptionPane.NO_OPTION);
+                return;
             }
-            }
-        if (temp == 1){
-            JOptionPane.showMessageDialog(rootPane, "Tim thanh cong");
+            this.txtTenNCC.setText(ncc.getTenNCC());
+            this.txtDiaChi.setText(ncc.getDChi());
+            this.txtSDT.setText(ncc.getSDT());
+        } catch (SQLException ex) {
+            Logger.getLogger(NhapHang_GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else {
-            JOptionPane.showMessageDialog(rootPane,"Không có mã hàng vừa tìm", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        setHH();
+    }//GEN-LAST:event_cbMaNCCActionPerformed
+
+    void setAllTable()
+    {
+        NhapHangBLL nh = new NhapHangBLL();
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã chi tiết nhập", "Mã hàng", "Mã nhà cung cấp", "Mã nhân viên", "Ngày nhập", "Số lượng nhập"};
+        model.setColumnIdentifiers(title);
+        ArrayList<NhapHangDTO> ar = nh.getALLCTN();
+        for(int i=0;i < ar.size();i++)
+        {
+            NhapHangDTO nh_dto = ar.get(i);
+            String mctn = nh_dto.getMaCTN();
+            String mh = nh_dto.getMaHANG();
+            String mncc = nh_dto.getMaNCC();
+            String mnv = nh_dto.getMaNV();
+            String nn = nh_dto.getNgayNhap();
+            String sl = nh_dto.getSLNhap();
+            
+            Object[]temp={mctn, mh, mncc, mnv, nn, sl};
+            model.addRow(temp);
+        }
+        this.tblNhapHang.setModel(model);
+    }
+    
+    void setTracuu(NhapHangDTO nh_dto)
+    {
+        NhapHangBLL nh = new NhapHangBLL();
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã chi tiết nhập", "Mã hàng", "Mã nhà cung cấp", "Mã nhân viên", "Ngày nhập", "Số lượng nhập"};
+        
+        model.setColumnIdentifiers(title);
+        String mctn = nh_dto.getMaCTN();
+        String mh = nh_dto.getMaHANG();
+        String mncc = nh_dto.getMaNCC();
+        String mnv = nh_dto.getMaNV();
+        String nn = nh_dto.getNgayNhap();
+        String sl = nh_dto.getSLNhap();
+
+        Object[] temp = {mctn, mh, mncc, mnv, nn, sl};
+        model.addRow(temp);
+        this.tblNhapHang.setModel(model);
+    }
+    
+    void setcbHH()
+    {
+        NhapHangBLL nh = new NhapHangBLL();
+        if (flag == 0) {
+            return;
+        } else {
+            HANGHOADTO hh = nh.getHangHoa(this.cbMaHang.getSelectedItem().toString());
+            if (hh.getMaHang() == null) {
+                JOptionPane.showMessageDialog(null, "Tải dữ liệu lên CBB bị lỗi!", "Thông báo", JOptionPane.NO_OPTION);
+                return;
+            }
+            this.txtTenhang.setText(hh.getTenHang());
+            this.txtDongia.setText(hh.getDongia());
+            this.txtdonvi.setText(hh.getDonvi());
+            return;
         }
     }
+    
+    private void cbMaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMaHangActionPerformed
+        // TODO add your handling code here:
+        setcbHH();
+    }//GEN-LAST:event_cbMaHangActionPerformed
+
+    private void bttinhtienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttinhtienActionPerformed
+        if(txtsl.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(null,"Bạn chưa nhập số lượng nhập hàng !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
+        }
+        else
+        {
+            int sl = Integer.parseInt(this.txtsl.getText());
+            int dgia = Integer.parseInt(this.txtDongia.getText());
+            long tien = sl * dgia;
+            this.txtThanhtien.setText(String.valueOf(tien));
+            this.txtThanhtien.setEnabled(false);
+            return;
+        }
+    }//GEN-LAST:event_bttinhtienActionPerformed
+
+    private void bt_dyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_dyActionPerformed
+        int choose = tblNhapHang.getSelectedRow();
+        String slnhapcu = tblNhapHang.getValueAt(choose, 5).toString();
+        String slnhapmoi = this.txtsl.getText();
+        String mactn = tblNhapHang.getValueAt(choose,0).toString();
+        
+        
+        if(slnhapcu.equals(slnhapmoi))
+        {
+            JOptionPane.showMessageDialog(null,"Bạn chưa cập nhật số lượng mới của đơn hàng !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
+        }
+        else
+        {
+            NhapHangBLL nh = new NhapHangBLL();
+            boolean rs = nh.Update(mactn, slnhapcu, slnhapmoi);
+            
+            if(rs == true)
+            {
+                JOptionPane.showMessageDialog(null, "Bạn vừa cập nhật đơn hàng thành công !", "Thông báo", JOptionPane.NO_OPTION);
+                refresh();
+                setAllTable();
+                return;
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Cập nhật đơn hàng thất bại !", "Thông báo", JOptionPane.NO_OPTION);
+                refresh();
+                return;
+            }
+        }
+        
+    }//GEN-LAST:event_bt_dyActionPerformed
+
+    private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
+        // TODO add your handling code here:
+        Chu_Quan cq = new Chu_Quan();
+        cq.setTaiKhoan(tentk);
+        cq.setVisible(true);
+        this.dispose();
+        return;
+    }//GEN-LAST:event_button_thoatActionPerformed
+    
+    void refresh()
+    {
+        this.cbMaNCC.setEnabled(true);
+        this.cbMaNCC.setSelectedIndex(0);
+        this.cbMaHang.setEnabled(true);
+        this.cbMaHang.setSelectedItem(0);
+        this.txtsl.setText(null);
+        this.txtThanhtien.setEnabled(true);
+        this.txtThanhtien.setText(null);
+        this.bt_dy.setEnabled(false);
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -573,17 +883,18 @@ public class NhapHang_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_cafeomely;
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
+    private javax.swing.JPanel bg_trangchu7;
     private javax.swing.JPanel bgnv;
+    private javax.swing.JButton bt_dy;
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnHuy;
-    private javax.swing.JButton btnLoad;
-    private javax.swing.JButton btnThanhTien;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTraCuu;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton bttinhtien;
     private javax.swing.JButton button_thoat;
+    private javax.swing.JComboBox<String> cbMaHang;
     private javax.swing.JComboBox<String> cbMaNCC;
-    private javax.swing.JComboBox<String> cboDv;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
@@ -599,6 +910,7 @@ public class NhapHang_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -612,13 +924,14 @@ public class NhapHang_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JLabel text_trangchu7;
-    private javax.swing.JTextField tfDiaChi;
-    private javax.swing.JTextField tfSDT;
-    private javax.swing.JTextField tfTenNCC;
+    private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtDongia;
-    private javax.swing.JTextField txtSl;
+    private javax.swing.JTextField txtSDT;
+    private javax.swing.JTextField txtTenNCC;
     private javax.swing.JTextField txtTenhang;
     private javax.swing.JTextField txtThanhtien;
+    private javax.swing.JTextField txtdonvi;
+    private javax.swing.JTextField txtsl;
     // End of variables declaration//GEN-END:variables
 
 }

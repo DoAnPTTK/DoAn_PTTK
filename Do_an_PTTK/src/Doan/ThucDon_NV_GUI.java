@@ -5,17 +5,34 @@
  */
 package Doan;
 
+import BLL.ThucDonBLL;
+import DTO.ThucDonDTO;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MSI2
  */
 public class ThucDon_NV_GUI extends javax.swing.JFrame {
 
+    private String Tentk;
+
+    public String getTentk() {
+        return Tentk;
+    }
+
+    public void setTentk(String Tentk) {
+        this.Tentk = Tentk;
+    }
+    
+    
     /**
      * Creates new form ThucDon_NV_GUI
      */
     public ThucDon_NV_GUI() {
         initComponents();
+        setAllTable();
     }
 
     /**
@@ -40,22 +57,26 @@ public class ThucDon_NV_GUI extends javax.swing.JFrame {
         text_cafeomely1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tb_thd = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
+        bt_refresh = new javax.swing.JButton();
+        bt_backBH = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bgnv.setBackground(new java.awt.Color(255, 255, 255));
         bgnv.setMaximumSize(new java.awt.Dimension(1280, 1000));
         bgnv.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bg_thoat.setBackground(new java.awt.Color(85, 65, 118));
+        bg_thoat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         text_trangchu7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         text_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
         text_trangchu7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_trangchu7.setText("Thông tin thực đơn");
+        bg_thoat.add(text_trangchu7, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 6, 227, 40));
 
         icon_trangchu7.setBackground(new java.awt.Color(255, 255, 255));
         icon_trangchu7.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,6 +84,7 @@ public class ThucDon_NV_GUI extends javax.swing.JFrame {
         icon_trangchu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_cutlery_26px.png"))); // NOI18N
         icon_trangchu7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         icon_trangchu7.setOpaque(true);
+        bg_thoat.add(icon_trangchu7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 60, 60));
 
         button_thoat.setBackground(new java.awt.Color(255, 255, 255));
         button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -76,31 +98,9 @@ public class ThucDon_NV_GUI extends javax.swing.JFrame {
                 button_thoatActionPerformed(evt);
             }
         });
+        bg_thoat.add(button_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(1068, 12, 120, -1));
 
-        javax.swing.GroupLayout bg_thoatLayout = new javax.swing.GroupLayout(bg_thoat);
-        bg_thoat.setLayout(bg_thoatLayout);
-        bg_thoatLayout.setHorizontalGroup(
-            bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 601, Short.MAX_VALUE)
-                .addComponent(button_thoat)
-                .addContainerGap())
-        );
-        bg_thoatLayout.setVerticalGroup(
-            bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(text_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addComponent(icon_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-        );
-
-        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 60));
 
         bg_chuquan.setBackground(new java.awt.Color(54, 33, 89));
         bg_chuquan.setToolTipText("");
@@ -113,11 +113,11 @@ public class ThucDon_NV_GUI extends javax.swing.JFrame {
         text_cafeomely.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely.setText("Đ/C: Thị trấn Phú Phong, huyện Tây Sơn, tỉnh Bình Định.");
-        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 0, 523, 56));
+        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 523, 56));
 
         icon_cafe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_address_50px_1.png"))); // NOI18N
-        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 79, 56));
+        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 79, 56));
 
         icon_cafe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_cafe_50px.png"))); // NOI18N
@@ -129,46 +129,54 @@ public class ThucDon_NV_GUI extends javax.swing.JFrame {
         text_cafeomely1.setText("OMELY QUÁN");
         bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 980, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 1180, -1));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tb_thd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tb_thd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã món", "Tên món", "Giá"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tb_thd);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 930, 310));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 1080, 320));
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Thông tin thực đơn");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 160, 30));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 390, 50));
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
-        jButton7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        bt_refresh.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        bt_refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
+        bt_refresh.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        bt_refresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                bt_refreshActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 50, 40));
+        jPanel2.add(bt_refresh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 20, 50, 40));
 
-        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 950, 370));
+        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 1120, 390));
 
-        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 560));
+        bt_backBH.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_backBH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_home_32px.png"))); // NOI18N
+        bt_backBH.setText("Home bán hàng");
+        bt_backBH.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 255, 0), 2));
+        bt_backBH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_backBHActionPerformed(evt);
+            }
+        });
+        bg_chuquan.add(bt_backBH, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 430, 170, 40));
+
+        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,13 +195,25 @@ public class ThucDon_NV_GUI extends javax.swing.JFrame {
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new NV_thungan().setVisible(true);
+        NV_thungan nv = new NV_thungan();
+        nv.setTaiKhoan(Tentk);
+        nv.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void bt_refreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_refreshActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+        setAllTable();
+    }//GEN-LAST:event_bt_refreshActionPerformed
+
+    private void bt_backBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_backBHActionPerformed
+        // TODO add your handling code here:
+        home_banhang bh = new home_banhang();
+        bh.setTaiKhoan(Tentk);
+        bh.setNguoigoi("Nhan vien");
+        bh.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bt_backBHActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,21 +249,42 @@ public class ThucDon_NV_GUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    void setAllTable()
+    {
+        ThucDonBLL td = new ThucDonBLL();
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã món", "Tên món", "Giá"};
+        model.setColumnIdentifiers(title);
+        ArrayList<ThucDonDTO> ar = td.getAllThucDon();
+        for(int i=0;i < ar.size();i++)
+        {
+            ThucDonDTO thd = ar.get(i);
+            int MaMon = thd.getMaMon();
+            String TenMon = thd.getTenMon();
+            int Gia = thd.getGia();
+            
+            Object[]temp={MaMon,TenMon,Gia};
+            model.addRow(temp);
+        }
+        this.tb_thd.setModel(model);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bg_cafeomely;
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bgnv;
+    private javax.swing.JButton bt_backBH;
+    private javax.swing.JButton bt_refresh;
     private javax.swing.JButton button_thoat;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tb_thd;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JLabel text_trangchu7;

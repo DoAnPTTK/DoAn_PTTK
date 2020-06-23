@@ -23,7 +23,17 @@ import javax.swing.JTable;
  */
 public class Thuc_don_GUI extends javax.swing.JFrame {
     DefaultTableModel tableModel;
+    
+    private String Tentk;
 
+    public String getTentk() {
+        return Tentk;
+    }
+
+    public void setTentk(String Tentk) {
+        this.Tentk = Tentk;
+    }
+    
     
     public JTable getTblMenu() {
         return tb_Thucdon;
@@ -105,6 +115,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         btnTraCuu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bgnv.setBackground(new java.awt.Color(255, 255, 255));
         bgnv.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -145,8 +156,8 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
                 .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 776, Short.MAX_VALUE)
-                .addComponent(button_thoat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 753, Short.MAX_VALUE)
+                .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -189,7 +200,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         text_cafeomely1.setText("OMELY QUÁN");
         bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 1200, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 1180, -1));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -412,7 +423,9 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new Chu_Quan().setVisible(true);
+        Chu_Quan cq = new Chu_Quan();
+        cq.setTaiKhoan(Tentk);
+        cq.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 
@@ -433,7 +446,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         }
         if(tfTenMon.getText().equals("") || tfGia.getText().equals(""))
         {
-            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin của nhân viên !", "Thông báo", JOptionPane.NO_OPTION);
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin của thực đơn !", "Thông báo", JOptionPane.NO_OPTION);
             return;
         }
         ThucDonBLL td = new ThucDonBLL();
@@ -512,6 +525,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         //JOptionPane.showMessageDialog(rootPane, "aaaa");
         Form_tracuu tc = new Form_tracuu();
         tc.setStr("Tim thuc don");
+        tc.setTentk(Tentk);
         tc.setVisible(true);
         this.dispose();
         return;

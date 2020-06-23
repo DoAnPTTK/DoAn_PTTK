@@ -5,12 +5,19 @@
  */
 package Doan;
 
+import BLL.BanBLL;
+import BLL.NguyenLieuBLL;
+import BLL.NhapHangBLL;
 import BLL.QuanLyKH_BLL;
 import BLL.QuanLyNV_BLL;
 import BLL.ThucDonBLL;
+import DTO.Ban_DTO;
 import DTO.KhachHangDTO;
+import DTO.NguyenLieuDTO;
 import DTO.NhanVienDTO;
+import DTO.NhapHangDTO;
 import DTO.ThucDonDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +25,16 @@ import DTO.ThucDonDTO;
  */
 public class Form_tracuu extends javax.swing.JFrame {
     static public String str;
+    private String tentk;
 
+    public String getTentk() {
+        return tentk;
+    }
+
+    public void setTentk(String tentk) {
+        this.tentk = tentk;
+    }
+    
     /**
      * Creates new form Form_tracuu
      */
@@ -159,12 +175,14 @@ public class Form_tracuu extends javax.swing.JFrame {
         {
             QL_NV_GUI ql_nvGUI = new QL_NV_GUI();
             ql_nvGUI.setVisible(true);
+            ql_nvGUI.setTentk(tentk);
             ql_nvGUI.setDefaultNhanVien();
             this.dispose();
         }
         if(this.str.equals("Tim khach hang"))
         {
             QL_KH_GUI ql_khGUI = new QL_KH_GUI();
+            ql_khGUI.setTentk(tentk);
             ql_khGUI.setVisible(true);
             ql_khGUI.setDefaultKH();
             this.dispose();
@@ -172,10 +190,36 @@ public class Form_tracuu extends javax.swing.JFrame {
         if(this.str.equals("Tim thuc don"))
         {
             Thuc_don_GUI thd = new Thuc_don_GUI();
+            thd.setTentk(tentk);
             thd.setVisible(true);
             thd.setALLTable();
             this.dispose();
         }
+        if(this.str.equals("Tim nguyen lieu"))
+        {
+            NguyenLieu_GUI nl = new NguyenLieu_GUI();
+            nl.setTentk(tentk);
+            nl.setVisible(true);
+            nl.setAllTable();
+            this.dispose();
+        }
+        if(this.str.equals("Tim don hang"))
+        {
+            NhapHang_GUI nh_gui = new NhapHang_GUI();
+            nh_gui.setAllTable();
+            nh_gui.setTentk(tentk);
+            nh_gui.setVisible(true);
+            this.dispose();
+        }
+        if(this.str.equals("Tim ban"))
+        {
+            Ban_GUI ban = new Ban_GUI();
+            ban.setALLTable();
+            ban.setTentk(tentk);
+            ban.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_bt_thoatActionPerformed
 
     private void bt_timActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_timActionPerformed
@@ -185,6 +229,7 @@ public class Form_tracuu extends javax.swing.JFrame {
             QuanLyNV_BLL ql_nv = new QuanLyNV_BLL();
             NhanVienDTO nv = ql_nv.getNhanVien(this.ma_trcuu.getText());
             QL_NV_GUI ql_nvGUI = new QL_NV_GUI();
+            ql_nvGUI.setTentk(tentk);
             ql_nvGUI.setVisible(true);
             ql_nvGUI.setTable_tracuu(nv);
             this.dispose();
@@ -195,6 +240,7 @@ public class Form_tracuu extends javax.swing.JFrame {
             QuanLyKH_BLL ql_kh = new QuanLyKH_BLL();
             KhachHangDTO nv = ql_kh.getKhachHang(this.ma_trcuu.getText());
             QL_KH_GUI ql_khGUI = new QL_KH_GUI();
+            ql_khGUI.setTentk(tentk);
             ql_khGUI.setVisible(true);
             ql_khGUI.setTable_tracuu(nv);
             this.dispose();
@@ -205,11 +251,84 @@ public class Form_tracuu extends javax.swing.JFrame {
             ThucDonBLL td = new ThucDonBLL();
             int ma_td = Integer.parseInt(this.ma_trcuu.getText());
             ThucDonDTO td_dto = td.getThucDon(ma_td);
+            if(td_dto.getMaMon() != 0)
+            {
+                Thuc_don_GUI thd = new Thuc_don_GUI();
+                thd.setTracuu(td_dto);
+                thd.setTentk(tentk);
+                thd.setVisible(true);
+                this.dispose();
+                return;
+            }
+            JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
             Thuc_don_GUI thd = new Thuc_don_GUI();
-            thd.setTracuu(td_dto);
+            thd.setTentk(tentk);
             thd.setVisible(true);
             this.dispose();
         }
+        
+        if(this.str.equals("Tim nguyen lieu"))
+        {
+            NguyenLieuBLL nl = new NguyenLieuBLL();
+            int manl = Integer.parseInt(this.ma_trcuu.getText());
+            NguyenLieuDTO nl_dto = nl.getNL(manl);
+            if(nl_dto.getMaNL()!= 0)
+            {
+                NguyenLieu_GUI nl_gui = new NguyenLieu_GUI();
+                nl_gui.setTracuu(nl_dto);
+                nl_gui.setTentk(tentk);
+                nl_gui.setVisible(true);
+                this.dispose();
+                return;
+            }
+            JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
+            NguyenLieu_GUI nl_gui = new NguyenLieu_GUI();
+            nl_gui.setTentk(tentk);
+            nl_gui.setVisible(true);
+            this.dispose();
+        }
+        
+        if(this.str.equals("Tim don hang"))
+        {
+            NhapHangBLL nh = new NhapHangBLL();
+            String mactn = this.ma_trcuu.getText();
+            NhapHangDTO nh_dto = nh.getDonHang(mactn);
+            if(nh_dto.getMaCTN() != null)
+            {
+                NhapHang_GUI nh_gui = new NhapHang_GUI();
+                nh_gui.setTracuu(nh_dto);
+                nh_gui.setTentk(tentk);
+                nh_gui.setVisible(true);
+                this.dispose();
+                return;
+            }
+            JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
+            NhapHang_GUI nh_gui = new NhapHang_GUI();
+            nh_gui.setTentk(tentk);
+            nh_gui.setVisible(true);
+            this.dispose();
+        }
+        if(this.str.equals("Tim ban"))
+        {
+            BanBLL ban = new BanBLL();
+            String mactn = this.ma_trcuu.getText();
+            Ban_DTO ban_dto = ban.getBan(mactn);
+            if(ban_dto.getMaban() != null)
+            {
+                Ban_GUI ban_gui = new Ban_GUI();
+                ban_gui.setTableTracuu(ban_dto);
+                ban_gui.setTentk(tentk);
+                ban_gui.setVisible(true);
+                this.dispose();
+                return;
+            }
+            JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
+            Ban_GUI ban_gui = new Ban_GUI();
+            ban_gui.setTentk(tentk);
+            ban_gui.setVisible(true);
+            this.dispose();
+        }
+        
     }//GEN-LAST:event_bt_timActionPerformed
 
     /**

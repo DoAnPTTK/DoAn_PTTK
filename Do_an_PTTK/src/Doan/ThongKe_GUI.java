@@ -5,14 +5,49 @@
  */
 package Doan;
 
+import DAL.Database;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author MSI2
  */
 public class ThongKe_GUI extends javax.swing.JFrame {
+    private String nguoigoi;
+    private String tentk;
+
+    public String getNguoigoi() {
+        return nguoigoi;
+    }
+
+    public String getTentk() {
+        return tentk;
+    }
+
+    public void setNguoigoi(String nguoigoi) {
+        this.nguoigoi = nguoigoi;
+    }
+
+    public void setTentk(String tentk) {
+        this.tentk = tentk;
+    }
+    
+    
+    
 
     /**
-     * Creates new form ThongKe_GUI
+     * Creates new form ThongKe_nv_GUI
      */
     public ThongKe_GUI() {
         initComponents();
@@ -39,21 +74,15 @@ public class ThongKe_GUI extends javax.swing.JFrame {
         icon_cafe1 = new javax.swing.JLabel();
         text_cafeomely1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
+        bt_top5 = new javax.swing.JButton();
+        bt_tk_ncc = new javax.swing.JButton();
+        bt_tk_thangnam = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bgnv.setBackground(new java.awt.Color(255, 255, 255));
         bgnv.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -91,11 +120,12 @@ public class ThongKe_GUI extends javax.swing.JFrame {
         bg_thoatLayout.setHorizontalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 558, Short.MAX_VALUE)
-                .addComponent(button_thoat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 729, Short.MAX_VALUE)
+                .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -104,12 +134,12 @@ public class ThongKe_GUI extends javax.swing.JFrame {
             .addGroup(bg_thoatLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(text_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(button_thoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(text_trangchu7, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 60));
+        bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 60));
 
         bg_chuquan.setBackground(new java.awt.Color(54, 33, 89));
         bg_chuquan.setToolTipText("");
@@ -122,11 +152,11 @@ public class ThongKe_GUI extends javax.swing.JFrame {
         text_cafeomely.setForeground(new java.awt.Color(255, 255, 255));
         text_cafeomely.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         text_cafeomely.setText("Đ/C: Thị trấn Phú Phong, huyện Tây Sơn, tỉnh Bình Định.");
-        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 0, 523, 56));
+        bg_cafeomely.add(text_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 523, 56));
 
         icon_cafe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_address_50px_1.png"))); // NOI18N
-        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 0, 79, 56));
+        bg_cafeomely.add(icon_cafe, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 79, 56));
 
         icon_cafe1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon_cafe1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_cafe_50px.png"))); // NOI18N
@@ -138,77 +168,52 @@ public class ThongKe_GUI extends javax.swing.JFrame {
         text_cafeomely1.setText("OMELY QUÁN");
         bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 980, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 1180, -1));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Mã hàng", "Ngày nhập", "Mã nhà cung cấp", "Thành tiền"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/quan_cafe.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 600, 330));
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 910, 240));
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Tổng doanh thu");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 230, 30));
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Chi tiết doanh thu");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 0, 160, 21));
-
-        jTextField1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 290, 210, 30));
-
-        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 940, 330));
+        bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 920, 330));
 
         jPanel4.setBackground(new java.awt.Color(85, 65, 118));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Chức năng");
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        bt_top5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_top5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_5_32px.png"))); // NOI18N
+        bt_top5.setText("Top 5 món bán nhiều nhất");
+        bt_top5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51), 2));
+        bt_top5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_top5ActionPerformed(evt);
+            }
+        });
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_account_24px.png"))); // NOI18N
-        jLabel25.setText("Thống kê theo ngày");
-        jPanel5.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
+        bt_tk_ncc.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_tk_ncc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_list_32px_1.png"))); // NOI18N
+        bt_tk_ncc.setText("Dánh sách nhập hàng theo nhà cung cấp");
+        bt_tk_ncc.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 153, 255), 2, true));
+        bt_tk_ncc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_tk_nccActionPerformed(evt);
+            }
+        });
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_account_24px.png"))); // NOI18N
-        jLabel29.setText("Thống kê theo năm");
-        jPanel7.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 40));
-
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_account_24px.png"))); // NOI18N
-        jLabel28.setText("Thống kê theo tháng");
-        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 40));
+        bt_tk_thangnam.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_tk_thangnam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_month_in_love_48px.png"))); // NOI18N
+        bt_tk_thangnam.setText("Thống kê bán hàng theo tháng");
+        bt_tk_thangnam.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 204), 2));
+        bt_tk_thangnam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_tk_thangnamActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -216,32 +221,32 @@ public class ThongKe_GUI extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addComponent(bt_top5, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(bt_tk_ncc, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(bt_tk_thangnam, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bt_top5)
+                    .addComponent(bt_tk_ncc)
+                    .addComponent(bt_tk_thangnam, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25))
         );
 
-        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 400, 580, 90));
+        bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 1040, 100));
 
-        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1000, 560));
+        bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,9 +265,91 @@ public class ThongKe_GUI extends javax.swing.JFrame {
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new Chu_Quan().setVisible(true);
-        this.dispose();
+        if(nguoigoi.equals("Chu quan"))
+        {
+            Chu_Quan cq = new Chu_Quan();
+            cq.setTaiKhoan(tentk);
+            cq.setVisible(true);
+            this.dispose();
+        }
+        else
+        {
+            NV_thungan nv = new NV_thungan();
+            nv.setTaiKhoan(tentk);
+            nv.setVisible(true);
+            this.dispose();
+            
+        }
     }//GEN-LAST:event_button_thoatActionPerformed
+
+    private void bt_top5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_top5ActionPerformed
+        // TODO add your handling code here:
+        Connection con = Database.conectionJDBC();
+        String dir = "F:\\iReport\\Report\\Top5MonBanNhieuNhat.jrxml";
+        
+        try {
+            JasperDesign jd = JRXmlLoader.load(dir);
+        } catch (JRException ex) {
+            Logger.getLogger(ThongKe_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperReport jr = null;
+        try {
+            jr = JasperCompileManager.compileReport(dir);
+        } catch (JRException ex) {
+            Logger.getLogger(ThongKe_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperPrint jp = null;
+        try {
+            jp = JasperFillManager.fillReport(jr,new HashMap(), con);
+        } catch (JRException ex) {
+            Logger.getLogger(ThongKe_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer jv = new JasperViewer(jp,false);
+        jv.setVisible(true);
+        
+    }//GEN-LAST:event_bt_top5ActionPerformed
+
+    private void bt_tk_nccActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_tk_nccActionPerformed
+        // TODO add your handling code here:
+        Connection con = Database.conectionJDBC();
+        String dir = "F:\\iReport\\Report\\DanhSachNhapHangTheoNhaCungCap.jrxml";
+        
+        try {
+            JasperDesign jd = JRXmlLoader.load(dir);
+        } catch (JRException ex) {
+            Logger.getLogger(ThongKe_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperReport jr = null;
+        try {
+            jr = JasperCompileManager.compileReport(dir);
+        } catch (JRException ex) {
+            Logger.getLogger(ThongKe_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperPrint jp = null;
+        try {
+            jp = JasperFillManager.fillReport(jr,new HashMap(), con);
+        } catch (JRException ex) {
+            Logger.getLogger(ThongKe_GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperViewer jv = new JasperViewer(jp,false);
+        jv.setVisible(true);
+
+    }//GEN-LAST:event_bt_tk_nccActionPerformed
+
+    private void bt_tk_thangnamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_tk_thangnamActionPerformed
+        // TODO add your handling code here:
+        Form_NhapThangNam_TK nhapnam = new Form_NhapThangNam_TK();
+        nhapnam.setTentk(tentk);
+        nhapnam.setNguoigoi(nguoigoi);
+        nhapnam.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_bt_tk_thangnamActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,6 +377,7 @@ public class ThongKe_GUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ThongKe_GUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -304,24 +392,17 @@ public class ThongKe_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel bg_chuquan;
     private javax.swing.JPanel bg_thoat;
     private javax.swing.JPanel bgnv;
+    private javax.swing.JButton bt_tk_ncc;
+    private javax.swing.JButton bt_tk_thangnam;
+    private javax.swing.JButton bt_top5;
     private javax.swing.JButton button_thoat;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
     private javax.swing.JLabel icon_trangchu7;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JLabel text_trangchu7;

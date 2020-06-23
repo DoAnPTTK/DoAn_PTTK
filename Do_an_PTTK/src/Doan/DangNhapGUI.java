@@ -10,6 +10,7 @@ import DAL.DangNhapChuQuanDAL;
 import DAL.DangNhapNVDAL;
 import DTO.DangNhapDTO;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -83,7 +84,6 @@ public class DangNhapGUI extends javax.swing.JFrame {
         bg_address = new javax.swing.JPanel();
         icon_address = new javax.swing.JLabel();
         text_address = new javax.swing.JLabel();
-        images_bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Đăng Nhập");
@@ -92,6 +92,8 @@ public class DangNhapGUI extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(565, 675));
         setUndecorated(true);
 
+        bg.setBackground(new java.awt.Color(54, 33, 89));
+        bg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
         bg.setLayout(null);
 
         text_dangnhap.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
@@ -111,12 +113,11 @@ public class DangNhapGUI extends javax.swing.JFrame {
         icon_account.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_user_48px.png"))); // NOI18N
         username.add(icon_account, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 47, 40));
 
-        Text_user.setBackground(new java.awt.Color(163, 153, 141));
+        Text_user.setBackground(new java.awt.Color(54, 33, 89));
         Text_user.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        Text_user.setForeground(new java.awt.Color(204, 204, 204));
+        Text_user.setForeground(new java.awt.Color(255, 255, 255));
         Text_user.setText("Nhập tên tài khoản");
         Text_user.setBorder(null);
-        Text_user.setOpaque(false);
         Text_user.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 Text_userFocusGained(evt);
@@ -150,19 +151,23 @@ public class DangNhapGUI extends javax.swing.JFrame {
         icon_unlock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/icons8_password_48px.png"))); // NOI18N
         password.add(icon_unlock, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 40, 50));
 
-        Text_password.setBackground(new java.awt.Color(163, 153, 141));
+        Text_password.setBackground(new java.awt.Color(54, 33, 89));
         Text_password.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        Text_password.setForeground(new java.awt.Color(204, 204, 204));
+        Text_password.setForeground(new java.awt.Color(255, 255, 255));
         Text_password.setText("12345");
         Text_password.setBorder(null);
         Text_password.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        Text_password.setOpaque(false);
         Text_password.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 Text_passwordFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 Text_passwordFocusLost(evt);
+            }
+        });
+        Text_password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Text_passwordKeyPressed(evt);
             }
         });
         password.add(Text_password, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 273, 30));
@@ -327,11 +332,6 @@ public class DangNhapGUI extends javax.swing.JFrame {
         bg.add(bglogin);
         bglogin.setBounds(0, 170, 560, 500);
 
-        images_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/dangnhap/bg_dangnhap.png"))); // NOI18N
-        images_bg.setText("jLabel1");
-        bg.add(images_bg);
-        images_bg.setBounds(0, 0, 570, 680);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -372,7 +372,7 @@ public class DangNhapGUI extends javax.swing.JFrame {
         //Nếu text user name = "" thì vẫn dữ mặc định màu chữ mờ và thông báo chuỗi "Nhập tên tài khoản"
         if(Text_user.getText().equals("")){
             Text_user.setText("Nhập tên tài khoản");
-            Text_user.setForeground(new Color(204,204,204));
+            Text_user.setForeground(new Color(255,255,255));
         }
     }//GEN-LAST:event_Text_userFocusLost
 
@@ -398,9 +398,19 @@ public class DangNhapGUI extends javax.swing.JFrame {
         //Nếu text user name = '' thì vẫn dữ mặc định màu chữ mờ
         if(Text_password.getText().equals("")){
             Text_password.setText("12345");
-            Text_password.setForeground(new Color(204,204,204));
+            Text_password.setForeground(new Color(255,255,255));
         }
     }//GEN-LAST:event_Text_passwordFocusLost
+
+    private void Text_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text_passwordKeyPressed
+        // TODO add your handling code here:
+       
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            XuLyDangNhap();
+            return;
+        }
+    }//GEN-LAST:event_Text_passwordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -451,7 +461,6 @@ public class DangNhapGUI extends javax.swing.JFrame {
     private javax.swing.JLabel icon_address;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_unlock;
-    private javax.swing.JLabel images_bg;
     private javax.swing.JCheckBox jCheck_show_password;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

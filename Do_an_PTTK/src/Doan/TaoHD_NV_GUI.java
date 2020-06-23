@@ -7,17 +7,28 @@ package Doan;
 
 import BLL.QuanLyBH_BLL;
 import BLL.QuanLyNV_BLL;
+import DAL.Database;
 import DTO.CTHD_DTO;
 import DTO.HoaDonDTO;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -102,6 +113,7 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         text_cafeomely = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bg7.setBackground(new java.awt.Color(255, 255, 255));
         bg7.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -128,8 +140,9 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         bg_trangchu7Layout.setHorizontalGroup(
             bg_trangchu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_trangchu7Layout.createSequentialGroup()
-                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -158,7 +171,7 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 759, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 752, Short.MAX_VALUE)
                 .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -669,48 +682,11 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void bt_themhdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_themhdActionPerformed
-        //        HoaDonDTO hd = new HoaDonDTO();
-        //        CTHD_DTO cthd = new CTHD_DTO();
-        //        QuanLyNV_BLL qlnv = new QuanLyNV_BLL();
-        //        QuanLyBH_BLL qlbh = new QuanLyBH_BLL();
-        //
-        //
-        //        String mamon = qlbh.getMaMon(this.cb_tenmon.getSelectedItem().toString());
-        //        String time = this.getTimeNow();
-        //        String Manv = qlnv.getNhanVienBangTaiKhoan(TaiKhoan);
-        //        if(Manv == null || mamon == null)
-        //        {
-            //            JOptionPane.showMessageDialog(null,"Lấy mã nv or ma mon thất bại !", "Thông báo",JOptionPane.NO_OPTION);
-            //            return;
-            //        }
-        //
-        //
-        //        hd.setMaNV(Manv);
-        //        hd.setMaKH(this.cb_makh.getSelectedItem().toString());
-        //        hd.setGiamGia(this.tx_giamgia.getText());
-        //        hd.setThanhTien(this.tx_thanhtoan.getText());
-        //        hd.setNgayLap(time);
-        //
-        //        cthd.setMaBan(cb_maban.getSelectedItem().toString());
-        //        cthd.setMaMon(mamon);
-        //        cthd.setSL(this.sp_sl.getValue().toString());
-        //
-        //        boolean kq = qlbh.ThemHD(hd, cthd);
-        //        if(kq == false)
-        //        {
-            //            JOptionPane.showMessageDialog(null,"Thêm hoá đơn thất bại !", "Thông báo",JOptionPane.NO_OPTION);
-            //            return;
-            //        }
-        //        else
-        //        {
-            //            JOptionPane.showMessageDialog(null,"Thêm hóa đơn thành công !", "Thông báo",JOptionPane.NO_OPTION);
-            //            refresh();
-            //            return;
-            //        }
+       refresh();
     }//GEN-LAST:event_bt_themhdActionPerformed
 
     private void bt_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_thanhtoanActionPerformed
-         DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
+        DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
         String tt = "";
         long kq = ThanhToan(model);
         String thanhtoan = tt.valueOf(kq);
@@ -719,13 +695,17 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         
         String giamgia = ql.getGiamGia(this.cb_makh.getSelectedItem().toString());
         this.tx_giamgia.setText(giamgia);
+        String maban = this.cb_maban.getSelectedItem().toString();
+        this.bt_bochon.setEnabled(false);
+        this.bt_them.setEnabled(false);
         
         long n_tt = Long.parseLong(thanhtoan);
         int n_giamgia = Integer.parseInt(giamgia);
+
         if(n_giamgia == 0)
         {
             this.txf_tongcong.setText(thanhtoan);
-            boolean rs = ql.ThanhToan(MaHD, MaHD, this.txf_tongcong.getText());
+            boolean rs = ql.ThanhToan(maban, MaHD, this.txf_tongcong.getText());
             if(rs == true)
             {
                 JOptionPane.showMessageDialog(null,"Thanh toán thành công !", "Thông báo",JOptionPane.NO_OPTION);
@@ -791,6 +771,42 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
 
     private void bt_XuathdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_XuathdActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
+        String MAHD = null;
+        MAHD = (String) model.getValueAt(0, 0);
+        
+        if(MAHD == null)
+        {
+            JOptionPane.showMessageDialog(null,"Chưa có hóa đơn nào, không xuất hóa đơn được !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
+        }
+        HashMap parameters = new HashMap();
+        parameters.put("MAHD", MAHD);       
+        Connection con = Database.conectionJDBC();
+        String dir = "F:\\iReport\\Report\\PhieuThanhToan.jrxml";
+        
+        try {
+            JasperDesign jd = JRXmlLoader.load(dir);
+        } catch (JRException ex) {
+            Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperReport jr = null;
+        try {
+            jr = JasperCompileManager.compileReport(dir);
+        } catch (JRException ex) {
+            Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperPrint jp = null;
+        try {   
+            jp = JasperFillManager.fillReport(jr, parameters, con);
+        } catch (JRException ex) {
+            Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JasperViewer jv = new JasperViewer(jp, false);
+        jv.setVisible(true);
+        
     }//GEN-LAST:event_bt_XuathdActionPerformed
 
                                   
@@ -880,6 +896,8 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         
         this.cb_makh.setSelectedItem(0);
         this.cb_maban.setSelectedItem(0);
+        this.bt_bochon.setEnabled(true);
+                this.bt_them.setEnabled(true);
         return;
     }
     

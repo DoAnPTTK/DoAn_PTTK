@@ -7,9 +7,11 @@ package Doan;
 
 import BLL.QuanLyBH_BLL;
 import BLL.QuanLyNV_BLL;
+import DAL.Database;
 import DAL.NhanVienDAL;
 import DTO.CTHD_DTO;
 import DTO.HoaDonDTO;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -17,10 +19,19 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -812,44 +823,43 @@ public class tao_hd extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField16ActionPerformed
 
     private void bt_thanhtoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_thanhtoanActionPerformed
-        DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
-        String tt = "";
-        long kq = ThanhToan(model);
-        String thanhtoan = tt.valueOf(kq);
-        this.tx_thanhtoan.setText(tt.valueOf(thanhtoan));
-        QuanLyBH_BLL ql = new QuanLyBH_BLL();
-        
-        String giamgia = ql.getGiamGia(this.cb_makh.getSelectedItem().toString());
-        this.tx_giamgia.setText(giamgia);
-        
-        long n_tt = Long.parseLong(thanhtoan);
-        int n_giamgia = Integer.parseInt(giamgia);
-        if(n_giamgia == 0)
-        {
-            this.txf_tongcong.setText(thanhtoan);
-            boolean rs = ql.ThanhToan(MaHD, MaHD, this.txf_tongcong.getText());
-            if(rs == true)
-            {
-                JOptionPane.showMessageDialog(null,"Thanh toán thành công !", "Thông báo",JOptionPane.NO_OPTION);
-                return;
-            }
-            JOptionPane.showMessageDialog(null,"Thanh toán thất bại !", "Thông báo",JOptionPane.NO_OPTION);
-            return;
-        }
-        else
-        {
-            float tongcong = (n_tt * n_giamgia)/100;
+            DefaultTableModel model = (DefaultTableModel) jTable_CTHD.getModel();
+            String tt = "";
+            long kq = ThanhToan(model);
+            String thanhtoan = tt.valueOf(kq);
+            this.tx_thanhtoan.setText(tt.valueOf(thanhtoan));
+            QuanLyBH_BLL ql = new QuanLyBH_BLL();
 
-            String total = String.valueOf(tongcong);
-            boolean rs = ql.ThanhToan(MaHD, MaHD, this.txf_tongcong.getText());
-            if(rs == true)
-            {
-                JOptionPane.showMessageDialog(null,"Thanh toán thành công !", "Thông báo",JOptionPane.NO_OPTION);
+            String giamgia = ql.getGiamGia(this.cb_makh.getSelectedItem().toString());
+            this.tx_giamgia.setText(giamgia);
+            String maban = this.cb_maban.getSelectedItem().toString();
+            this.bt_bochon.setEnabled(false);
+            this.bt_them.setEnabled(false);
+            long n_tt = Long.parseLong(thanhtoan);
+
+            int n_giamgia = Integer.parseInt(giamgia);
+            if (n_giamgia == 0) {
+                this.txf_tongcong.setText(thanhtoan);
+                boolean rs = ql.ThanhToan(maban, MaHD, this.txf_tongcong.getText());
+                if (rs == true) {
+                    JOptionPane.showMessageDialog(null, "Thanh toán thành công !", "Thông báo", JOptionPane.NO_OPTION);
+                    return;
+                }
+                JOptionPane.showMessageDialog(null, "Thanh toán thất bại !", "Thông báo", JOptionPane.NO_OPTION);
+                return;
+            } else {
+                float tongcong = (n_tt * n_giamgia) / 100;
+
+                String total = String.valueOf(tongcong);
+                boolean rs = ql.ThanhToan(MaHD, MaHD, this.txf_tongcong.getText());
+                if (rs == true) {
+                    JOptionPane.showMessageDialog(null, "Thanh toán thành công !", "Thông báo", JOptionPane.NO_OPTION);
+                    return;
+                }
+                JOptionPane.showMessageDialog(null, "Thanh toán thất bại !", "Thông báo", JOptionPane.NO_OPTION);
                 return;
             }
-            JOptionPane.showMessageDialog(null,"Thanh toán thất bại !", "Thông báo",JOptionPane.NO_OPTION);
-            return;
-        }
+
     }//GEN-LAST:event_bt_thanhtoanActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
@@ -1020,6 +1030,43 @@ public class tao_hd extends javax.swing.JFrame {
 
     private void bt_XuathdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_XuathdActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel)jTable_CTHD.getModel();
+        String MAHD = null;
+        MAHD = (String) model.getValueAt(0, 0);
+        
+        if(MAHD == null)
+        {
+            JOptionPane.showMessageDialog(null,"Chưa có hóa đơn nào, không xuất hóa đơn được !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
+        }
+        
+        HashMap parameters = new HashMap();
+        parameters.put("MAHD", MAHD);       
+        Connection con = Database.conectionJDBC();
+        String dir = "F:\\iReport\\Report\\PhieuThanhToan.jrxml";
+        
+        try {
+            JasperDesign jd = JRXmlLoader.load(dir);
+        } catch (JRException ex) {
+            Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperReport jr = null;
+        try {
+            jr = JasperCompileManager.compileReport(dir);
+        } catch (JRException ex) {
+            Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        JasperPrint jp = null;
+        try {   
+            jp = JasperFillManager.fillReport(jr, parameters, con);
+        } catch (JRException ex) {
+            Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        JasperViewer jv = new JasperViewer(jp, false);
+        jv.setVisible(true);
+        
     }//GEN-LAST:event_bt_XuathdActionPerformed
 
     public void setComBoBox()
@@ -1076,11 +1123,11 @@ public class tao_hd extends javax.swing.JFrame {
         for(int i = 0; i < model.getRowCount(); i++)
         {
            long n1 = Long.parseLong((model.getValueAt(i, 4)).toString());
-           System.out.println(n1);
+           //System.out.println(n1);
            long n2 = Long.parseLong((model.getValueAt(i, 5)).toString());
-           System.out.println(n2);
+           //System.out.println(n2);
            total = (n1*n2) + total;
-           System.out.println(total);
+           //System.out.println(total);
         }
         return total;
     }
@@ -1107,6 +1154,9 @@ public class tao_hd extends javax.swing.JFrame {
         
         this.cb_makh.setSelectedItem(0);
         this.cb_maban.setSelectedItem(0);
+        
+        this.bt_bochon.setEnabled(true);
+        this.bt_them.setEnabled(true);
         return;
     }
         

@@ -57,9 +57,9 @@ public class QuanLyBH_BLL
         return ql.ThemCTHD(cthd);
     }
     
-    public boolean ThanhToan(String Makh, String MaHD, String Thanhtoan)
+    public boolean ThanhToan(String Maban, String MaHD, String Thanhtoan)
     {
-        return ql.ThanhToan(Makh, MaHD, Thanhtoan);
+        return ql.ThanhToan(Maban, MaHD, Thanhtoan);
     }
     
     public boolean Xoa_CTHD(String Mahd)

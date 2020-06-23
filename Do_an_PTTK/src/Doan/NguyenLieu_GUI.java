@@ -9,6 +9,7 @@ import BLL.NguyenLieuBLL;
 import DAL.NguyenLieuDAL;
 import DAL.ThucDonDAL;
 import DTO.NguyenLieuDTO;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,6 +20,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class NguyenLieu_GUI extends javax.swing.JFrame {
     DefaultTableModel tableModel;
+    
+    private String Tentk;
+
+    public String getTentk() {
+        return Tentk;
+    }
+
+    public void setTentk(String Tentk) {
+        this.Tentk = Tentk;
+    }
+    
+    
     /**
      * Creates new form NguyenLieu_GUI
      */
@@ -60,10 +73,10 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         icon_cafe1 = new javax.swing.JLabel();
         text_cafeomely1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblNguyenLieu = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblNguyenLieu = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -81,13 +94,15 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnHuy = new javax.swing.JButton();
-        txtNl = new javax.swing.JTextField();
+        txt_tennl = new javax.swing.JTextField();
         txtSlc = new javax.swing.JTextField();
-        txtHsd = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtCd = new javax.swing.JTextPane();
+        btn_dy = new javax.swing.JButton();
+        txtHsd = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bgnv.setBackground(new java.awt.Color(255, 255, 255));
         bgnv.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -125,11 +140,12 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         bg_thoatLayout.setHorizontalGroup(
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
                 .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 759, Short.MAX_VALUE)
-                .addComponent(button_thoat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 725, Short.MAX_VALUE)
+                .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         bg_thoatLayout.setVerticalGroup(
@@ -172,36 +188,16 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         text_cafeomely1.setText("OMELY QUÁN");
         bg_cafeomely.add(text_cafeomely1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 275, 56));
 
-        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 1190, -1));
+        bg_chuquan.add(bg_cafeomely, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 1180, -1));
 
         jPanel2.setBackground(new java.awt.Color(85, 65, 118));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tblNguyenLieu.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Mã nguyên liệu", "Tên nguyên liệu", "Hạn sử dụng", "Số lượng còn", "Công dụng"
-            }
-        ));
-        jScrollPane1.setViewportView(tblNguyenLieu);
-        if (tblNguyenLieu.getColumnModel().getColumnCount() > 0) {
-            tblNguyenLieu.getColumnModel().getColumn(3).setMaxWidth(300);
-            tblNguyenLieu.getColumnModel().getColumn(4).setMinWidth(200);
-        }
-
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 850, 340));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Thông tin nguyên liệu");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 220, 30));
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 220, 30));
 
         jButton7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_refresh_16px.png"))); // NOI18N
@@ -212,6 +208,18 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 40, 40));
+
+        tblNguyenLieu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã nguyên liệu", "Tên nguyên liệu", "Hạn sử dụng", "Số lượng", "Công dụng"
+            }
+        ));
+        jScrollPane3.setViewportView(tblNguyenLieu);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 850, 330));
 
         bg_chuquan.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 870, 390));
 
@@ -243,7 +251,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         btnKiemTraTon.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnKiemTraTon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_checkmark_50px_1.png"))); // NOI18N
         btnKiemTraTon.setText("Kiểm tra tồn");
-        btnKiemTraTon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnKiemTraTon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 153), 2));
         btnKiemTraTon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKiemTraTonActionPerformed(evt);
@@ -254,7 +262,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         btnThem.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_add_30px.png"))); // NOI18N
         btnThem.setText("Thêm");
-        btnThem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnThem.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 51), 2));
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -266,7 +274,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_google_web_search_50px.png"))); // NOI18N
         btnTraCuu.setText("Tra cứu");
         btnTraCuu.setAlignmentY(0.0F);
-        btnTraCuu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnTraCuu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2));
         btnTraCuu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTraCuuActionPerformed(evt);
@@ -277,24 +285,24 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/sửa .png"))); // NOI18N
         btnUpdate.setText("Cập nhật");
-        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 204, 255), 2));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel4.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 30, 100, 40));
+        jPanel4.add(btnUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, 100, 40));
 
         btnDelete.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/delete.png"))); // NOI18N
         btnDelete.setText("Xóa");
-        btnDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel4.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, 100, 40));
+        jPanel4.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 30, 100, 40));
 
         bg_chuquan.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 700, 80));
 
@@ -318,35 +326,62 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Số lượng còn");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 80, 21));
+        jLabel9.setText("Số lượng ");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 80, 21));
 
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/icons8_cancel_24px.png"))); // NOI18N
         btnHuy.setText("Hủy");
-        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 97, 97), 2));
+        btnHuy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
         btnHuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHuyActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 90, 30));
+        jPanel1.add(btnHuy, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 110, 30));
 
-        txtNl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(txtNl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 30));
+        txt_tennl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(txt_tennl, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 240, 30));
 
         txtSlc.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jPanel1.add(txtSlc, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 100, 30));
-
-        txtHsd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jPanel1.add(txtHsd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 120, 30));
 
         txtCd.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jScrollPane2.setViewportView(txtCd);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 240, 80));
 
-        bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 300, 330));
+        btn_dy.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_dy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/icon/dong y.png"))); // NOI18N
+        btn_dy.setText("Đồng ý");
+        btn_dy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 255, 0), 2));
+        btn_dy.setEnabled(false);
+        btn_dy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_dyActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_dy, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 110, 30));
+
+        txtHsd.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtHsd.setForeground(new java.awt.Color(204, 204, 204));
+        txtHsd.setText("dd-mm-yyyy");
+        txtHsd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtHsdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHsdFocusLost(evt);
+            }
+        });
+        txtHsd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHsdActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtHsd, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 130, 30));
+
+        bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 300, 350));
 
         bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1200, 560));
 
@@ -367,85 +402,168 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
-        txtNl.setText(null);
-        txtHsd.setText(null);
-        txtSlc.setText(null);
-        txtCd.setText(null);
+        refresh();
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        new NguyenLieu_GUI().setVisible(true);
+        setAllTable();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void button_thoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thoatActionPerformed
         // TODO add your handling code here:
-        new Chu_Quan().setVisible(true);
+        Chu_Quan cq = new Chu_Quan();
+        cq.setTaiKhoan(Tentk);
+        cq.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thoatActionPerformed
 
     private void btnKiemTraTonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKiemTraTonActionPerformed
-        this.setVisible(false);
+
         checkTonKho form = new checkTonKho();
+        form.setTentk(Tentk);
         form.setLocationRelativeTo(null);
         form.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKiemTraTonActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        try {
-            NguyenLieuDAL nguyenlieuDAL = new NguyenLieuDAL();
-            if (nguyenlieuDAL.addNguyenLieu(txtNl.getText(), txtHsd.getText(), Integer.parseInt(txtSlc.getText()), txtCd.getText())) {
-                JOptionPane.showMessageDialog(rootPane, "success");
-                new NguyenLieu_GUI().setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "error");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(rootPane, "Khong duoc de trong");
+        
+        if(btn_dy.isEnabled())
+        {
+            JOptionPane.showMessageDialog(rootPane, "Nguyên liệu này đã có trong danh sách !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        if(txt_tennl.getText().equals("") || txtHsd.getText().equals("") || txtSlc.getText().equals("") || txtCd.getText().equals("") )
+        {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin của nguyên liệu !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
+        NguyenLieuBLL nl = new NguyenLieuBLL();
+        
+        int sl = Integer.parseInt(txtSlc.getText());
+        boolean rs = nl.addNguyenLieu(txt_tennl.getText(), txtHsd.getText(), sl, txtCd.getText());
 
+        if(rs==true)
+        {
+            JOptionPane.showMessageDialog(null,"Bạn vừa thêm nguyên liệu mới thành công !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Thêm nguyên liệu mới thất bại !", "Thông báo",JOptionPane.NO_OPTION);
+            return;
         }
  
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        int x = tblNguyenLieu.getSelectedRow();
-        String maMon = tblNguyenLieu.getValueAt(x, 0).toString();
-        NguyenLieuDAL dal = new NguyenLieuDAL();
-        if(dal.removeNL(maMon)){
-            JOptionPane.showMessageDialog(rootPane, "success");
-            new NguyenLieu_GUI().setVisible(true);
+        int choose = this.tblNguyenLieu.getSelectedRow();
+        if(choose < 0){
+            
+            JOptionPane.showMessageDialog(rootPane, "Hãy chọn nguyên liệu bạn muốn xóa bỏ !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
         }
         else{
-            JOptionPane.showMessageDialog(rootPane, "eror");
+            if(JOptionPane.showConfirmDialog(rootPane, "Bạn có thực sự muốn xóa nguyên liệu này !", "Thông báo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+            {
+                NguyenLieuBLL nl = new NguyenLieuBLL();
+                String manl = tblNguyenLieu.getModel().getValueAt(choose, 0).toString();
+
+                boolean kq = nl.removeNL(manl);
+                if(kq == true)
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Món vừa được xóa bỏ !", "Thông báo", JOptionPane.NO_OPTION);
+                    this.setAllTable();
+                    return;
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(rootPane, "Xóa món không thành công !", "Thông báo", JOptionPane.NO_OPTION);
+                    return;
+                }
+                
+            }
+            return;
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
-//        bienTam.a = 2;
-//        formSearch fs = new formSearch();
-//        fs.setLocationRelativeTo(null);
-//        fs.setVisible(true);
-//        this.setVisible(false);
+        Form_tracuu tc = new Form_tracuu();
+        tc.setStr("Tim nguyen lieu");
+        tc.setTentk(Tentk);
+        tc.setVisible(true);
+        this.dispose();
+        return;
     }//GEN-LAST:event_btnTraCuuActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        NguyenLieuBLL bll = new NguyenLieuBLL();
-        int x = tblNguyenLieu.getSelectedRow();
-        String maNL = tblNguyenLieu.getValueAt(x, 0).toString();
-        String tenNL = txtNl.getText();
-        String hsd = txtHsd.getText();
-        String slCon = txtSlc.getText();
-        String congDung = txtCd.getText();
-        JOptionPane.showMessageDialog(rootPane, "Bạn có chắc sẽ cập nhật?", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        if (bll.updateNguyenLieu(x, tenNL, hsd, Integer.parseInt(slCon), congDung)){
-            JOptionPane.showMessageDialog(rootPane, "success");
-            new NguyenLieu_GUI().setVisible(true);
+       int choose = this.tblNguyenLieu.getSelectedRow();
+        if(choose < 0){
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn 1 nguyên liệu có trong danh sách để cập nhật thông tin !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
         }
-        else{
-            JOptionPane.showMessageDialog(rootPane, "error");
+        else
+        {
+            int value = Integer.parseInt(tblNguyenLieu.getValueAt(choose, 0).toString());
+            NguyenLieuBLL nl = new NguyenLieuBLL();
+            NguyenLieuDTO nl_dto = nl.getNL(value);
+            
+            this.txt_tennl.setText(nl_dto.getTenNL());
+            this.txtHsd.setText(nl_dto.getHSD());
+            this.txtHsd.setForeground(new Color(0,0,0));
+            this.txtSlc.setText(String.valueOf(nl_dto.getSlCon()));
+            this.txtCd.setText(nl_dto.getCongDung());
+            this.txtSlc.setEditable(false);
+            
+            this.btn_dy.setEnabled(true);
+            return;
         }
-        
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btn_dyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dyActionPerformed
+        // TODO add your handling code here:
+        
+        int choose = tblNguyenLieu.getSelectedRow();
+        int manl = Integer.parseInt(tblNguyenLieu.getValueAt(choose,0).toString());
+        String tennl = this.txt_tennl.getText();
+        int sl = Integer.parseInt(this.txtSlc.getText());
+        String hsd = this.txtHsd.getText();
+        String cd = this.txtCd.getText();
+        
+        NguyenLieuBLL nl = new NguyenLieuBLL();
+        boolean kq = nl.updateNguyenLieu(manl, tennl, hsd, sl, cd);
+        if(kq)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Bạn vừa cập nhật thông tin nguyên liệu thành công !", "Thông báo", JOptionPane.NO_OPTION);
+            refresh();
+            return;
+        }
+        JOptionPane.showMessageDialog(rootPane, "Cập nhật thông tin nguyên liệu thất bại !", "Thông báo", JOptionPane.NO_OPTION);
+        refresh();
+        return;
+    }//GEN-LAST:event_btn_dyActionPerformed
+
+    private void txtHsdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHsdFocusGained
+        // TODO add your handling code here:
+        if(txtHsd.getText().equals("dd-mm-yyyy"))
+        {
+            txtHsd.setText("");
+            txtHsd.setForeground(new Color(0,0,0));
+        }
+    }//GEN-LAST:event_txtHsdFocusGained
+
+    private void txtHsdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHsdFocusLost
+        // TODO add your handling code here:
+        if(txtHsd.getText().equals(""))
+        {
+            txtHsd.setText("dd-mm-yyyy");
+            txtHsd.setForeground(new Color(204,204,204));
+        }
+    }//GEN-LAST:event_txtHsdFocusLost
+
+    private void txtHsdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHsdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHsdActionPerformed
     public void show1NguyenLieu(int maNL){
         int rowCount = tblNguyenLieu.getRowCount();
         int temp = 0;
@@ -466,6 +584,57 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane,"Không có mã nguyên liệu vừa tìm", "Thông báo", JOptionPane.WARNING_MESSAGE);
         }
     }
+    
+    void setAllTable()
+    {
+        NguyenLieuBLL nl = new NguyenLieuBLL();
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã nguyên liệu", "Tên nguyên liệu", "Hạn sử dụng", "Số lượng", "Công dụng"};
+        model.setColumnIdentifiers(title);
+        ArrayList<NguyenLieuDTO> ar = nl.getAllNguyenLieu();
+        for(int i=0;i < ar.size();i++)
+        {
+            NguyenLieuDTO nl_dto = ar.get(i);
+            int MaNL = nl_dto.getMaNL();
+            String TenNL = nl_dto.getTenNL();
+            String HSD = nl_dto.getHSD();
+            int slCon = nl_dto.getSlCon();
+            String congdung = nl_dto.getCongDung();
+            
+            Object[]temp={MaNL, TenNL, HSD, slCon, congdung};
+            model.addRow(temp);
+        }
+        this.tblNguyenLieu.setModel(model);
+    }
+    
+    void setTracuu(NguyenLieuDTO nl_dto)
+    {
+        DefaultTableModel model = new DefaultTableModel();
+        String[] title = {"Mã nguyên liệu", "Tên nguyên liệu", "Hạn sử dụng", "Số lượng", "Công dụng"};
+        model.setColumnIdentifiers(title);
+        int MaNL = nl_dto.getMaNL();
+        String TenNL = nl_dto.getTenNL();
+        String HSD = nl_dto.getHSD();
+        int slCon = nl_dto.getSlCon();
+        String congdung = nl_dto.getCongDung();
+        Object[] temp = {MaNL, TenNL, HSD, slCon, congdung};
+        model.addRow(temp);
+        this.tblNguyenLieu.setModel(model);
+        return;
+    }
+    
+    void refresh()
+    {
+        txt_tennl.setText(null);
+        txtCd.setText(null);
+        txtSlc.setText(null);
+        txtHsd.setText("dd-mm-yyyy");
+        txtHsd.setForeground(new Color(204,204,204));
+        btn_dy.setEnabled(false);
+        return;
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -519,6 +688,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTraCuu;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btn_dy;
     private javax.swing.JButton button_thoat;
     private javax.swing.JLabel icon_cafe;
     private javax.swing.JLabel icon_cafe1;
@@ -537,16 +707,16 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblNguyenLieu;
     private javax.swing.JLabel text_cafeomely;
     private javax.swing.JLabel text_cafeomely1;
     private javax.swing.JLabel text_trangchu7;
     private javax.swing.JTextPane txtCd;
     private javax.swing.JTextField txtHsd;
-    private javax.swing.JTextField txtNl;
     private javax.swing.JTextField txtSlc;
+    private javax.swing.JTextField txt_tennl;
     // End of variables declaration//GEN-END:variables
 
    

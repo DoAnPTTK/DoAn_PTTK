@@ -22,16 +22,16 @@ import javax.swing.JOptionPane;
 public class NguyenLieuDAL {
     public ArrayList<NguyenLieuDTO> getAllNguyenLieu(){
         ArrayList<NguyenLieuDTO> listNL = new ArrayList<NguyenLieuDTO>();
-        String sql = "select * from NGUYENLIEU";
+        String sql = "select MANL, TENNL, TO_CHAR(HSD, 'dd-MM-yyyy') HSD, SLCON, CONGDUNG from NGUYENLIEU";
         ResultSet rs = Database.getData(conectionJDBC (),sql);
         try {
             while (rs.next()){
                 NguyenLieuDTO ngLieu_DTO = new NguyenLieuDTO();
-                ngLieu_DTO.setMaNL(rs.getInt("MANL"));
-                ngLieu_DTO.setTenNL(rs.getString("TENNL"));
-                ngLieu_DTO.setHSD(rs.getString("HSD"));
-                ngLieu_DTO.setSlCon(rs.getInt("SLCON"));
-                ngLieu_DTO.setCongDung(rs.getString("CONGDUNG"));
+                ngLieu_DTO.setMaNL(Integer.parseInt(rs.getString(1)));
+                ngLieu_DTO.setTenNL(rs.getString(2));
+                ngLieu_DTO.setHSD(rs.getString(3));
+                ngLieu_DTO.setSlCon(rs.getInt(4));
+                ngLieu_DTO.setCongDung(rs.getString(5));
                 listNL.add(ngLieu_DTO);
             }
             
@@ -87,17 +87,16 @@ public class NguyenLieuDAL {
     }
     public NguyenLieuDTO getNguyenLieu(int maNL){
 
-        String sql = "select * from NGUYENLIEU where MANL = '"+maNL+"'";
+        String sql = "select MANL, TENNL, TO_CHAR(HSD, 'dd-MM-yyyy') HSD, SLCON, CONGDUNG from NGUYENLIEU where MANL = '"+maNL+"'";
         ResultSet rs = Database.getData(conectionJDBC (),sql);
         NguyenLieuDTO ngLieu_DTO = new NguyenLieuDTO();
         try {
             while (rs.next()){
-                ngLieu_DTO.setMaNL(rs.getInt("MANL"));
-                ngLieu_DTO.setTenNL(rs.getString("TENNL"));
-                //ngLieu_DTO.setHSD(rs.getString("HSD"));
-                ngLieu_DTO.setSlCon(rs.getInt("SLCON"));
-                
-                //listMenu.add(menu_DTO);
+                ngLieu_DTO.setMaNL(Integer.parseInt(rs.getString(1)));
+                ngLieu_DTO.setTenNL(rs.getString(2));
+                ngLieu_DTO.setHSD(rs.getString(3));
+                ngLieu_DTO.setSlCon(rs.getInt(4));
+                ngLieu_DTO.setCongDung(rs.getString(5));
             }
             
         } catch (SQLException ex) {

@@ -113,7 +113,7 @@ public class home_banhang extends javax.swing.JFrame {
             .addComponent(icon_banhang, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        sidepane7.add(bg_banhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 310, 40));
+        sidepane7.add(bg_banhang, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 310, 40));
 
         bg_thucdon.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -153,7 +153,7 @@ public class home_banhang extends javax.swing.JFrame {
             .addComponent(icon_thucdon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        sidepane7.add(bg_thucdon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 310, 40));
+        sidepane7.add(bg_thucdon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 310, 40));
 
         bgnv.add(sidepane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 310, 560));
 
@@ -172,7 +172,7 @@ public class home_banhang extends javax.swing.JFrame {
         icon_trangchu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_online_store_32px.png"))); // NOI18N
         icon_trangchu7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         icon_trangchu7.setOpaque(true);
-        bg_thoat.add(icon_trangchu7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 65, 60));
+        bg_thoat.add(icon_trangchu7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 65, 60));
 
         button_thoat.setBackground(new java.awt.Color(255, 255, 255));
         button_thoat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -225,7 +225,7 @@ public class home_banhang extends javax.swing.JFrame {
         bg_cafe_cake.setBackground(new java.awt.Color(54, 33, 89));
 
         image_cafe_cake.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_cafe_cake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/quan_càe.png"))); // NOI18N
+        image_cafe_cake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/quan_cafe.png"))); // NOI18N
 
         javax.swing.GroupLayout bg_cafe_cakeLayout = new javax.swing.GroupLayout(bg_cafe_cake);
         bg_cafe_cake.setLayout(bg_cafe_cakeLayout);
@@ -337,6 +337,7 @@ public class home_banhang extends javax.swing.JFrame {
         {
             Chu_Quan cq = new Chu_Quan();
             cq.setTaiKhoan(TaiKhoan);
+            System.out.println(TaiKhoan+" homebanhang");
             cq.setVisible(true);
             this.dispose();
             return;

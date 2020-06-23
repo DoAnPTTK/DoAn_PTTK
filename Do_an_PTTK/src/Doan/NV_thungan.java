@@ -71,6 +71,7 @@ public class NV_thungan extends javax.swing.JFrame {
         button_dangxuat = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bgnv.setBackground(new java.awt.Color(255, 255, 255));
         bgnv.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -98,8 +99,9 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_trangchu7Layout.setHorizontalGroup(
             bg_trangchu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_trangchu7Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 253, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
             .addGroup(bg_trangchu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_trangchu7Layout.createSequentialGroup()
                     .addContainerGap(61, Short.MAX_VALUE)
@@ -140,8 +142,9 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_banhangLayout.setHorizontalGroup(
             bg_banhangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_banhangLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_banhang, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_banhang, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 46, Short.MAX_VALUE))
         );
@@ -178,8 +181,9 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_banLayout.setHorizontalGroup(
             bg_banLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_banLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_ban, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 46, Short.MAX_VALUE))
         );
@@ -189,7 +193,7 @@ public class NV_thungan extends javax.swing.JFrame {
             .addComponent(icon_ban, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        sidepane7.add(bg_ban, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 310, 40));
+        sidepane7.add(bg_ban, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 310, 40));
 
         bg_thucdon.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -217,8 +221,9 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_thucdonLayout.setHorizontalGroup(
             bg_thucdonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_thucdonLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_thucdon, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_thucdon, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 48, Short.MAX_VALUE))
         );
@@ -228,7 +233,7 @@ public class NV_thungan extends javax.swing.JFrame {
             .addComponent(icon_thucdon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        sidepane7.add(bg_thucdon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 310, 40));
+        sidepane7.add(bg_thucdon, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 310, 40));
 
         bg_thongke.setBackground(new java.awt.Color(85, 65, 118));
 
@@ -255,8 +260,9 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_thongkeLayout.setHorizontalGroup(
             bg_thongkeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_thongkeLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addComponent(icon_thongke, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(button_thongke, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 46, Short.MAX_VALUE))
         );
@@ -266,7 +272,7 @@ public class NV_thungan extends javax.swing.JFrame {
             .addComponent(button_thongke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        sidepane7.add(bg_thongke, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 310, 40));
+        sidepane7.add(bg_thongke, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 310, 40));
 
         jPanel1.setBackground(new java.awt.Color(54, 33, 89));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -275,7 +281,7 @@ public class NV_thungan extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/icons8_employee_50px.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 50, 50));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -335,16 +341,16 @@ public class NV_thungan extends javax.swing.JFrame {
         bg_cafe_cake.setBackground(new java.awt.Color(54, 33, 89));
 
         image_cafe_cake.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_cafe_cake.setIcon(new javax.swing.ImageIcon("F:\\document\\Do_an_PTTK\\src\\Doan\\images\\chuquan\\quan_càe.png")); // NOI18N
+        image_cafe_cake.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Doan/images/chuquan/quan_cafe.png"))); // NOI18N
 
         javax.swing.GroupLayout bg_cafe_cakeLayout = new javax.swing.GroupLayout(bg_cafe_cake);
         bg_cafe_cake.setLayout(bg_cafe_cakeLayout);
         bg_cafe_cakeLayout.setHorizontalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_cafe_cakeLayout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+            .addGroup(bg_cafe_cakeLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addComponent(image_cafe_cake, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         bg_cafe_cakeLayout.setVerticalGroup(
             bg_cafe_cakeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,6 +391,7 @@ public class NV_thungan extends javax.swing.JFrame {
         bgnv.add(bg_chuquan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 890, 560));
 
         bg_thoat.setBackground(new java.awt.Color(85, 65, 118));
+        bg_thoat.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         button_dangxuat.setBackground(new java.awt.Color(255, 255, 255));
         button_dangxuat.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -398,23 +405,7 @@ public class NV_thungan extends javax.swing.JFrame {
                 button_dangxuatActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout bg_thoatLayout = new javax.swing.GroupLayout(bg_thoat);
-        bg_thoat.setLayout(bg_thoatLayout);
-        bg_thoatLayout.setHorizontalGroup(
-            bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addContainerGap(743, Short.MAX_VALUE)
-                .addComponent(button_dangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        bg_thoatLayout.setVerticalGroup(
-            bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(button_dangxuat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        bg_thoat.add(button_dangxuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, 135, 32));
 
         bgnv.add(bg_thoat, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, 890, 60));
 
@@ -435,6 +426,8 @@ public class NV_thungan extends javax.swing.JFrame {
 
     private void button_thucdonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thucdonActionPerformed
         // TODO add your handling code here:
+        ThucDon_NV_GUI td = new ThucDon_NV_GUI();
+        td.setTentk(TaiKhoan);
         new ThucDon_NV_GUI().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thucdonActionPerformed
@@ -456,13 +449,18 @@ public class NV_thungan extends javax.swing.JFrame {
 
     private void button_thongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_thongkeActionPerformed
         // TODO add your handling code here:
-        new ThongKe_nv_GUI().setVisible(true);
+        ThongKe_GUI tk = new ThongKe_GUI();
+        tk.setTentk(TaiKhoan);
+        tk.setNguoigoi("Nhan vien");
+        tk.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thongkeActionPerformed
 
     private void button_banActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_banActionPerformed
         // TODO add your handling code here:
-        new Ban_NV_GUI().setVisible(true);
+        Ban_NV_GUI ban = new Ban_NV_GUI();
+        ban.setTentk(TaiKhoan);
+        ban.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_banActionPerformed
 

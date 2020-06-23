@@ -29,7 +29,10 @@ public class ThucDonDTO {
     }
 
     public ThucDonDTO() {
-         //To change body of generated methods, choose Tools | Templates.
+        maMon = 0;
+        maNL = 0;
+        tenMon = null;
+        gia = 0;
     }
 
     public int getMaMon() {

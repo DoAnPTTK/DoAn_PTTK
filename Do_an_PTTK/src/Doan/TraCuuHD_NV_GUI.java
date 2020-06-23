@@ -6,18 +6,32 @@
 package Doan;
 
 import BLL.QuanLyBH_BLL;
+import DAL.Database;
 import DTO.HoaDonDTO;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -77,6 +91,7 @@ public class TraCuuHD_NV_GUI extends javax.swing.JFrame {
         text_cafeomely = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bg7.setBackground(new java.awt.Color(255, 255, 255));
         bg7.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -103,10 +118,11 @@ public class TraCuuHD_NV_GUI extends javax.swing.JFrame {
         bg_trangchu7Layout.setHorizontalGroup(
             bg_trangchu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bg_trangchu7Layout.createSequentialGroup()
-                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(icon_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(text_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap())
         );
         bg_trangchu7Layout.setVerticalGroup(
             bg_trangchu7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +149,7 @@ public class TraCuuHD_NV_GUI extends javax.swing.JFrame {
             bg_thoatLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bg_thoatLayout.createSequentialGroup()
                 .addComponent(bg_trangchu7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 759, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 758, Short.MAX_VALUE)
                 .addComponent(button_thoat, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -343,11 +359,54 @@ public class TraCuuHD_NV_GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tb_hdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_hdMouseReleased
-        // TODO add your handling code here:
-        int choose = tb_hd.getSelectedRow();
-        if(evt.isPopupTrigger())
+        DefaultTableModel model = (DefaultTableModel)tb_hd.getModel();
+        int choose = -1;
+        choose = tb_hd.getSelectedRow();
+        if(evt.getButton()== 3)
         {
-            tb_hd.show();
+            if(choose == -1)
+            {
+                JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn một hóa đơn cần xem thông tin.","Thông báo", JOptionPane.NO_OPTION);
+                return;
+            }
+            JPopupMenu a = new JPopupMenu();
+            JMenuItem b = new JMenuItem("   Xem chi tiết hóa đơn  ");
+            b.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            String MAHD = (String) model.getValueAt(choose, 0);
+            b.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    HashMap parameters = new HashMap();
+                    parameters.put("MAHD", MAHD);       
+                    Connection con = Database.conectionJDBC();
+                    String dir = "F:\\iReport\\Report\\PhieuThanhToan.jrxml";
+
+                    try {
+                        JasperDesign jd = JRXmlLoader.load(dir);
+                    } catch (JRException ex) {
+                        Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    JasperReport jr = null;
+                    try {
+                        jr = JasperCompileManager.compileReport(dir);
+                    } catch (JRException ex) {
+                        Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    JasperPrint jp = null;
+                    try {   
+                        jp = JasperFillManager.fillReport(jr, parameters, con);
+                    } catch (JRException ex) {
+                        Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    JasperViewer jv = new JasperViewer(jp, false);
+                    jv.setVisible(true);
+                    
+                }
+            });
+            a.add(b);
+            a.show(evt.getComponent(), evt.getX(), evt.getY());
         }
 
     }//GEN-LAST:event_tb_hdMouseReleased

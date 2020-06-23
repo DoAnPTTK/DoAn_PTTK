@@ -32,7 +32,11 @@ public class NguyenLieuDTO {
     }
 
     public NguyenLieuDTO() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        maNL = 0;
+        tenNL = null;
+        HSD = null;
+        slCon = 0;
+        congDung = null;
     }
 
     public int getMaNL() {

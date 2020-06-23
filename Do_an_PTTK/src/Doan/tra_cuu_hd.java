@@ -7,13 +7,19 @@ package Doan;
 
 import BLL.QuanLyBH_BLL;
 import BLL.QuanLyNV_BLL;
+import DAL.Database;
 import DTO.HoaDonDTO;
 import DTO.NhanVienDTO;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -22,6 +28,14 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -88,6 +102,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         PMenu.add(cthd);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         bg7.setBackground(new java.awt.Color(255, 255, 255));
         bg7.setMaximumSize(new java.awt.Dimension(1280, 1000));
@@ -166,7 +181,7 @@ public class tra_cuu_hd extends javax.swing.JFrame {
 
         bg_cafe_cake.setBackground(new java.awt.Color(85, 65, 118));
 
-        tb_hd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tb_hd.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tb_hd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -176,6 +191,9 @@ public class tra_cuu_hd extends javax.swing.JFrame {
             }
         ));
         tb_hd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tb_hdMouseClicked(evt);
+            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 tb_hdMouseReleased(evt);
             }
@@ -326,19 +344,68 @@ public class tra_cuu_hd extends javax.swing.JFrame {
     }//GEN-LAST:event_button_thoatActionPerformed
 
     private void tb_hdMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_hdMouseReleased
-        // TODO add your handling code here:
-        int choose = tb_hd.getSelectedRow();
-        if(evt.isPopupTrigger())
-        {
-            cthd.show();
-        }
-
+       
+        DefaultTableModel model = (DefaultTableModel)tb_hd.getModel();
+        int choose = -1;
+        choose = tb_hd.getSelectedRow();
         
+        if(evt.getButton()== 3)
+        {
+            if(choose == -1)
+            {
+                JOptionPane.showMessageDialog(rootPane, "Vui lòng chọn một hóa đơn cần xem thông tin.","Thông báo", JOptionPane.NO_OPTION);
+                return;
+            }
+            JPopupMenu a = new JPopupMenu();
+            JMenuItem b = new JMenuItem("   Xem chi tiết hóa đơn  ");
+            b.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+            String MAHD = (String) model.getValueAt(choose, 0);
+            b.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    HashMap parameters = new HashMap();
+                    parameters.put("MAHD", MAHD);       
+                    Connection con = Database.conectionJDBC();
+                    String dir = "F:\\iReport\\Report\\PhieuThanhToan.jrxml";
+
+                    try {
+                        JasperDesign jd = JRXmlLoader.load(dir);
+                    } catch (JRException ex) {
+                        Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    JasperReport jr = null;
+                    try {
+                        jr = JasperCompileManager.compileReport(dir);
+                    } catch (JRException ex) {
+                        Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    JasperPrint jp = null;
+                    try {   
+                        jp = JasperFillManager.fillReport(jr, parameters, con);
+                    } catch (JRException ex) {
+                        Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    JasperViewer jv = new JasperViewer(jp, false);
+                    jv.setVisible(true);
+                    
+                }
+            });
+            a.add(b);
+            a.show(evt.getComponent(), evt.getX(), evt.getY());
+        }
         
     }//GEN-LAST:event_tb_hdMouseReleased
 
     private void bt_timActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_timActionPerformed
         // TODO add your handling code here:
+        
+        if(text_search.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập mã hóa đơn","Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
         QuanLyBH_BLL ql = new QuanLyBH_BLL();
         DefaultTableModel model = new DefaultTableModel();
         String[] title = {"Mã hóa đơn", "Mã khách hàng", "Thành tiền", "Ngày lập", "Mã nhân viên", "Giảm giá","Trạng thái"};
@@ -367,6 +434,10 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bt_timActionPerformed
 
+    private void tb_hdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tb_hdMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tb_hdMouseClicked
+
     public void setTable()
     {
         QuanLyBH_BLL ql = new QuanLyBH_BLL();
@@ -388,17 +459,6 @@ public class tra_cuu_hd extends javax.swing.JFrame {
             model.addRow(temp);
         }
         this.tb_hd.setModel(model);
-        final   RowPopup pop = new RowPopup(tb_hd);
-        tb_hd.addMouseListener(new MouseAdapter(){
-                public void mouseClicked(MouseEvent me)
-                {
-                    if(SwingUtilities.isRightMouseButton(me))
-                    {
-                        pop.show(me.getComponent(),getX(),getY());
-                        
-                    }
-                }
-        });
     }
     
     /**
@@ -436,23 +496,6 @@ public class tra_cuu_hd extends javax.swing.JFrame {
         });
     }
     
-    class RowPopup extends JPopupMenu
-    {
-        public RowPopup(JTable table)
-        {
-            JMenuItem cthd = new JMenuItem("Xem chi tiết hóa đơn");
-            cthd.addActionListener(new ActionListener(){
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    JOptionPane.showInputDialog(rootPane, "Thông tin chi tiết hóa đơn","Thông báo", JOptionPane.NO_OPTION);
-                    return;
-                }
-            
-            });
-            
-            add(cthd);
-        }
-    }
 
     
     

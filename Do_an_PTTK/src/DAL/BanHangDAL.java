@@ -90,7 +90,6 @@ public class BanHangDAL
                 +"','"+cthd.getMaMon()+"','"+cthd.getSL()+"')}";
         CallableStatement pr;
         String mahd = null;
-
         try {
             pr = conectionJDBC().prepareCall(call);
             pr.registerOutParameter(1, Types.INTEGER);
@@ -136,20 +135,18 @@ public class BanHangDAL
         return true; 
     }
     
-    public boolean ThanhToan(String Makh, String MaHD, String Thanhtoan)
+    public boolean ThanhToan(String Maban, String MaHD, String Thanhtoan)
     {
-        String call = "{call THANHTOAN(?,?,?)}";
+        String call = "{call THANHTOAN('"+ Maban +"','"+ MaHD +"','"+ Thanhtoan +"')}";
         int n = 0;
         CallableStatement pr;
         try {
             pr = conectionJDBC().prepareCall(call);
-            pr.setString(1, Makh);
-            pr.setString(2, MaHD);
-            pr.setString(3, Thanhtoan);
-            n = pr.executeUpdate();
+            n = pr.executeUpdate(call);
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAL.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(n);
         if(n>0){
             return true;
         }else{
