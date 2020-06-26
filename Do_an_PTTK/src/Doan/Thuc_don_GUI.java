@@ -46,8 +46,8 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
 
     public Thuc_don_GUI() {
         initComponents();
-        tableModel = (DefaultTableModel) tb_Thucdon.getModel();
-        showMenu();
+        setALLTable();
+//        showMenu();
         loadCombobox();
     }
     private void loadCombobox(){
@@ -56,18 +56,6 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         for (String item : list){
             cb_maNL.addItem(item.toString());
         }
-    }
-    private void showMenu(){
-        
-        ThucDonDAL menuDAL = new ThucDonDAL();
-        ArrayList<ThucDonDTO>  listMenu = menuDAL.getAllThucDon();
-        
-        tableModel.setRowCount(0);
-        
-        for(ThucDonDTO s : listMenu){
-            tableModel.addRow(new Object[]{s.getMaMon(), s.getTenMon(), s.getGia(),s.getMaNL()}
-            );
-    }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,6 +92,8 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         tfTenMon = new javax.swing.JTextField();
         cb_maNL = new javax.swing.JComboBox<>();
         btn_dy = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        tfslnl = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -210,7 +200,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã món", "Tên món", "Giá", "Mã nguyên liệu"
+                "Mã món", "Tên món", "Giá", "Mã nguyên liệu", "Số lượng nguyên liệu"
             }
         ));
         jScrollPane1.setViewportView(tb_Thucdon);
@@ -245,8 +235,8 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Mã nguyên liệu");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, 120, 30));
+        jLabel7.setText("Số lượng nguyên liệu");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 150, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -293,6 +283,14 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btn_dy, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 110, 40));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Mã nguyên liệu");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 141, 120, 30));
+
+        tfslnl.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanel1.add(tfslnl, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 120, 30));
 
         bg_chuquan.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 310, 300));
 
@@ -444,23 +442,25 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Món này đã có trong danh sách thực đơn !", "Thông báo", JOptionPane.NO_OPTION);
             return;
         }
-        if(tfTenMon.getText().equals("") || tfGia.getText().equals(""))
+        if(tfTenMon.getText().equals("") || tfGia.getText().equals("") || tfslnl.equals(""))
         {
             JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin của thực đơn !", "Thông báo", JOptionPane.NO_OPTION);
             return;
         }
         ThucDonBLL td = new ThucDonBLL();
         String value = cb_maNL.getSelectedItem().toString();
-        boolean rs = td.addmenu(Integer.parseInt(value), tfTenMon.getText(), Integer.parseInt(tfGia.getText()));
+        boolean rs = td.addmenu(Integer.parseInt(value), tfTenMon.getText(), Integer.parseInt(tfGia.getText()), tfslnl.getText());
 
         if(rs==true)
         {
             JOptionPane.showMessageDialog(null,"Bạn vừa thêm món mới thành công !", "Thông báo",JOptionPane.NO_OPTION);
+            Refresh();
             return;
         }
         else
         {
             JOptionPane.showMessageDialog(null,"Thêm món mới thất bại !", "Thông báo",JOptionPane.NO_OPTION);
+            Refresh();
             return;
         }
     }//GEN-LAST:event_btnThemMonActionPerformed
@@ -514,6 +514,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             this.tfGia.setText(String.valueOf(thd.getGia()));
             this.cb_maNL.setSelectedItem(thd.getMaNL());
             this.cb_maNL.setEnabled(false);
+            this.tfslnl.setText(thd.getSoluongNL());
             
             this.btn_dy.setEnabled(true);
             return;
@@ -541,13 +542,15 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         int gia  = Integer.parseInt(tfGia.getText());
         int choose = tb_Thucdon.getSelectedRow();
         int Mamon = Integer.parseInt(tb_Thucdon.getValueAt(choose, 0).toString());
+        String slnl = tfslnl.getText();
         
         ThucDonBLL td = new ThucDonBLL();
-        boolean kq = td.updateMon(Tenmon, gia, Mamon);
+        boolean kq = td.updateMon(Tenmon, gia, Mamon,slnl);
         if(kq)
         {
             JOptionPane.showMessageDialog(rootPane, "Bạn vừa cập nhật thông tin món thành công !", "Thông báo", JOptionPane.NO_OPTION);
             Refresh();
+            setALLTable();
             return;
         }
         JOptionPane.showMessageDialog(rootPane, "Cập nhật thông tin món thất bại !", "Thông báo", JOptionPane.NO_OPTION);
@@ -560,7 +563,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
     {
         ThucDonBLL td = new ThucDonBLL();
         DefaultTableModel model = new DefaultTableModel();
-        String[] title = {"Mã món", "Tên món", "Giá", "Mã nguyên liệu"};
+        String[] title = {"Mã món", "Tên món", "Giá", "Mã nguyên liệu","Số lượng nguyên liệu"};
         model.setColumnIdentifiers(title);
         ArrayList<ThucDonDTO> ar = td.getAllThucDon();
         for(int i=0;i < ar.size();i++)
@@ -570,8 +573,9 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
             String TenMon = thd.getTenMon();
             int Gia = thd.getGia();
             int MaNL = thd.getMaNL();
+            String slnl = thd.getSoluongNL();
             
-            Object[]temp={MaMon,TenMon,Gia,MaNL};
+            Object[]temp={MaMon,TenMon,Gia,MaNL,slnl};
             model.addRow(temp);
         }
         this.tb_Thucdon.setModel(model);
@@ -580,20 +584,16 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
     public void setTracuu(ThucDonDTO thd)
     {
         DefaultTableModel model = new DefaultTableModel();
-        String[] title = {"Mã món", "Tên món", "Giá", "Mã nguyên liệu"};
+        String[] title = {"Mã món", "Tên món", "Giá", "Mã nguyên liệu","Số lượng nguyên liệu"};
         model.setColumnIdentifiers(title);
         int MaMon = thd.getMaMon();
         String TenMon = thd.getTenMon();
         int Gia = thd.getGia();
         int MaNL = thd.getMaNL();
-        Object[] temp = {MaMon, TenMon, Gia, MaNL};
+        String slnl = thd.getSoluongNL();
+        Object[] temp = {MaMon, TenMon, Gia, MaNL,slnl};
         model.addRow(temp);
-        Object value = model.getValueAt(0,0);
-        if (value == null)
-        {
-                JOptionPane.showMessageDialog(null, "Không có kết quả cần tìm!");
-                return;
-        }
+        
         this.tb_Thucdon.setModel(model);
         return;
     }
@@ -604,6 +604,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
         tfGia.setText(null);
         cb_maNL.setSelectedIndex(0);
         btn_dy.setEnabled(false);
+        tfslnl.setText(null);
         return;
     }
     /**
@@ -667,6 +668,7 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -680,5 +682,6 @@ public class Thuc_don_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel text_trangchu7;
     private javax.swing.JTextField tfGia;
     private javax.swing.JTextField tfTenMon;
+    private javax.swing.JTextField tfslnl;
     // End of variables declaration//GEN-END:variables
 }

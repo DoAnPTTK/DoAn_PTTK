@@ -519,6 +519,7 @@ public class tao_hd extends javax.swing.JFrame {
 
         tx_gia.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tx_gia.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        tx_gia.setEnabled(false);
         tx_gia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tx_giaActionPerformed(evt);
@@ -848,10 +849,11 @@ public class tao_hd extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Thanh toán thất bại !", "Thông báo", JOptionPane.NO_OPTION);
                 return;
             } else {
-                float tongcong = (n_tt * n_giamgia) / 100;
+                float tongcong = n_tt - (n_tt *((float) n_giamgia / 100));
 
                 String total = String.valueOf(tongcong);
-                boolean rs = ql.ThanhToan(MaHD, MaHD, this.txf_tongcong.getText());
+                this.txf_tongcong.setText(total);
+                boolean rs = ql.ThanhToan(MaHD, MaHD, total);
                 if (rs == true) {
                     JOptionPane.showMessageDialog(null, "Thanh toán thành công !", "Thông báo", JOptionPane.NO_OPTION);
                     return;
@@ -1020,6 +1022,7 @@ public class tao_hd extends javax.swing.JFrame {
     private void cb_tenmonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_tenmonActionPerformed
 
         this.tx_gia.setText(LoadDonGia(this.cb_tenmon.getSelectedItem().toString()));
+        this.tx_gia.setEnabled(false);
         
     }//GEN-LAST:event_cb_tenmonActionPerformed
 
@@ -1044,28 +1047,18 @@ public class tao_hd extends javax.swing.JFrame {
         parameters.put("MAHD", MAHD);       
         Connection con = Database.conectionJDBC();
         String dir = "F:\\iReport\\Report\\PhieuThanhToan.jrxml";
-        
+
         try {
             JasperDesign jd = JRXmlLoader.load(dir);
+            JasperReport jr  = JasperCompileManager.compileReport(dir);
+            JasperPrint jp = JasperFillManager.fillReport(jr, parameters, con);
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        JasperReport jr = null;
-        try {
-            jr = JasperCompileManager.compileReport(dir);
-        } catch (JRException ex) {
-            Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        JasperPrint jp = null;
-        try {   
-            jp = JasperFillManager.fillReport(jr, parameters, con);
-        } catch (JRException ex) {
-            Logger.getLogger(tao_hd.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        JasperViewer jv = new JasperViewer(jp, false);
-        jv.setVisible(true);
+
+
         
     }//GEN-LAST:event_bt_XuathdActionPerformed
 
@@ -1123,11 +1116,8 @@ public class tao_hd extends javax.swing.JFrame {
         for(int i = 0; i < model.getRowCount(); i++)
         {
            long n1 = Long.parseLong((model.getValueAt(i, 4)).toString());
-           //System.out.println(n1);
            long n2 = Long.parseLong((model.getValueAt(i, 5)).toString());
-           //System.out.println(n2);
            total = (n1*n2) + total;
-           //System.out.println(total);
         }
         return total;
     }
@@ -1152,8 +1142,8 @@ public class tao_hd extends javax.swing.JFrame {
         
         this.jTable_CTHD.setModel(model);
         
-        this.cb_makh.setSelectedItem(0);
-        this.cb_maban.setSelectedItem(0);
+        this.cb_makh.setSelectedIndex(0);
+        this.cb_maban.setSelectedIndex(0);
         
         this.bt_bochon.setEnabled(true);
         this.bt_them.setEnabled(true);

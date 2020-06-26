@@ -207,7 +207,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 40, 40));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 40, 40));
 
         tblNguyenLieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -440,7 +440,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         }
         NguyenLieuBLL nl = new NguyenLieuBLL();
         
-        int sl = Integer.parseInt(txtSlc.getText());
+        String sl = txtSlc.getText();
         boolean rs = nl.addNguyenLieu(txt_tennl.getText(), txtHsd.getText(), sl, txtCd.getText());
 
         if(rs==true)
@@ -504,7 +504,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         }
         else
         {
-            int value = Integer.parseInt(tblNguyenLieu.getValueAt(choose, 0).toString());
+            String value = tblNguyenLieu.getValueAt(choose, 0).toString();
             NguyenLieuBLL nl = new NguyenLieuBLL();
             NguyenLieuDTO nl_dto = nl.getNL(value);
             
@@ -524,9 +524,9 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int choose = tblNguyenLieu.getSelectedRow();
-        int manl = Integer.parseInt(tblNguyenLieu.getValueAt(choose,0).toString());
+        String manl = tblNguyenLieu.getValueAt(choose,0).toString();
         String tennl = this.txt_tennl.getText();
-        int sl = Integer.parseInt(this.txtSlc.getText());
+        String sl = this.txtSlc.getText();
         String hsd = this.txtHsd.getText();
         String cd = this.txtCd.getText();
         
@@ -564,26 +564,7 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
     private void txtHsdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHsdActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHsdActionPerformed
-    public void show1NguyenLieu(int maNL){
-        int rowCount = tblNguyenLieu.getRowCount();
-        int temp = 0;
-        for (int i = 0;i< rowCount;i++){
-            if (String.valueOf(maNL).equals(tblNguyenLieu.getValueAt(i, 0).toString())){
-                NguyenLieuBLL nlBLL = new NguyenLieuBLL();
-                NguyenLieuDTO nl = nlBLL.getNL(maNL);
-                tableModel.setRowCount(0);
-                tableModel.addRow(new Object[]{nl.getMaNL(), nl.getTenNL(),nl.getHSD(), nl.getSlCon(), nl.getCongDung()});
-                temp++;
-                break;
-            }
-            }
-        if (temp == 1){
-            JOptionPane.showMessageDialog(rootPane, "Tim thanh cong");
-        }
-        else {
-            JOptionPane.showMessageDialog(rootPane,"Không có mã nguyên liệu vừa tìm", "Thông báo", JOptionPane.WARNING_MESSAGE);
-        }
-    }
+
     
     void setAllTable()
     {
@@ -595,10 +576,10 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         for(int i=0;i < ar.size();i++)
         {
             NguyenLieuDTO nl_dto = ar.get(i);
-            int MaNL = nl_dto.getMaNL();
+            String MaNL = nl_dto.getMaNL();
             String TenNL = nl_dto.getTenNL();
             String HSD = nl_dto.getHSD();
-            int slCon = nl_dto.getSlCon();
+            String slCon = nl_dto.getSlCon();
             String congdung = nl_dto.getCongDung();
             
             Object[]temp={MaNL, TenNL, HSD, slCon, congdung};
@@ -612,10 +593,10 @@ public class NguyenLieu_GUI extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel();
         String[] title = {"Mã nguyên liệu", "Tên nguyên liệu", "Hạn sử dụng", "Số lượng", "Công dụng"};
         model.setColumnIdentifiers(title);
-        int MaNL = nl_dto.getMaNL();
+        String MaNL = nl_dto.getMaNL();
         String TenNL = nl_dto.getTenNL();
         String HSD = nl_dto.getHSD();
-        int slCon = nl_dto.getSlCon();
+        String slCon = nl_dto.getSlCon();
         String congdung = nl_dto.getCongDung();
         Object[] temp = {MaNL, TenNL, HSD, slCon, congdung};
         model.addRow(temp);

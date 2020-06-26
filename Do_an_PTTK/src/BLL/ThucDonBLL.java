@@ -17,14 +17,14 @@ public class ThucDonBLL {
     {
         return menuDAL.getAllThucDon();
     }
-    public boolean addmenu(int MANL, String TENMON, int GIA){
-        return menuDAL.addMenu(MANL, TENMON, GIA);
+    public boolean addmenu(int MANL, String TENMON, int GIA, String slnl){
+        return menuDAL.addMenu(MANL, TENMON, GIA, slnl);
     }
     public boolean removeMon(String MAMON){
         return menuDAL.removeMon(MAMON);
     }
-    public boolean updateMon(String tenMon, int Gia, int maMon){
-        return menuDAL.updateMon(tenMon, Gia, maMon);
+    public boolean updateMon(String tenMon, int Gia, int maMon, String slnl){
+        return menuDAL.updateMon(tenMon, Gia, maMon, slnl);
     }
     public ThucDonDTO getThucDon(int maMon){
         return menuDAL.getThucDon(maMon);

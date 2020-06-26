@@ -14,6 +14,7 @@ public class ThucDonDTO {
     int maNL;
     String tenMon;
     int gia;
+    String soluongNL;
 
     public ThucDonDTO(int maNL, String tenMon, int gia) {
         this.maNL = maNL;
@@ -21,11 +22,20 @@ public class ThucDonDTO {
         this.gia = gia;
     }
 
-    public ThucDonDTO(int maMon, int maNL, String tenMon, int gia) {
+    public ThucDonDTO(int maMon, int maNL, String tenMon, int gia, String soluongNL) {
         this.maMon = maMon;
         this.maNL = maNL;
         this.tenMon = tenMon;
         this.gia = gia;
+        this. soluongNL = soluongNL;
+    }
+
+    public String getSoluongNL() {
+        return soluongNL;
+    }
+
+    public void setSoluongNL(String soluongNL) {
+        this.soluongNL = soluongNL;
     }
 
     public ThucDonDTO() {
@@ -33,6 +43,7 @@ public class ThucDonDTO {
         maNL = 0;
         tenMon = null;
         gia = 0;
+        soluongNL = null;
     }
 
     public int getMaMon() {

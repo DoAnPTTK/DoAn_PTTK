@@ -270,9 +270,9 @@ public class Form_tracuu extends javax.swing.JFrame {
         if(this.str.equals("Tim nguyen lieu"))
         {
             NguyenLieuBLL nl = new NguyenLieuBLL();
-            int manl = Integer.parseInt(this.ma_trcuu.getText());
+            String manl = this.ma_trcuu.getText();
             NguyenLieuDTO nl_dto = nl.getNL(manl);
-            if(nl_dto.getMaNL()!= 0)
+            if(nl_dto.getMaNL()!= null)
             {
                 NguyenLieu_GUI nl_gui = new NguyenLieu_GUI();
                 nl_gui.setTracuu(nl_dto);

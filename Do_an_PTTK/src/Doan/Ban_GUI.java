@@ -458,7 +458,7 @@ public class Ban_GUI extends javax.swing.JFrame {
         }
         
         BanBLL ban = new BanBLL();
-        boolean kq = ban.update(Maban, tt, soghe, tt);
+        boolean kq = ban.update(Maban, Khuvuc, soghe, tt);
         if(kq)
         {
             JOptionPane.showMessageDialog(rootPane, "Bạn vừa cập nhật thông tin bàn thành công !", "Thông báo", JOptionPane.NO_OPTION);

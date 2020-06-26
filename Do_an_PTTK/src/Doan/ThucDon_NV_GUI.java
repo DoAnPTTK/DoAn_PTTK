@@ -210,7 +210,7 @@ public class ThucDon_NV_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         home_banhang bh = new home_banhang();
         bh.setTaiKhoan(Tentk);
-        bh.setNguoigoi("Nhan vien");
+        bh.setNguoigoi("Nhan Vien");
         bh.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_bt_backBHActionPerformed

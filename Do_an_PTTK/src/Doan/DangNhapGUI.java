@@ -126,6 +126,11 @@ public class DangNhapGUI extends javax.swing.JFrame {
                 Text_userFocusLost(evt);
             }
         });
+        Text_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Text_userActionPerformed(evt);
+            }
+        });
         username.add(Text_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 273, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -354,6 +359,12 @@ public class DangNhapGUI extends javax.swing.JFrame {
 
     private void button_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_loginActionPerformed
         // TODO add your handling code here:
+        if(Text_user.getText().equals("Nhập tên tài khoản") || Text_user.getText().equals("")
+           || Text_password.getText().equals("12345") || Text_password.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập đầy đủ thông tin tài khoản !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
+        }
         XuLyDangNhap();
     }//GEN-LAST:event_button_loginActionPerformed
 
@@ -403,14 +414,17 @@ public class DangNhapGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Text_passwordFocusLost
 
     private void Text_passwordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Text_passwordKeyPressed
-        // TODO add your handling code here:
-       
+
         if(evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
             XuLyDangNhap();
             return;
         }
     }//GEN-LAST:event_Text_passwordKeyPressed
+
+    private void Text_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Text_userActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Text_userActionPerformed
 
     /**
      * @param args the command line arguments

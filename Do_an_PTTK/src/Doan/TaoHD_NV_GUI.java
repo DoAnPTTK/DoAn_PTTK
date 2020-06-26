@@ -716,9 +716,10 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         }
         else
         {
-            float tongcong = (n_tt * n_giamgia)/100;
+            float tongcong = n_tt - (n_tt *((float) n_giamgia / 100));
 
             String total = String.valueOf(tongcong);
+            this.txf_tongcong.setText(total);
             boolean rs = ql.ThanhToan(MaHD, MaHD, this.txf_tongcong.getText());
             if(rs == true)
             {
@@ -865,11 +866,10 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         for(int i = 0; i < model.getRowCount(); i++)
         {
            long n1 = Long.parseLong((model.getValueAt(i, 4)).toString());
-           System.out.println(n1);
            long n2 = Long.parseLong((model.getValueAt(i, 5)).toString());
-           System.out.println(n2);
+
            total = (n1*n2) + total;
-           System.out.println(total);
+
         }
         return total;
     }
@@ -894,8 +894,8 @@ public class TaoHD_NV_GUI extends javax.swing.JFrame {
         
         this.jTable_CTHD.setModel(model);
         
-        this.cb_makh.setSelectedItem(0);
-        this.cb_maban.setSelectedItem(0);
+        this.cb_makh.setSelectedIndex(0);
+        this.cb_maban.setSelectedIndex(0);
         this.bt_bochon.setEnabled(true);
                 this.bt_them.setEnabled(true);
         return;

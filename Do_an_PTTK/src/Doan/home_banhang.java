@@ -337,7 +337,6 @@ public class home_banhang extends javax.swing.JFrame {
         {
             Chu_Quan cq = new Chu_Quan();
             cq.setTaiKhoan(TaiKhoan);
-            System.out.println(TaiKhoan+" homebanhang");
             cq.setVisible(true);
             this.dispose();
             return;

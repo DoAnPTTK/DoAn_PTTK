@@ -428,7 +428,7 @@ public class NV_thungan extends javax.swing.JFrame {
         // TODO add your handling code here:
         ThucDon_NV_GUI td = new ThucDon_NV_GUI();
         td.setTentk(TaiKhoan);
-        new ThucDon_NV_GUI().setVisible(true);
+        td.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_button_thucdonActionPerformed
 

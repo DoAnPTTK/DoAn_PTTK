@@ -19,7 +19,7 @@ public class NguyenLieuBLL {
     {
         return nlDAL.getAllNguyenLieu();
     }
-    public boolean addNguyenLieu(String tenNL, String HSD, int slCon, String congDung){
+    public boolean addNguyenLieu(String tenNL, String HSD, String slCon, String congDung){
         return nlDAL.addNguyenLieu(tenNL, HSD, slCon, congDung);
     }
     public boolean removeNL(String maNL){
@@ -28,10 +28,10 @@ public class NguyenLieuBLL {
     /*public boolean updateNL(int maNL, String tenMon, int Gia, int maMon){
         return menuDAL.updateMon(maNL, tenMon, Gia, maMon);
     }*/
-    public NguyenLieuDTO getNL(int maNL){
+    public NguyenLieuDTO getNL(String maNL){
         return nlDAL.getNguyenLieu(maNL);
     }
-    public boolean updateNguyenLieu(int maNL, String tenNL, String hsd, int slCon, String congDung ){
+    public boolean updateNguyenLieu(String maNL, String tenNL, String hsd, String slCon, String congDung ){
         return nlDAL.updateNguyenLieu(maNL, tenNL, hsd, slCon, congDung);
     }
     

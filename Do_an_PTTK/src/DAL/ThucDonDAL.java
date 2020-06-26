@@ -27,7 +27,7 @@ public class ThucDonDAL {
     }   
     public ArrayList<ThucDonDTO> getAllThucDon(){
         ArrayList<ThucDonDTO> listMenu = new ArrayList<ThucDonDTO>();
-        String sql = "select * from MON";
+        String sql = "select * from MON order by MAMON";
         ResultSet rs = Database.getData(conectionJDBC (),sql);
         try {
             while (rs.next()){
@@ -36,6 +36,7 @@ public class ThucDonDAL {
                 menu_DTO.setMaNL(rs.getInt("MANL"));
                 menu_DTO.setTenMon(rs.getString("TENMON"));
                 menu_DTO.setGia(rs.getInt("GIA"));
+                menu_DTO.setSoluongNL(rs.getString("SOLUONGNL"));
                 listMenu.add(menu_DTO);
             }
             
@@ -44,8 +45,8 @@ public class ThucDonDAL {
         }
         return listMenu;
 }
-    public boolean addMenu(int MANL, String TENMON, int GIA){
-        String sql = "insert into MON values (MAMON_SEQ.nextval,'"+MANL+"','"+TENMON+"','"+GIA+"')";
+    public boolean addMenu(int MANL, String TENMON, int GIA, String slnl){
+        String sql = "insert into MON values (MAMON_SEQ.nextval,'"+MANL+"','"+TENMON+"','"+GIA+"', '"+slnl+"')";
         try {
             Statement statement = conectionJDBC().createStatement();
             statement.executeUpdate(sql);
@@ -83,8 +84,8 @@ public class ThucDonDAL {
     }
     
    
-    public boolean updateMon(String tenMon, int Gia, int maMon){
-        String sql = "update MON set TENMON = '"+tenMon+"',GIA = '"+Gia+"' where MAMON = '"+maMon+"'" ;
+    public boolean updateMon(String tenMon, int Gia, int maMon, String slnl){
+        String sql = "update MON set TENMON = '"+tenMon+"',GIA = '"+Gia+"', SOLUONGNL = '"+slnl+"' where MAMON = '"+maMon+"'" ;
         Statement statement;
         try {
             statement = conectionJDBC().createStatement();
@@ -106,6 +107,7 @@ public class ThucDonDAL {
                 menu_DTO.setMaNL(rs.getInt("MANL"));
                 menu_DTO.setTenMon(rs.getString("TENMON"));
                 menu_DTO.setGia(rs.getInt("GIA"));
+                menu_DTO.setSoluongNL(rs.getString("SOLUONGNL"));
                 //listMenu.add(menu_DTO);
             }
             

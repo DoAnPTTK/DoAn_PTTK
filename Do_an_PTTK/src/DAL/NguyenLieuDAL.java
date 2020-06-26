@@ -27,10 +27,10 @@ public class NguyenLieuDAL {
         try {
             while (rs.next()){
                 NguyenLieuDTO ngLieu_DTO = new NguyenLieuDTO();
-                ngLieu_DTO.setMaNL(Integer.parseInt(rs.getString(1)));
+                ngLieu_DTO.setMaNL(rs.getString(1));
                 ngLieu_DTO.setTenNL(rs.getString(2));
                 ngLieu_DTO.setHSD(rs.getString(3));
-                ngLieu_DTO.setSlCon(rs.getInt(4));
+                ngLieu_DTO.setSlCon(rs.getString(4));
                 ngLieu_DTO.setCongDung(rs.getString(5));
                 listNL.add(ngLieu_DTO);
             }
@@ -47,10 +47,10 @@ public class NguyenLieuDAL {
         try {
             while (rs.next()){
                 NguyenLieuDTO ngLieu_DTO = new NguyenLieuDTO();
-                ngLieu_DTO.setMaNL(rs.getInt("MANL"));
+                ngLieu_DTO.setMaNL(rs.getString("MANL"));
                 ngLieu_DTO.setTenNL(rs.getString("TENNL"));
                 //ngLieu_DTO.setHSD(rs.getString("HSD"));
-                ngLieu_DTO.setSlCon(rs.getInt("SLCON"));
+                ngLieu_DTO.setSlCon(rs.getString("SLCON"));
                 //ngLieu_DTO.setCongDung(rs.getString("CONGDUNG"));
                 listTonKho.add(ngLieu_DTO);
             }
@@ -60,7 +60,7 @@ public class NguyenLieuDAL {
         }
         return listTonKho;
     }
-    public boolean addNguyenLieu(String tenNL, String HSD, int slCon, String congDung){
+    public boolean addNguyenLieu(String tenNL, String HSD, String slCon, String congDung){
         String sql = "insert into NGUYENLIEU values (MANL_SEQ.nextval,'"+tenNL+"',TO_DATE('"+HSD+"','dd/mm/yyyy'),'"+slCon+"','"+congDung+"')";
         try {
             Statement statement = conectionJDBC().createStatement();
@@ -85,17 +85,17 @@ public class NguyenLieuDAL {
         return false;
 
     }
-    public NguyenLieuDTO getNguyenLieu(int maNL){
+    public NguyenLieuDTO getNguyenLieu(String maNL){
 
         String sql = "select MANL, TENNL, TO_CHAR(HSD, 'dd-MM-yyyy') HSD, SLCON, CONGDUNG from NGUYENLIEU where MANL = '"+maNL+"'";
         ResultSet rs = Database.getData(conectionJDBC (),sql);
         NguyenLieuDTO ngLieu_DTO = new NguyenLieuDTO();
         try {
             while (rs.next()){
-                ngLieu_DTO.setMaNL(Integer.parseInt(rs.getString(1)));
+                ngLieu_DTO.setMaNL(rs.getString(1));
                 ngLieu_DTO.setTenNL(rs.getString(2));
                 ngLieu_DTO.setHSD(rs.getString(3));
-                ngLieu_DTO.setSlCon(rs.getInt(4));
+                ngLieu_DTO.setSlCon(rs.getString(4));
                 ngLieu_DTO.setCongDung(rs.getString(5));
             }
             
@@ -104,7 +104,7 @@ public class NguyenLieuDAL {
         }
         return ngLieu_DTO;
 }
-    public boolean updateNguyenLieu(int maNL, String tenNL, String hsd, int slCon, String congDung ){
+    public boolean updateNguyenLieu(String maNL, String tenNL, String hsd, String slCon, String congDung ){
         String sql = "update NGUYENLIEU set TENNL = '"+tenNL+"', HSD = TO_DATE ('"+hsd+"','dd/mm/yyyy'), SLCON = '"+slCon+"', congDung = '"+congDung+"'where MANL = '"+maNL+"'";
         Statement statement;
         try {

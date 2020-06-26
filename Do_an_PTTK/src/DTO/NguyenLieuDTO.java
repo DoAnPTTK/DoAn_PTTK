@@ -10,13 +10,14 @@ package DTO;
  * @author User
  */
 public class NguyenLieuDTO {
-    int maNL;
+    String maNL;
     String tenNL;
     String HSD;
-    int slCon;
+    String slCon;
     String congDung;
 
-    public NguyenLieuDTO(int maNL, String tenNL, String HSD, int slCon, String congDung) {
+    public NguyenLieuDTO(String maNL, String tenNL, String HSD, String slCon, String congDung) 
+    {
         this.maNL = maNL;
         this.tenNL = tenNL;
         this.HSD = HSD;
@@ -24,59 +25,57 @@ public class NguyenLieuDTO {
         this.congDung = congDung;
     }
 
-    public NguyenLieuDTO(String tenNL, String HSD, int slCon, String congDung) {
-        this.tenNL = tenNL;
-        this.HSD = HSD;
-        this.slCon = slCon;
-        this.congDung = congDung;
+    public NguyenLieuDTO() 
+    {
+        this.maNL = null;
+        this.tenNL = null;
+        this.HSD = null;
+        this.slCon = null;
+        this.congDung = null;
     }
 
-    public NguyenLieuDTO() {
-        maNL = 0;
-        tenNL = null;
-        HSD = null;
-        slCon = 0;
-        congDung = null;
-    }
-
-    public int getMaNL() {
-        return maNL;
-    }
-
-    public void setMaNL(int maNL) {
+    public void setMaNL(String maNL) {
         this.maNL = maNL;
-    }
-
-    public String getTenNL() {
-        return tenNL;
     }
 
     public void setTenNL(String tenNL) {
         this.tenNL = tenNL;
     }
 
-    public String getHSD() {
-        return HSD;
-    }
-
     public void setHSD(String HSD) {
         this.HSD = HSD;
     }
 
-    public int getSlCon() {
-        return slCon;
-    }
-
-    public void setSlCon(int slCon) {
+    public void setSlCon(String slCon) {
         this.slCon = slCon;
-    }
-
-    public String getCongDung() {
-        return congDung;
     }
 
     public void setCongDung(String congDung) {
         this.congDung = congDung;
     }
+    
+    
+
+    public String getMaNL() {
+        return maNL;
+    }
+
+    public String getTenNL() {
+        return tenNL;
+    }
+
+    public String getHSD() {
+        return HSD;
+    }
+
+    public String getSlCon() {
+        return slCon;
+    }
+
+    public String getCongDung() {
+        return congDung;
+    }
+    
+    
     
 }
