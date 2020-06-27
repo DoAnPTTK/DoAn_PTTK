@@ -42,7 +42,7 @@ public class DangNhapGUI extends javax.swing.JFrame {
             cq.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Đăng nhập thất bại.");
+            JOptionPane.showMessageDialog(null, "Thông tin tài khoản hoặc mật khẩu bị sai! Vui lòng nhập lại!.");
         }
 
     }

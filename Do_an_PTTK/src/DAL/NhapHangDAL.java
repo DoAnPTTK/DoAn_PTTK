@@ -129,7 +129,7 @@ public class NhapHangDAL {
     
     public boolean removeDonHang(String mactn)
     {
-        String sql = "delet from CHI_TIET_NHAP where MACTN = "+ mactn;
+        String sql = "delete from CHI_TIET_NHAP where MACTN = "+ mactn;
         Statement stmt;
         int n = 0;
         try {

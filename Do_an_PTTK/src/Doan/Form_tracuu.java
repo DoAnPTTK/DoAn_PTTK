@@ -224,111 +224,118 @@ public class Form_tracuu extends javax.swing.JFrame {
 
     private void bt_timActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_timActionPerformed
         // TODO add your handling code here:
-        if(this.str.equals("Tim nhan vien"))
+        if(ma_trcuu.getText().equals(""))
         {
-            QuanLyNV_BLL ql_nv = new QuanLyNV_BLL();
-            NhanVienDTO nv = ql_nv.getNhanVien(this.ma_trcuu.getText());
-            QL_NV_GUI ql_nvGUI = new QL_NV_GUI();
-            ql_nvGUI.setTentk(tentk);
-            ql_nvGUI.setVisible(true);
-            ql_nvGUI.setTable_tracuu(nv);
-            this.dispose();
+            JOptionPane.showMessageDialog(rootPane, "Bạn chưa nhập thông tin cần tra cứu !", "Thông báo", JOptionPane.NO_OPTION);
+            return;
         }
-
-         if(this.str.equals("Tim khach hang"))
+        else
         {
-            QuanLyKH_BLL ql_kh = new QuanLyKH_BLL();
-            KhachHangDTO nv = ql_kh.getKhachHang(this.ma_trcuu.getText());
-            QL_KH_GUI ql_khGUI = new QL_KH_GUI();
-            ql_khGUI.setTentk(tentk);
-            ql_khGUI.setVisible(true);
-            ql_khGUI.setTable_tracuu(nv);
-            this.dispose();
-        }
-         
-        if(this.str.equals("Tim thuc don"))
-        {
-            ThucDonBLL td = new ThucDonBLL();
-            int ma_td = Integer.parseInt(this.ma_trcuu.getText());
-            ThucDonDTO td_dto = td.getThucDon(ma_td);
-            if(td_dto.getMaMon() != 0)
+            if(this.str.equals("Tim nhan vien"))
             {
+                QuanLyNV_BLL ql_nv = new QuanLyNV_BLL();
+                NhanVienDTO nv = ql_nv.getNhanVien(this.ma_trcuu.getText());
+                QL_NV_GUI ql_nvGUI = new QL_NV_GUI();
+                ql_nvGUI.setTentk(tentk);
+                ql_nvGUI.setVisible(true);
+                ql_nvGUI.setTable_tracuu(nv);
+                this.dispose();
+            }
+
+             if(this.str.equals("Tim khach hang"))
+            {
+                QuanLyKH_BLL ql_kh = new QuanLyKH_BLL();
+                KhachHangDTO nv = ql_kh.getKhachHang(this.ma_trcuu.getText());
+                QL_KH_GUI ql_khGUI = new QL_KH_GUI();
+                ql_khGUI.setTentk(tentk);
+                ql_khGUI.setVisible(true);
+                ql_khGUI.setTable_tracuu(nv);
+                this.dispose();
+            }
+
+            if(this.str.equals("Tim thuc don"))
+            {
+                ThucDonBLL td = new ThucDonBLL();
+                int ma_td = Integer.parseInt(this.ma_trcuu.getText());
+                ThucDonDTO td_dto = td.getThucDon(ma_td);
+                if(td_dto.getMaMon() != 0)
+                {
+                    Thuc_don_GUI thd = new Thuc_don_GUI();
+                    thd.setTracuu(td_dto);
+                    thd.setTentk(tentk);
+                    thd.setVisible(true);
+                    this.dispose();
+                    return;
+                }
+                JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
                 Thuc_don_GUI thd = new Thuc_don_GUI();
-                thd.setTracuu(td_dto);
                 thd.setTentk(tentk);
                 thd.setVisible(true);
                 this.dispose();
-                return;
             }
-            JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
-            Thuc_don_GUI thd = new Thuc_don_GUI();
-            thd.setTentk(tentk);
-            thd.setVisible(true);
-            this.dispose();
-        }
-        
-        if(this.str.equals("Tim nguyen lieu"))
-        {
-            NguyenLieuBLL nl = new NguyenLieuBLL();
-            String manl = this.ma_trcuu.getText();
-            NguyenLieuDTO nl_dto = nl.getNL(manl);
-            if(nl_dto.getMaNL()!= null)
+
+            if(this.str.equals("Tim nguyen lieu"))
             {
+                NguyenLieuBLL nl = new NguyenLieuBLL();
+                String manl = this.ma_trcuu.getText();
+                NguyenLieuDTO nl_dto = nl.getNL(manl);
+                if(nl_dto.getMaNL()!= null)
+                {
+                    NguyenLieu_GUI nl_gui = new NguyenLieu_GUI();
+                    nl_gui.setTracuu(nl_dto);
+                    nl_gui.setTentk(tentk);
+                    nl_gui.setVisible(true);
+                    this.dispose();
+                    return;
+                }
+                JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
                 NguyenLieu_GUI nl_gui = new NguyenLieu_GUI();
-                nl_gui.setTracuu(nl_dto);
                 nl_gui.setTentk(tentk);
                 nl_gui.setVisible(true);
                 this.dispose();
-                return;
             }
-            JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
-            NguyenLieu_GUI nl_gui = new NguyenLieu_GUI();
-            nl_gui.setTentk(tentk);
-            nl_gui.setVisible(true);
-            this.dispose();
-        }
-        
-        if(this.str.equals("Tim don hang"))
-        {
-            NhapHangBLL nh = new NhapHangBLL();
-            String mactn = this.ma_trcuu.getText();
-            NhapHangDTO nh_dto = nh.getDonHang(mactn);
-            if(nh_dto.getMaCTN() != null)
+
+            if(this.str.equals("Tim don hang"))
             {
+                NhapHangBLL nh = new NhapHangBLL();
+                String mactn = this.ma_trcuu.getText();
+                NhapHangDTO nh_dto = nh.getDonHang(mactn);
+                if(nh_dto.getMaCTN() != null)
+                {
+                    NhapHang_GUI nh_gui = new NhapHang_GUI();
+                    nh_gui.setTracuu(nh_dto);
+                    nh_gui.setTentk(tentk);
+                    nh_gui.setVisible(true);
+                    this.dispose();
+                    return;
+                }
+                JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
                 NhapHang_GUI nh_gui = new NhapHang_GUI();
-                nh_gui.setTracuu(nh_dto);
                 nh_gui.setTentk(tentk);
                 nh_gui.setVisible(true);
                 this.dispose();
-                return;
             }
-            JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
-            NhapHang_GUI nh_gui = new NhapHang_GUI();
-            nh_gui.setTentk(tentk);
-            nh_gui.setVisible(true);
-            this.dispose();
-        }
-        if(this.str.equals("Tim ban"))
-        {
-            BanBLL ban = new BanBLL();
-            String mactn = this.ma_trcuu.getText();
-            Ban_DTO ban_dto = ban.getBan(mactn);
-            if(ban_dto.getMaban() != null)
+            if(this.str.equals("Tim ban"))
             {
+                BanBLL ban = new BanBLL();
+                String mactn = this.ma_trcuu.getText();
+                Ban_DTO ban_dto = ban.getBan(mactn);
+                if(ban_dto.getMaban() != null)
+                {
+                    Ban_GUI ban_gui = new Ban_GUI();
+                    ban_gui.setTableTracuu(ban_dto);
+                    ban_gui.setTentk(tentk);
+                    ban_gui.setVisible(true);
+                    this.dispose();
+                    return;
+                }
+                JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
                 Ban_GUI ban_gui = new Ban_GUI();
-                ban_gui.setTableTracuu(ban_dto);
                 ban_gui.setTentk(tentk);
                 ban_gui.setVisible(true);
                 this.dispose();
-                return;
             }
-            JOptionPane.showMessageDialog(rootPane, "Không có kết quả cần tìm !", "Thông báo", JOptionPane.NO_OPTION);
-            Ban_GUI ban_gui = new Ban_GUI();
-            ban_gui.setTentk(tentk);
-            ban_gui.setVisible(true);
-            this.dispose();
         }
-        
     }//GEN-LAST:event_bt_timActionPerformed
 
     /**
